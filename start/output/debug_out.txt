@@ -1,0 +1,29 @@
+Created job: index: 0 Length: 1 Type 1
+Created job: index: 1 Length: 4 Type 5
+Created job: index: 2 Length: 3 Type 4
+Created job: index: 3 Length: 2 Type 4
+Created job: index: 4 Length: 1 Type 4
+Created job: index: 5 Length: 2 Type 2
+Created job: index: 6 Length: 4 Type 4
+Created job: index: 7 Length: 3 Type 5
+Created job: index: 8 Length: 4 Type 5
+Created job: index: 9 Length: 1 Type 4
+-----------------FINISHED CREATING JOB OBJECTS----------------------
+
+
+---------------MACHINES STATS--------------------------
+
+machine #  0 assigned jobs #:
+[0, 5]
+Types:  [1, 1, 0, 0, 0] Makespan :  3
+machine #  1 assigned jobs #:
+[1, 2, 3, 4, 6, 7, 8, 9]
+Types:  [0, 0, 0, 5, 3] Makespan :  22
+machine #  2 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+Max makespan is :  22
+------------------------------------------------
+
+makespan:  11
+makespan:  9
