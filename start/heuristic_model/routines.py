@@ -1,9 +1,9 @@
-from start.heuristic_model.calculateMakeSpan import calculateMakeSpan
-from start.heuristic_model.job_management import isLegalMove, checkMoveSpan, moveJob, checkColorChangeSpan, moveColor, \
+from heuristic_model.calculateMakeSpan import calculateMakeSpan
+from heuristic_model.job_management import isLegalMove, checkMoveSpan, moveJob, checkColorChangeSpan, moveColor, \
     isLegalSwap, checkSwapSpan, swapJobs, isLegalTwoSwap, checkTwoSwapSpan, swapTwoJobs, isLegalCircularSwap, \
     checkCircularSwapSpan, circularSwap
-from start.io.printMachineStatOut import printMachineStatOut
-from start.models.Machine import Machine
+from io_utils.printMachineStatOut import printMachineStatOut
+from models.Machine import Machine
 
 
 def isDone(d_list):

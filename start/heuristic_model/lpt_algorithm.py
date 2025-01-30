@@ -1,6 +1,6 @@
 import copy
 
-from start.heuristic_model.helper import findMinLoadMachineLegaly
+from heuristic_model.helper import findMinLoadMachineLegaly
 
 
 def legalLpt(jobs, m_list):

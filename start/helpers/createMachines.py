@@ -1,4 +1,4 @@
-from start.models.Machine import Machine
+from models.Machine import Machine
 
 
 def createMachines(number_of_machines):

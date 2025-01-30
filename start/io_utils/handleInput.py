@@ -1,7 +1,4 @@
-from random import randint
-
-from start.Constants import NUM_OF_TYPES
-
+from helpers.createRandomJobValues import createRandomJobValues
 
 def handleInput():
     if input("Would you like to generate a new input file? Y/N\n") == "Y":
@@ -25,27 +22,7 @@ def handleInput():
         inpt.write(str(num_of_machines))
         inpt.write("\n")
 
-        # # Generate random number of jobs
-        print("number of jobs generated: ", num_of_jobs)
-        jobs = []
-        for index in range(0, num_of_jobs):
-            j = []
-            j.append(index)
-            job_size = randint(min_processing_time, int(max_processing_time))
-            j.append(job_size)
-            type = randint(1, NUM_OF_TYPES)
-            j.append(type)
-            inpt.write(str(index))
-            inpt.write(" ")
-            inpt.write(str(job_size))
-            inpt.write(" ")
-            inpt.write(str(type))
-            inpt.write("\n")
-            jobs.append(j)
-
-        inpt.close()
-
-
+    # Generate random number of jobs
     else:
         inpt = open("input.txt", 'r')
         jobs = []
@@ -58,4 +35,4 @@ def handleInput():
 
         inpt.close()
 
-    return num_of_machines, jobs
+    return num_of_machines, num_of_jobs, min_processing_time, max_processing_time

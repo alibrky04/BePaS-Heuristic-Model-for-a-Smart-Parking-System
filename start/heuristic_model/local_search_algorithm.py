@@ -1,8 +1,8 @@
-from start.heuristic_model.calculateMakeSpan import calculateMakeSpan
-from start.heuristic_model.helper import isEven
-from start.heuristic_model.routines import oneJobRoutine, oneByOneSwapRoutine, colorChangeRoutine, twoByTwoSwapRoutine, \
+from heuristic_model.calculateMakeSpan import calculateMakeSpan
+from heuristic_model.helper import isEven
+from heuristic_model.routines import oneJobRoutine, oneByOneSwapRoutine, colorChangeRoutine, twoByTwoSwapRoutine, \
     circularSwapRoutine
-from start.io.printMachineStatOut import printMachineStatOut
+from io_utils.printMachineStatOut import printMachineStatOut
 
 
 def localSearch(machine_list, number_of_machines, job_list, number_of_jobs, output_file, debug_file):

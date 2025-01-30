@@ -1,5 +1,5 @@
-from start.heuristic_model.calculateMakeSpan import calculateMakeSpan
-from start.models.Machine import Machine
+from heuristic_model.calculateMakeSpan import calculateMakeSpan
+from models.Machine import Machine
 
 
 def removeAllJobs(machine_list):
