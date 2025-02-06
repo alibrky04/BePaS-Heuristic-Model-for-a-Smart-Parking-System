@@ -1,4 +1,5 @@
 .venv
 input.txt
 debug_out.txt
+debugout.txt
 output.txt
