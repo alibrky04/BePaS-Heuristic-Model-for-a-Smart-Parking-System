@@ -1,24 +1,337 @@
-Created job: index: 0 Length: 3 Type: 4 Duration: 1
-Created job: index: 1 Length: 2 Type: 5 Duration: 1
+Created job: index: 0 Length: 7 Type: 4 Duration: 2
+Created job: index: 1 Length: 5 Type: 3 Duration: 1
+Created job: index: 2 Length: 7 Type: 2 Duration: 1
+Created job: index: 3 Length: 15 Type: 4 Duration: 2
+Created job: index: 4 Length: 1 Type: 5 Duration: 2
+Created job: index: 5 Length: 13 Type: 5 Duration: 2
+Created job: index: 6 Length: 15 Type: 4 Duration: 2
+Created job: index: 7 Length: 15 Type: 1 Duration: 1
+Created job: index: 8 Length: 13 Type: 4 Duration: 2
+Created job: index: 9 Length: 7 Type: 3 Duration: 1
+Created job: index: 10 Length: 11 Type: 3 Duration: 2
+Created job: index: 11 Length: 2 Type: 3 Duration: 1
+Created job: index: 12 Length: 19 Type: 1 Duration: 2
+Created job: index: 13 Length: 9 Type: 3 Duration: 2
+Created job: index: 14 Length: 14 Type: 5 Duration: 1
+-----------------FINISHED CREATING JOB OBJECTS----------------------
+
+
+---------------MACHINES STATS--------------------------
+
+machine #  0 assigned jobs #:
+[1, 2, 7, 9, 10, 11, 12, 13]
+Types:  [2, 1, 5, 0, 0] Makespan :  75
+machine #  1 assigned jobs #:
+[0, 3, 4, 5, 6, 8, 14]
+Types:  [0, 0, 0, 4, 3] Makespan :  78
+machine #  2 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  3 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  4 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  5 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  6 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  7 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  8 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  9 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+Max makespan is :  78
+------------------------------------------------
+
+makespan:  49
+makespan:  45
+makespan:  34
+makespan:  31
+makespan:  27
+makespan:  25
+makespan:  23
+makespan:  21
+makespan:  19
+Created job: index: 0 Length: 16 Type: 2 Duration: 1
+Created job: index: 1 Length: 1 Type: 4 Duration: 2
+Created job: index: 2 Length: 6 Type: 1 Duration: 2
+Created job: index: 3 Length: 17 Type: 5 Duration: 2
+Created job: index: 4 Length: 11 Type: 4 Duration: 2
+Created job: index: 5 Length: 1 Type: 5 Duration: 2
+Created job: index: 6 Length: 14 Type: 5 Duration: 2
+Created job: index: 7 Length: 7 Type: 1 Duration: 1
+Created job: index: 8 Length: 10 Type: 3 Duration: 2
+Created job: index: 9 Length: 9 Type: 5 Duration: 2
+Created job: index: 10 Length: 16 Type: 3 Duration: 2
+Created job: index: 11 Length: 5 Type: 2 Duration: 1
+Created job: index: 12 Length: 7 Type: 3 Duration: 1
+Created job: index: 13 Length: 3 Type: 4 Duration: 2
+Created job: index: 14 Length: 5 Type: 5 Duration: 2
+-----------------FINISHED CREATING JOB OBJECTS----------------------
+
+
+---------------MACHINES STATS--------------------------
+
+machine #  0 assigned jobs #:
+[0, 2, 7, 8, 10, 11, 12]
+Types:  [2, 2, 3, 0, 0] Makespan :  67
+machine #  1 assigned jobs #:
+[1, 3, 4, 5, 6, 9, 13, 14]
+Types:  [0, 0, 0, 3, 5] Makespan :  61
+machine #  2 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  3 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  4 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  5 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  6 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  7 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  8 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  9 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+Max makespan is :  67
+------------------------------------------------
+
+makespan:  61
+makespan:  43
+makespan:  36
+makespan:  27
+makespan:  22
+makespan:  17
+Created job: index: 0 Length: 11 Type: 3 Duration: 2
+Created job: index: 1 Length: 11 Type: 3 Duration: 2
+Created job: index: 2 Length: 6 Type: 3 Duration: 2
+Created job: index: 3 Length: 12 Type: 3 Duration: 2
+Created job: index: 4 Length: 3 Type: 4 Duration: 2
+Created job: index: 5 Length: 6 Type: 1 Duration: 2
+Created job: index: 6 Length: 9 Type: 3 Duration: 1
+Created job: index: 7 Length: 6 Type: 1 Duration: 2
+Created job: index: 8 Length: 5 Type: 1 Duration: 1
+Created job: index: 9 Length: 13 Type: 1 Duration: 1
+Created job: index: 10 Length: 8 Type: 3 Duration: 1
+Created job: index: 11 Length: 9 Type: 1 Duration: 2
+Created job: index: 12 Length: 4 Type: 3 Duration: 2
+Created job: index: 13 Length: 10 Type: 4 Duration: 2
+Created job: index: 14 Length: 15 Type: 4 Duration: 1
+-----------------FINISHED CREATING JOB OBJECTS----------------------
+
+
+---------------MACHINES STATS--------------------------
+
+machine #  0 assigned jobs #:
+[0, 1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12]
+Types:  [5, 0, 7, 0, 0] Makespan :  100
+machine #  1 assigned jobs #:
+[4, 13, 14]
+Types:  [0, 0, 0, 3, 0] Makespan :  28
+machine #  2 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  3 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  4 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  5 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  6 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  7 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  8 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  9 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+Max makespan is :  100
+------------------------------------------------
+
+makespan:  68
+makespan:  54
+makespan:  39
+makespan:  31
+makespan:  29
+makespan:  26
+makespan:  25
+makespan:  23
+makespan:  18
+makespan:  16
+makespan:  15
+Created job: index: 0 Length: 19 Type: 5 Duration: 1
+Created job: index: 1 Length: 6 Type: 3 Duration: 2
+Created job: index: 2 Length: 20 Type: 1 Duration: 2
+Created job: index: 3 Length: 17 Type: 5 Duration: 1
+Created job: index: 4 Length: 8 Type: 4 Duration: 1
+Created job: index: 5 Length: 4 Type: 4 Duration: 2
+Created job: index: 6 Length: 10 Type: 2 Duration: 1
+Created job: index: 7 Length: 20 Type: 4 Duration: 2
+Created job: index: 8 Length: 5 Type: 4 Duration: 2
+Created job: index: 9 Length: 18 Type: 2 Duration: 2
+Created job: index: 10 Length: 5 Type: 3 Duration: 1
+Created job: index: 11 Length: 9 Type: 2 Duration: 1
+Created job: index: 12 Length: 2 Type: 5 Duration: 2
+Created job: index: 13 Length: 5 Type: 1 Duration: 2
+Created job: index: 14 Length: 20 Type: 3 Duration: 2
+-----------------FINISHED CREATING JOB OBJECTS----------------------
+
+
+---------------MACHINES STATS--------------------------
+
+machine #  0 assigned jobs #:
+[1, 2, 6, 9, 10, 11, 13, 14]
+Types:  [2, 3, 3, 0, 0] Makespan :  93
+machine #  1 assigned jobs #:
+[0, 3, 4, 5, 7, 8, 12]
+Types:  [0, 0, 0, 4, 3] Makespan :  75
+machine #  2 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  3 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  4 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  5 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  6 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  7 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  8 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  9 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+Max makespan is :  93
+------------------------------------------------
+
+makespan:  81
+makespan:  67
+makespan:  39
+makespan:  31
+makespan:  28
+makespan:  20
+Created job: index: 0 Length: 10 Type: 3 Duration: 1
+Created job: index: 1 Length: 3 Type: 5 Duration: 1
+Created job: index: 2 Length: 10 Type: 2 Duration: 2
+Created job: index: 3 Length: 18 Type: 1 Duration: 2
+Created job: index: 4 Length: 18 Type: 3 Duration: 2
+Created job: index: 5 Length: 9 Type: 2 Duration: 2
+Created job: index: 6 Length: 11 Type: 4 Duration: 2
+Created job: index: 7 Length: 9 Type: 3 Duration: 2
+Created job: index: 8 Length: 10 Type: 2 Duration: 1
+Created job: index: 9 Length: 17 Type: 2 Duration: 1
+Created job: index: 10 Length: 8 Type: 4 Duration: 1
+Created job: index: 11 Length: 19 Type: 2 Duration: 1
+Created job: index: 12 Length: 11 Type: 1 Duration: 1
+Created job: index: 13 Length: 10 Type: 3 Duration: 1
+Created job: index: 14 Length: 20 Type: 1 Duration: 2
+-----------------FINISHED CREATING JOB OBJECTS----------------------
+
+
+---------------MACHINES STATS--------------------------
+
+machine #  0 assigned jobs #:
+[0, 2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 14]
+Types:  [3, 5, 4, 0, 0] Makespan :  161
+machine #  1 assigned jobs #:
+[1, 6, 10]
+Types:  [0, 0, 0, 2, 1] Makespan :  22
+machine #  2 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  3 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  4 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  5 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  6 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  7 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  8 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  9 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+Max makespan is :  161
+------------------------------------------------
+
+makespan:  64
+makespan:  47
+makespan:  38
+makespan:  32
+makespan:  30
+makespan:  29
+makespan:  28
+makespan:  24
+makespan:  22
+makespan:  21
+makespan:  20
+Created job: index: 0 Length: 17 Type: 5 Duration: 2
+Created job: index: 1 Length: 15 Type: 5 Duration: 2
 Created job: index: 2 Length: 2 Type: 2 Duration: 2
-Created job: index: 3 Length: 2 Type: 5 Duration: 1
-Created job: index: 4 Length: 3 Type: 3 Duration: 1
-Created job: index: 5 Length: 3 Type: 3 Duration: 2
-Created job: index: 6 Length: 2 Type: 5 Duration: 2
-Created job: index: 7 Length: 2 Type: 3 Duration: 1
-Created job: index: 8 Length: 1 Type: 1 Duration: 2
-Created job: index: 9 Length: 3 Type: 1 Duration: 2
+Created job: index: 3 Length: 16 Type: 1 Duration: 1
+Created job: index: 4 Length: 19 Type: 1 Duration: 2
+Created job: index: 5 Length: 3 Type: 3 Duration: 1
+Created job: index: 6 Length: 12 Type: 1 Duration: 2
+Created job: index: 7 Length: 6 Type: 4 Duration: 2
+Created job: index: 8 Length: 5 Type: 3 Duration: 2
+Created job: index: 9 Length: 1 Type: 1 Duration: 2
+Created job: index: 10 Length: 9 Type: 1 Duration: 1
+Created job: index: 11 Length: 20 Type: 5 Duration: 1
+Created job: index: 12 Length: 6 Type: 3 Duration: 1
+Created job: index: 13 Length: 19 Type: 1 Duration: 2
+Created job: index: 14 Length: 18 Type: 5 Duration: 2
 -----------------FINISHED CREATING JOB OBJECTS----------------------
 
 
 ---------------MACHINES STATS--------------------------
 
 machine #  0 assigned jobs #:
-[2, 4, 5, 7, 8, 9]
-Types:  [2, 1, 3, 0, 0] Makespan :  14
+[2, 3, 4, 5, 6, 8, 9, 10, 12, 13]
+Types:  [6, 1, 3, 0, 0] Makespan :  92
 machine #  1 assigned jobs #:
-[0, 1, 3, 6]
-Types:  [0, 0, 0, 1, 3] Makespan :  9
+[0, 1, 7, 11, 14]
+Types:  [0, 0, 0, 1, 4] Makespan :  76
 machine #  2 assigned jobs #:
 []
 Types:  [0, 0, 0, 0, 0] Makespan :  0
@@ -28,36 +341,61 @@ Types:  [0, 0, 0, 0, 0] Makespan :  0
 machine #  4 assigned jobs #:
 []
 Types:  [0, 0, 0, 0, 0] Makespan :  0
-Max makespan is :  14
+machine #  5 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  6 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  7 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  8 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  9 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+Max makespan is :  92
 ------------------------------------------------
 
-makespan:  11
-makespan:  9
-makespan:  8
-makespan:  7
-makespan:  6
-makespan:  5
-Created job: index: 0 Length: 1 Type: 3 Duration: 2
-Created job: index: 1 Length: 3 Type: 5 Duration: 2
-Created job: index: 2 Length: 1 Type: 4 Duration: 2
-Created job: index: 3 Length: 2 Type: 3 Duration: 1
-Created job: index: 4 Length: 1 Type: 1 Duration: 2
-Created job: index: 5 Length: 2 Type: 3 Duration: 1
-Created job: index: 6 Length: 2 Type: 3 Duration: 1
-Created job: index: 7 Length: 3 Type: 3 Duration: 2
-Created job: index: 8 Length: 3 Type: 4 Duration: 1
-Created job: index: 9 Length: 3 Type: 3 Duration: 1
+makespan:  78
+makespan:  67
+makespan:  52
+makespan:  46
+makespan:  35
+makespan:  34
+makespan:  26
+makespan:  23
+makespan:  22
+makespan:  21
+makespan:  20
+Created job: index: 0 Length: 8 Type: 2 Duration: 2
+Created job: index: 1 Length: 13 Type: 3 Duration: 1
+Created job: index: 2 Length: 19 Type: 3 Duration: 1
+Created job: index: 3 Length: 10 Type: 3 Duration: 2
+Created job: index: 4 Length: 16 Type: 5 Duration: 1
+Created job: index: 5 Length: 1 Type: 5 Duration: 1
+Created job: index: 6 Length: 4 Type: 3 Duration: 1
+Created job: index: 7 Length: 9 Type: 4 Duration: 2
+Created job: index: 8 Length: 20 Type: 2 Duration: 2
+Created job: index: 9 Length: 4 Type: 2 Duration: 2
+Created job: index: 10 Length: 3 Type: 2 Duration: 1
+Created job: index: 11 Length: 9 Type: 5 Duration: 1
+Created job: index: 12 Length: 17 Type: 2 Duration: 2
+Created job: index: 13 Length: 9 Type: 4 Duration: 2
+Created job: index: 14 Length: 11 Type: 4 Duration: 1
 -----------------FINISHED CREATING JOB OBJECTS----------------------
 
 
 ---------------MACHINES STATS--------------------------
 
 machine #  0 assigned jobs #:
-[0, 3, 4, 5, 6, 7, 9]
-Types:  [1, 0, 6, 0, 0] Makespan :  14
+[0, 1, 2, 3, 6, 8, 9, 10, 12]
+Types:  [0, 5, 4, 0, 0] Makespan :  98
 machine #  1 assigned jobs #:
-[1, 2, 8]
-Types:  [0, 0, 0, 2, 1] Makespan :  7
+[4, 5, 7, 11, 13, 14]
+Types:  [0, 0, 0, 3, 3] Makespan :  55
 machine #  2 assigned jobs #:
 []
 Types:  [0, 0, 0, 0, 0] Makespan :  0
@@ -67,33 +405,57 @@ Types:  [0, 0, 0, 0, 0] Makespan :  0
 machine #  4 assigned jobs #:
 []
 Types:  [0, 0, 0, 0, 0] Makespan :  0
-Max makespan is :  14
+machine #  5 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  6 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  7 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  8 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  9 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+Max makespan is :  98
 ------------------------------------------------
 
-makespan:  10
-makespan:  8
-makespan:  5
-Created job: index: 0 Length: 1 Type: 4 Duration: 2
-Created job: index: 1 Length: 3 Type: 4 Duration: 2
-Created job: index: 2 Length: 2 Type: 5 Duration: 1
-Created job: index: 3 Length: 2 Type: 4 Duration: 2
-Created job: index: 4 Length: 2 Type: 5 Duration: 2
-Created job: index: 5 Length: 1 Type: 2 Duration: 2
-Created job: index: 6 Length: 1 Type: 4 Duration: 2
-Created job: index: 7 Length: 2 Type: 3 Duration: 2
-Created job: index: 8 Length: 3 Type: 4 Duration: 2
-Created job: index: 9 Length: 2 Type: 2 Duration: 2
+makespan:  63
+makespan:  62
+makespan:  43
+makespan:  29
+makespan:  26
+makespan:  21
+makespan:  20
+Created job: index: 0 Length: 14 Type: 2 Duration: 1
+Created job: index: 1 Length: 18 Type: 1 Duration: 2
+Created job: index: 2 Length: 5 Type: 3 Duration: 1
+Created job: index: 3 Length: 5 Type: 4 Duration: 2
+Created job: index: 4 Length: 14 Type: 3 Duration: 1
+Created job: index: 5 Length: 14 Type: 5 Duration: 2
+Created job: index: 6 Length: 18 Type: 3 Duration: 2
+Created job: index: 7 Length: 5 Type: 1 Duration: 1
+Created job: index: 8 Length: 9 Type: 5 Duration: 2
+Created job: index: 9 Length: 8 Type: 1 Duration: 2
+Created job: index: 10 Length: 7 Type: 2 Duration: 1
+Created job: index: 11 Length: 10 Type: 1 Duration: 1
+Created job: index: 12 Length: 7 Type: 4 Duration: 1
+Created job: index: 13 Length: 5 Type: 3 Duration: 1
+Created job: index: 14 Length: 14 Type: 5 Duration: 1
 -----------------FINISHED CREATING JOB OBJECTS----------------------
 
 
 ---------------MACHINES STATS--------------------------
 
 machine #  0 assigned jobs #:
-[5, 7, 9]
-Types:  [0, 2, 1, 0, 0] Makespan :  5
+[0, 1, 2, 4, 6, 7, 9, 10, 11, 13]
+Types:  [4, 2, 4, 0, 0] Makespan :  104
 machine #  1 assigned jobs #:
-[0, 1, 2, 3, 4, 6, 8]
-Types:  [0, 0, 0, 5, 2] Makespan :  14
+[3, 5, 8, 12, 14]
+Types:  [0, 0, 0, 2, 3] Makespan :  49
 machine #  2 assigned jobs #:
 []
 Types:  [0, 0, 0, 0, 0] Makespan :  0
@@ -103,108 +465,59 @@ Types:  [0, 0, 0, 0, 0] Makespan :  0
 machine #  4 assigned jobs #:
 []
 Types:  [0, 0, 0, 0, 0] Makespan :  0
-Max makespan is :  14
+machine #  5 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  6 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  7 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  8 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  9 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+Max makespan is :  104
 ------------------------------------------------
 
-makespan:  7
-makespan:  5
-makespan:  4
-Created job: index: 0 Length: 2 Type: 3 Duration: 2
-Created job: index: 1 Length: 3 Type: 2 Duration: 2
-Created job: index: 2 Length: 2 Type: 4 Duration: 1
-Created job: index: 3 Length: 3 Type: 2 Duration: 1
-Created job: index: 4 Length: 2 Type: 3 Duration: 2
-Created job: index: 5 Length: 1 Type: 3 Duration: 2
-Created job: index: 6 Length: 1 Type: 2 Duration: 2
-Created job: index: 7 Length: 1 Type: 1 Duration: 1
-Created job: index: 8 Length: 3 Type: 4 Duration: 2
-Created job: index: 9 Length: 1 Type: 3 Duration: 1
------------------FINISHED CREATING JOB OBJECTS----------------------
-
-
----------------MACHINES STATS--------------------------
-
-machine #  0 assigned jobs #:
-[0, 1, 3, 4, 5, 6, 7, 9]
-Types:  [1, 3, 4, 0, 0] Makespan :  14
-machine #  1 assigned jobs #:
-[2, 8]
-Types:  [0, 0, 0, 2, 0] Makespan :  5
-machine #  2 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-machine #  3 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-machine #  4 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-Max makespan is :  14
-------------------------------------------------
-
-makespan:  10
-makespan:  7
-makespan:  6
-makespan:  5
-makespan:  4
-Created job: index: 0 Length: 3 Type: 5 Duration: 2
-Created job: index: 1 Length: 3 Type: 3 Duration: 2
-Created job: index: 2 Length: 3 Type: 2 Duration: 1
-Created job: index: 3 Length: 3 Type: 5 Duration: 1
-Created job: index: 4 Length: 2 Type: 2 Duration: 1
-Created job: index: 5 Length: 1 Type: 1 Duration: 2
-Created job: index: 6 Length: 3 Type: 3 Duration: 1
-Created job: index: 7 Length: 2 Type: 2 Duration: 2
-Created job: index: 8 Length: 1 Type: 5 Duration: 2
-Created job: index: 9 Length: 1 Type: 3 Duration: 1
------------------FINISHED CREATING JOB OBJECTS----------------------
-
-
----------------MACHINES STATS--------------------------
-
-machine #  0 assigned jobs #:
-[1, 2, 4, 5, 6, 7, 9]
-Types:  [1, 3, 3, 0, 0] Makespan :  15
-machine #  1 assigned jobs #:
-[0, 3, 8]
-Types:  [0, 0, 0, 0, 3] Makespan :  7
-machine #  2 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-machine #  3 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-machine #  4 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-Max makespan is :  15
-------------------------------------------------
-
-makespan:  10
-makespan:  9
-makespan:  6
-makespan:  5
+makespan:  63
+makespan:  42
+makespan:  37
+makespan:  35
+makespan:  32
+makespan:  24
+makespan:  20
+makespan:  19
+makespan:  18
 Created job: index: 0 Length: 2 Type: 4 Duration: 2
-Created job: index: 1 Length: 2 Type: 1 Duration: 2
-Created job: index: 2 Length: 3 Type: 1 Duration: 1
-Created job: index: 3 Length: 2 Type: 1 Duration: 2
-Created job: index: 4 Length: 3 Type: 1 Duration: 2
-Created job: index: 5 Length: 2 Type: 4 Duration: 1
-Created job: index: 6 Length: 3 Type: 5 Duration: 1
-Created job: index: 7 Length: 3 Type: 3 Duration: 1
-Created job: index: 8 Length: 1 Type: 2 Duration: 2
-Created job: index: 9 Length: 3 Type: 1 Duration: 1
+Created job: index: 1 Length: 12 Type: 5 Duration: 1
+Created job: index: 2 Length: 17 Type: 1 Duration: 1
+Created job: index: 3 Length: 20 Type: 4 Duration: 1
+Created job: index: 4 Length: 4 Type: 4 Duration: 1
+Created job: index: 5 Length: 5 Type: 5 Duration: 2
+Created job: index: 6 Length: 18 Type: 1 Duration: 2
+Created job: index: 7 Length: 13 Type: 3 Duration: 1
+Created job: index: 8 Length: 8 Type: 5 Duration: 1
+Created job: index: 9 Length: 9 Type: 5 Duration: 2
+Created job: index: 10 Length: 16 Type: 1 Duration: 1
+Created job: index: 11 Length: 1 Type: 4 Duration: 1
+Created job: index: 12 Length: 16 Type: 1 Duration: 2
+Created job: index: 13 Length: 14 Type: 5 Duration: 1
+Created job: index: 14 Length: 12 Type: 2 Duration: 1
 -----------------FINISHED CREATING JOB OBJECTS----------------------
 
 
 ---------------MACHINES STATS--------------------------
 
 machine #  0 assigned jobs #:
-[1, 2, 3, 4, 7, 8, 9]
-Types:  [5, 1, 1, 0, 0] Makespan :  17
+[2, 6, 7, 10, 12, 14]
+Types:  [4, 1, 1, 0, 0] Makespan :  92
 machine #  1 assigned jobs #:
-[0, 5, 6]
-Types:  [0, 0, 0, 2, 1] Makespan :  7
+[0, 1, 3, 4, 5, 8, 9, 11, 13]
+Types:  [0, 0, 0, 4, 5] Makespan :  75
 machine #  2 assigned jobs #:
 []
 Types:  [0, 0, 0, 0, 0] Makespan :  0
@@ -214,35 +527,63 @@ Types:  [0, 0, 0, 0, 0] Makespan :  0
 machine #  4 assigned jobs #:
 []
 Types:  [0, 0, 0, 0, 0] Makespan :  0
-Max makespan is :  17
+machine #  5 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  6 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  7 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  8 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  9 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+Max makespan is :  92
 ------------------------------------------------
 
-makespan:  12
-makespan:  9
-makespan:  8
-makespan:  6
-makespan:  5
-Created job: index: 0 Length: 3 Type: 3 Duration: 1
-Created job: index: 1 Length: 1 Type: 5 Duration: 1
-Created job: index: 2 Length: 1 Type: 3 Duration: 2
-Created job: index: 3 Length: 1 Type: 4 Duration: 1
-Created job: index: 4 Length: 1 Type: 5 Duration: 1
-Created job: index: 5 Length: 1 Type: 3 Duration: 1
-Created job: index: 6 Length: 2 Type: 1 Duration: 1
-Created job: index: 7 Length: 2 Type: 2 Duration: 2
-Created job: index: 8 Length: 1 Type: 4 Duration: 2
-Created job: index: 9 Length: 2 Type: 2 Duration: 2
+makespan:  75
+makespan:  50
+makespan:  48
+makespan:  42
+makespan:  33
+makespan:  31
+makespan:  30
+makespan:  27
+makespan:  25
+makespan:  24
+makespan:  23
+makespan:  22
+makespan:  20
+Created job: index: 0 Length: 18 Type: 2 Duration: 2
+Created job: index: 1 Length: 12 Type: 3 Duration: 2
+Created job: index: 2 Length: 4 Type: 1 Duration: 2
+Created job: index: 3 Length: 13 Type: 5 Duration: 1
+Created job: index: 4 Length: 20 Type: 3 Duration: 2
+Created job: index: 5 Length: 20 Type: 2 Duration: 1
+Created job: index: 6 Length: 18 Type: 5 Duration: 1
+Created job: index: 7 Length: 9 Type: 4 Duration: 2
+Created job: index: 8 Length: 18 Type: 3 Duration: 1
+Created job: index: 9 Length: 16 Type: 2 Duration: 1
+Created job: index: 10 Length: 4 Type: 5 Duration: 1
+Created job: index: 11 Length: 18 Type: 4 Duration: 2
+Created job: index: 12 Length: 5 Type: 5 Duration: 2
+Created job: index: 13 Length: 3 Type: 2 Duration: 1
+Created job: index: 14 Length: 13 Type: 1 Duration: 1
 -----------------FINISHED CREATING JOB OBJECTS----------------------
 
 
 ---------------MACHINES STATS--------------------------
 
 machine #  0 assigned jobs #:
-[0, 2, 5, 6, 7, 9]
-Types:  [1, 2, 3, 0, 0] Makespan :  11
+[0, 1, 2, 4, 5, 8, 9, 13, 14]
+Types:  [2, 4, 3, 0, 0] Makespan :  124
 machine #  1 assigned jobs #:
-[1, 3, 4, 8]
-Types:  [0, 0, 0, 2, 2] Makespan :  4
+[3, 6, 7, 10, 11, 12]
+Types:  [0, 0, 0, 2, 4] Makespan :  67
 machine #  2 assigned jobs #:
 []
 Types:  [0, 0, 0, 0, 0] Makespan :  0
@@ -252,122 +593,30 @@ Types:  [0, 0, 0, 0, 0] Makespan :  0
 machine #  4 assigned jobs #:
 []
 Types:  [0, 0, 0, 0, 0] Makespan :  0
-Max makespan is :  11
+machine #  5 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  6 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  7 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  8 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+machine #  9 assigned jobs #:
+[]
+Types:  [0, 0, 0, 0, 0] Makespan :  0
+Max makespan is :  124
 ------------------------------------------------
 
-makespan:  7
-makespan:  5
-makespan:  4
-makespan:  3
-Created job: index: 0 Length: 1 Type: 3 Duration: 1
-Created job: index: 1 Length: 2 Type: 5 Duration: 2
-Created job: index: 2 Length: 2 Type: 2 Duration: 1
-Created job: index: 3 Length: 3 Type: 5 Duration: 2
-Created job: index: 4 Length: 2 Type: 5 Duration: 2
-Created job: index: 5 Length: 3 Type: 1 Duration: 1
-Created job: index: 6 Length: 2 Type: 3 Duration: 2
-Created job: index: 7 Length: 1 Type: 3 Duration: 2
-Created job: index: 8 Length: 3 Type: 2 Duration: 2
-Created job: index: 9 Length: 1 Type: 4 Duration: 1
------------------FINISHED CREATING JOB OBJECTS----------------------
-
-
----------------MACHINES STATS--------------------------
-
-machine #  0 assigned jobs #:
-[0, 2, 5, 6, 7, 8]
-Types:  [1, 2, 3, 0, 0] Makespan :  12
-machine #  1 assigned jobs #:
-[1, 3, 4, 9]
-Types:  [0, 0, 0, 1, 3] Makespan :  8
-machine #  2 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-machine #  3 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-machine #  4 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-Max makespan is :  12
-------------------------------------------------
-
-makespan:  9
-makespan:  7
-makespan:  6
-makespan:  5
-Created job: index: 0 Length: 3 Type: 4 Duration: 2
-Created job: index: 1 Length: 2 Type: 1 Duration: 1
-Created job: index: 2 Length: 3 Type: 5 Duration: 2
-Created job: index: 3 Length: 3 Type: 4 Duration: 2
-Created job: index: 4 Length: 2 Type: 1 Duration: 1
-Created job: index: 5 Length: 2 Type: 3 Duration: 1
-Created job: index: 6 Length: 3 Type: 5 Duration: 1
-Created job: index: 7 Length: 2 Type: 4 Duration: 1
-Created job: index: 8 Length: 3 Type: 5 Duration: 1
-Created job: index: 9 Length: 2 Type: 2 Duration: 2
------------------FINISHED CREATING JOB OBJECTS----------------------
-
-
----------------MACHINES STATS--------------------------
-
-machine #  0 assigned jobs #:
-[1, 4, 5, 9]
-Types:  [2, 1, 1, 0, 0] Makespan :  8
-machine #  1 assigned jobs #:
-[0, 2, 3, 6, 7, 8]
-Types:  [0, 0, 0, 3, 3] Makespan :  17
-machine #  2 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-machine #  3 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-machine #  4 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-Max makespan is :  17
-------------------------------------------------
-
-makespan:  10
-makespan:  7
-makespan:  6
-makespan:  5
-Created job: index: 0 Length: 1 Type: 1 Duration: 2
-Created job: index: 1 Length: 1 Type: 4 Duration: 1
-Created job: index: 2 Length: 3 Type: 5 Duration: 1
-Created job: index: 3 Length: 2 Type: 1 Duration: 2
-Created job: index: 4 Length: 2 Type: 2 Duration: 2
-Created job: index: 5 Length: 1 Type: 3 Duration: 2
-Created job: index: 6 Length: 2 Type: 4 Duration: 1
-Created job: index: 7 Length: 3 Type: 2 Duration: 2
-Created job: index: 8 Length: 3 Type: 3 Duration: 1
-Created job: index: 9 Length: 2 Type: 1 Duration: 2
------------------FINISHED CREATING JOB OBJECTS----------------------
-
-
----------------MACHINES STATS--------------------------
-
-machine #  0 assigned jobs #:
-[0, 3, 4, 5, 7, 8, 9]
-Types:  [3, 2, 2, 0, 0] Makespan :  14
-machine #  1 assigned jobs #:
-[1, 2, 6]
-Types:  [0, 0, 0, 2, 1] Makespan :  6
-machine #  2 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-machine #  3 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-machine #  4 assigned jobs #:
-[]
-Types:  [0, 0, 0, 0, 0] Makespan :  0
-Max makespan is :  14
-------------------------------------------------
-
-makespan:  9
-makespan:  7
-makespan:  6
-makespan:  5
-makespan:  4
+makespan:  85
+makespan:  56
+makespan:  49
+makespan:  47
+makespan:  36
+makespan:  29
+makespan:  26
+makespan:  25
+makespan:  24

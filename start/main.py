@@ -11,10 +11,8 @@ from io_utils.printMachineStat import printMachineStat
 from io_utils.printMachineStatOut import printMachineStatOut
 
 from Constants import MAX_ROUNDS
-from Constants import TIME_BETWEEN_ROUNDS
 
 import os
-from time import sleep
 
 if __name__ == "__main__":
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
@@ -23,7 +21,7 @@ if __name__ == "__main__":
     num_of_machines, num_of_jobs, min_processing_time, max_processing_time = handleInput()
     
     for _ in range(MAX_ROUNDS):
-        raw_jobs = createRandomJobValues(num_of_jobs, min_processing_time, max_processing_time)
+        raw_jobs = createRandomJobValues(num_of_machines, num_of_jobs, min_processing_time, max_processing_time)
 
         print("Number of Machines:", num_of_machines, file=out_file)
 

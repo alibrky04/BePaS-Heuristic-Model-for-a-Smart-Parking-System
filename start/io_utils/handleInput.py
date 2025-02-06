@@ -17,10 +17,6 @@ def handleInput():
 
          notice that the total number of jobs will be indicated in the [n-1,0] cell
         """
-        inpt = open("input.txt", 'w')
-
-        inpt.write(str(num_of_machines))
-        inpt.write("\n")
 
     # Generate random number of jobs
     else:
