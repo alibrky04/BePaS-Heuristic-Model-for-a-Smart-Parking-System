@@ -19,9 +19,11 @@ if __name__ == "__main__":
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
 
     num_of_machines, num_of_jobs, min_processing_time, max_processing_time = handleInput()
+
+    simulationMachines = None
     
-    for _ in range(MAX_ROUNDS):
-        raw_jobs = createRandomJobValues(num_of_machines, num_of_jobs, min_processing_time, max_processing_time)
+    for i in range(MAX_ROUNDS):
+        raw_jobs = createRandomJobValues(num_of_machines, num_of_jobs, min_processing_time, max_processing_time, i)
 
         print("Number of Machines:", num_of_machines, file=out_file)
 
@@ -31,7 +33,7 @@ if __name__ == "__main__":
 
         print("---------------------------------", file=out_file)
 
-        machine_list = createMachines(num_of_machines)
+        machine_list = createMachines(num_of_machines, simulationMachines, i) 
         job_list = createJobs(raw_jobs, debug_file)
         printMachineStatOut.out_stat_counter = 0
         if num_of_jobs > 500:
@@ -41,15 +43,21 @@ if __name__ == "__main__":
         printMachineStat(machine_list, debug_file)
         localSearch(machine_list, num_of_machines, job_list, num_of_jobs, out_file, debug_file)
 
-        printMachineStatOut(machine_list, out_file, "Final state")
+        if i == 0:
+            simulationMachines = machine_list.copy()
+        else:
+            for j in range(num_of_machines):
+                simulationMachines[j].span = machine_list[j].span
+                for job in machine_list[j].assigned_jobs.values():
+                    simulationMachines[j].assigned_jobs[job.number] = job
+                simulationMachines[j].types = machine_list[j].types.copy()
+                simulationMachines[j].types_sums = machine_list[j].types_sums.copy()
 
-        removeJobs(machine_list)
+        printMachineStatOut(simulationMachines, out_file, "Final state")
 
-        printMachineStatOut(machine_list, out_file, "Final state after waiting period")
-        
-        # TODO: Need a way to save the remaining jobs after the waiting period (jobs with duration > 0)
-        # lockJobs()
-        # TODO: initialAssign() should be edited so the locked jobs are also assigned to the new machines
+        removeJobs(simulationMachines)
+
+        printMachineStatOut(simulationMachines, out_file, "Final state after waiting period")
 
     debug_file.close()
     out_file.close()

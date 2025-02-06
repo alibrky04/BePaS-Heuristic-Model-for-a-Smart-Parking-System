@@ -6,7 +6,7 @@ from io_utils.printMachineStatOut import printMachineStatOut
 
 
 def localSearch(machine_list, number_of_machines, job_list, number_of_jobs, output_file, debug_file):
-    sum_of_jobs = sum(x.length for x in job_list)
+    sum_of_jobs = sum(x.length for x in job_list.values())
     avg_job = sum_of_jobs / number_of_jobs
 
 

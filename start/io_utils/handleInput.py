@@ -26,6 +26,15 @@ def handleInput():
             if index == 0:
                 num_of_machines = int(line)
                 print("The number of machines loaded : ", line, "\n")
+            elif index == 1:
+                num_of_jobs = int(line)
+                print("The number of jobs loaded : ", line, "\n")
+            elif index == 2:
+                min_processing_time = int(line)
+                print("The minimum processing time loaded : ", line, "\n")
+            elif index == 3:
+                max_processing_time = int(line)
+                print("The maximum processing time loaded : ", line, "\n")
             else:
                 jobs.append(line.split())
 

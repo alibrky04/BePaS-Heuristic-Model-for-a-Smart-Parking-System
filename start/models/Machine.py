@@ -2,10 +2,10 @@ from Constants import NUM_OF_TYPES
 
 
 class Machine(object):
-    def __init__(self, num):
+    def __init__(self, num, span = 0):
         self.assigned_jobs = {}
         self.number = num  # Machine serial #
-        self.span = 0  # Initial makespan
+        self.span = span  # Initial makespan
         self.types = [0] * NUM_OF_TYPES  # Histogram of size 5 - to count each type assigned to the machine
         self.types_sums = [0] * NUM_OF_TYPES
 
