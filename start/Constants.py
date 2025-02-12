@@ -15,7 +15,10 @@ MIN_NUM_OF_JOBS = 1
 file_times = (time.time()/10000)
 
 # This is the length of the simulation
-MAX_ROUNDS = 10
+MAX_ROUNDS = 48
 
 # This is the time between rounds
-TIME_BETWEEN_ROUNDS = 1
+TIME_BETWEEN_ROUNDS = 12
+
+# Number of simulations
+NUM_OF_SIMULATIONS = 20

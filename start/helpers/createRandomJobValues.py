@@ -24,7 +24,7 @@ def createRandomJobValues(num_of_machines, num_of_jobs, min_processing_time, max
         j.append(job_size)
         type = randint(1, NUM_OF_TYPES)
         j.append(type)
-        duration = randint(1, TIME_BETWEEN_ROUNDS * 2)
+        duration = randint(int(TIME_BETWEEN_ROUNDS / 2) if TIME_BETWEEN_ROUNDS > 1 else 1, TIME_BETWEEN_ROUNDS * 2)
         j.append(duration)
         inpt.write(str(index))
         inpt.write(" ")

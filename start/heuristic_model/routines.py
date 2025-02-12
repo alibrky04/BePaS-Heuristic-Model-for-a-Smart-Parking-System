@@ -45,6 +45,9 @@ def oneJobRoutine(machine_list, number_of_machines, job_list, number_of_jobs, ou
 
 def colorChangeRoutine(machine_list, number_of_machines, number_of_jobs, output_file, debug_file):
     done = False
+
+    check_count = 0
+
     # check changing of whole color
     while not done:
         prev_makespan = calculateMakeSpan(machine_list)
@@ -74,9 +77,10 @@ def colorChangeRoutine(machine_list, number_of_machines, number_of_jobs, output_
                 print("makespan: ", calculateMakeSpan(machine_list), file=debug_file)
                 prev_makespan = calculateMakeSpan(machine_list)
 
-            if isDone(done_list):
+            if isDone(done_list) or check_count == 100:
                 done = True
                 break
+        check_count += 1
 
 
 def oneByOneSwapRoutine(machine_list, number_of_machines, job_list, number_of_jobs, output_file, debug_file):
