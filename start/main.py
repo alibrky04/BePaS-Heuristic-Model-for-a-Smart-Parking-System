@@ -3,6 +3,7 @@ from helpers.createJobs import createJobs
 from helpers.createRandomJobValues import createRandomJobValues
 from helpers.removeJobs import removeJobs
 from helpers.calculateToD import calculateToD
+from helpers.createDistribution import createDistribution
 from heuristic_model.initialAssing import initialAssign
 from heuristic_model.local_search_algorithm import localSearch
 from heuristic_model.lpt_algorithm import legalLpt
@@ -16,7 +17,6 @@ from Constants import MAX_ROUNDS
 from Constants import NUM_OF_SIMULATIONS
 
 import os
-import random
 
 if __name__ == "__main__":
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
@@ -30,9 +30,11 @@ if __name__ == "__main__":
         simulation_machines = None
         
         for i in range(MAX_ROUNDS):
-            rand_job_number = random.randint(num_of_jobs - 5 if num_of_jobs > 5 else num_of_jobs, num_of_jobs + 5)
+            # Check constants.py for the distribution types
+            # num_of_jobs is only used for the uniform distribution
+            rand_job_num = createDistribution(num_of_jobs) 
 
-            raw_jobs = createRandomJobValues(num_of_machines, rand_job_number, min_processing_time, max_processing_time, i)
+            raw_jobs = createRandomJobValues(num_of_machines, rand_job_num, min_processing_time, max_processing_time, i)
 
             print("Number of Machines:", num_of_machines, file=out_file)
 
@@ -68,7 +70,7 @@ if __name__ == "__main__":
             removeJobs(simulation_machines)
             printMachineStatOut(simulation_machines, out_file, "Final state after waiting period")
         
-        simulationStatOut(ToD, simulation_file)
+        simulationStatOut(ToD, num_of_machines, num_of_jobs, min_processing_time, max_processing_time, simulation_file)
 
     debug_file.close()
     out_file.close()

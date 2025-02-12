@@ -22,3 +22,12 @@ TIME_BETWEEN_ROUNDS = 12
 
 # Number of simulations
 NUM_OF_SIMULATIONS = 20
+
+# Simulation distribution
+SIMULATION_DISTRIBUTION = 1 # 1 = uniform, 2 = normal, 3 = exponential
+
+# Simulation distribution parameters
+MEAN = 150
+DEVIATION = 25
+
+SCALE = 150
