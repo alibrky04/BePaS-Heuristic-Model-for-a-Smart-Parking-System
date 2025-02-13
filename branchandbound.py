@@ -504,7 +504,7 @@ def intialSort():
 # If initial sort is wanted , uncomment the next line
 # initailSort()
 
-
+print("jobs lits", jobs_list)
 max_job = max(x.length for x in jobs_list)
 avg_job = sum(x.length for x in jobs_list)/num_of_machines
 
