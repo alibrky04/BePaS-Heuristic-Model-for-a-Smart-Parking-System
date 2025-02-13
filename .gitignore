@@ -3,3 +3,7 @@ input.txt
 debug_out.txt
 debugout.txt
 output.txt
+branch_and_bound/Constants.py
+branch_and_bound/output/debug_out.txt
+branch_and_bound/output/output.txt
+branch_and_bound/output/simulation.json.txt
