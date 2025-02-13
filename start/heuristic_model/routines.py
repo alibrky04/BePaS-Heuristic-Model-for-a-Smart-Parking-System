@@ -72,7 +72,8 @@ def colorChangeRoutine(machine_list, number_of_machines, number_of_jobs, output_
                             break
 
             if number_of_jobs <= 500:
-                printMachineStatOut(machine_list, output_file, "Color Change")
+                pass
+                # printMachineStatOut(machine_list, output_file, "Color Change")
             if prev_makespan > calculateMakeSpan(machine_list):
                 print("makespan: ", calculateMakeSpan(machine_list), file=debug_file)
                 prev_makespan = calculateMakeSpan(machine_list)
@@ -117,7 +118,8 @@ def oneByOneSwapRoutine(machine_list, number_of_machines, job_list, number_of_jo
                     no_swap_count = no_swap_count - 1
 
             if number_of_jobs <= 500:
-                printMachineStatOut(machine_list, output_file, "Swapping jobs 1 by 1 with 2 machine")
+                pass
+                # printMachineStatOut(machine_list, output_file, "Swapping jobs 1 by 1 with 2 machine")
 
             if prev_makespan > calculateMakeSpan(machine_list):
                 print("makespan: ", calculateMakeSpan(machine_list), file=debug_file)
@@ -185,7 +187,8 @@ def twoByTwoSwapRoutine(machine_list,number_of_machines ,number_of_jobs,output_f
                 swapped = twoRoutineHelper(machine_list,number_of_machines,debug_file,machine)
 
             if number_of_jobs <= 500:
-                printMachineStatOut(machine_list,output_file,"Swapping jobs 2 by 2 with 2 machine")
+                pass
+                # printMachineStatOut(machine_list,output_file,"Swapping jobs 2 by 2 with 2 machine")
             if prev_makespan > calculateMakeSpan(machine_list):
                 print("makespan: ", calculateMakeSpan(machine_list), file=debug_file)
                 prev_makespan = calculateMakeSpan(machine_list)
@@ -230,7 +233,8 @@ def circularSwapRoutine(machine_list,number_of_machines ,number_of_jobs, output_
                 no_swap_count += 1
 
         if number_of_jobs <= 500:
-            printMachineStatOut(machine_list,output_file,"Circular swap between 3 machines")
+            pass
+            # printMachineStatOut(machine_list,output_file,"Circular swap between 3 machines")
         if prev_makespan > calculateMakeSpan(machine_list):
             print("makespan: ", calculateMakeSpan(machine_list), file=debug_file)
             calculateMakeSpan(machine_list)

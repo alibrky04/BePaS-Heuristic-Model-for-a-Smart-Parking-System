@@ -6,7 +6,7 @@ import numpy as np
 def createDistribution(num_of_jobs):
     # Uniform distribution
     if SIMULATION_DISTRIBUTION == 1:
-        return randint(num_of_jobs - int(num_of_jobs/2) if num_of_jobs > 1 else 1, num_of_jobs * 2)
+        return randint(num_of_jobs, num_of_jobs * 2)
     # Normal distribution
     elif SIMULATION_DISTRIBUTION == 2:
         return np.round(np.abs(normal(MEAN, DEVIATION)))
