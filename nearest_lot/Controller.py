@@ -4,12 +4,13 @@ import re
 import math as m
 import json
 from Simulator import Simulator
+from Constants import *
 
 class Controller:
-    def __init__(self, COMMAND, glpk_folder_path, distribution, P_LOT = 5, W_CAR = 5, MAX_CAPACITY = 10, MAP_SIZE = 50):
+    def __init__(self, COMMAND, glpk_folder_path, distribution, W_CAR = 5, MAP_SIZE = 50):
         self.simulator = Simulator()
 
-        self.P_LOT = P_LOT
+        self.P_LOT = NUM_OF_LOTS
         self.W_CAR = W_CAR
         self.MAX_CAPACITY = MAX_CAPACITY
         self.MAP_SIZE = MAP_SIZE
@@ -38,12 +39,12 @@ class Controller:
         if doChange:
             self.W_CAR = new_car_num
 
-        self.waiting_cars = {f'Car{i + 1}': [random.randint(1, 5), 0, random.randint(0, self.MAP_SIZE),
+        self.waiting_cars = {f'Car{i + 1}': [random.randint(MIN_PEOPLE, MAX_PEOPLE), 0, random.randint(0, self.MAP_SIZE),
                                             random.randint(0, self.MAP_SIZE)] for i in range(self.W_CAR)}
 
-        print('The cars in the queuing area')
-        for i in range(self.W_CAR):
-            print(f'Number of people in car {i + 1} is', self.waiting_cars[f'Car{i + 1}'][0])
+        # print('The cars in the queuing area')
+        # for i in range(self.W_CAR):
+            # print(f'Number of people in car {i + 1} is', self.waiting_cars[f'Car{i + 1}'][0])
 
     def createData(self):
         data_start = """# Data section
@@ -288,7 +289,7 @@ data;
 
         return assigned_parking_spaces, parking_space_loads, total_of_differences
         
-    def updateState(self, ct=0, isMaxday=0, simType = 2, nearModelType = 1):
+    def updateState(self, ct=0, isMaxday=0, simType = 3, nearModelType = 1):
         match simType:
             case 1:
                 assigned_parking_spaces, parking_space_loads, total_of_differences = self.takeOutput()
@@ -299,18 +300,18 @@ data;
             case _:
                 assigned_parking_spaces, parking_space_loads, total_of_differences = {}, {}, 0
 
-        print()
+        # print()
         
         # Set reservations for the appended cars
         for car, value in self.waiting_cars.items():
-            value[1] = self.simulator.SetRemoveTime()
+            value[1] = self.simulator.SetTimeSlot()
 
         # Append the cars to the parking lots
         for car, parking_space in assigned_parking_spaces.items():
             for i, lot in enumerate(self.parking_spaces[parking_space][0]):
                 if lot[0] == 0:
                     self.parking_spaces[parking_space][0][i] = [1, self.waiting_cars[car][0], self.waiting_cars[car][1]]
-                    print(f'{car} has been assigned to {parking_space}')
+                    # print(f'{car} has been assigned to {parking_space}')
                     break
 
         # Adjust the load values of each parking lot
@@ -347,7 +348,7 @@ data;
     def showData(self):
         print()
 
-        self.showParkingLots()
+        # self.showParkingLots()
         
         print()
 
@@ -363,49 +364,58 @@ data;
     def removeCars(self):
         for space, p_lots in self.parking_spaces.items():
             for i, car in enumerate(p_lots[0]):
-                if car[2] <= self.simulator.GetUpTime() and car[0] != 0:
-                    print(f'A car in the {space} and {i + 1}. lot has left')
+                if car[0] == 1:
+                    car[2] -= TIME_BETWEEN_ROUNDS
+                    if car[2] <= 0:
+                        # print(f'A car in the {space} and {i + 1}. lot has left')
 
-                    self.parking_spaces_loads[space] -= car[1]
-                    car[0] = car[1] = car[2] = 0
-                    self.number_of_cars[space] -= 1
+                        self.parking_spaces_loads[space] -= car[1]
+                        car[0] = car[1] = car[2] = 0
+                        self.number_of_cars[space] -= 1
 
-                    self.showParkingLots()
-                    print()
+                        # self.showParkingLots()
+                        # print()
         
-    def storeData(self, start_hour = 0, sim_count = 0):
-        with open('SPS/Datas/SimData2.txt', 'a') as file:
-            file.write('g: ')
-            for g in self.total_of_differences[start_hour:]:
-                file.write(str(g) + ' ')
-            
-            file.write("\n")
+    def storeData(self):
+        with open('nearest_lot/output/simulation.json', 'r+') as simulation_file:
+            try:
+                ToD_str = ', '.join(map(str, self.total_of_differences))
+                cars_str = ', '.join(map(str, self.distribution))
+                
+                try:
+                    simulation_file.seek(0)
+                    existing_data = json.load(simulation_file)
+                except json.JSONDecodeError:
+                    existing_data = []
 
-            file.write('c: ')
-            for total_car in self.epoch_car_num[start_hour:]:
-                file.write(str(total_car) + ' ')
+                simulation_id = len(existing_data) + 1
 
-            file.write('\n')
+                if SIMULATION_DISTRIBUTION == 1:
+                    simulation_distribution = "uniform"
+                elif SIMULATION_DISTRIBUTION == 2:
+                    simulation_distribution = "normal"
+                elif SIMULATION_DISTRIBUTION == 3:
+                    simulation_distribution = "exponential"
 
-            file.write('p: ')
-            for total_people in self.epoch_people_num[start_hour:]:
-                file.write(str(total_people) + ' ')
+                existing_data.append({
+                    "simulation_id": simulation_id,
+                    "simulation_distribution": simulation_distribution,
+                    "ToD": ToD_str,
+                    "car_batch_time": BATCH_TIME,
+                    "num_of_parking_lots": self.P_LOT,
+                    "num_of_cars": cars_str,
+                    "min_people": MIN_PEOPLE,
+                    "max_people": MAX_PEOPLE,
+                    "mean": MEAN,
+                    "deviation": DEVIATION,
+                    "scale": SCALE
+                })
 
-            file.write('\n')
-
-            file.write('tac: ')
-            for assigned_car in self.distribution:
-                file.write(str(assigned_car) + ' ')
-
-            file.write('\n')
-
-            file.write('lacn:')
-            json.dump(self.epoch_lot_assigned_car_num, file, indent=4)
-
-            if sim_count < 20:
-                file.write('\n\n--------------------\n\n')
-            else:
-                file.write('\n\nEND\n\n')
+                simulation_file.seek(0)
+                json.dump(existing_data, simulation_file, indent=4)
+                simulation_file.truncate()
+            except Exception as e:
+                print(f"Error writing to simulation file: {e}")
     
     def findNearestParkingLot(self, car):
         min_length = 100000

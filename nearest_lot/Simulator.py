@@ -7,6 +7,8 @@ from scipy.interpolate import make_interp_spline
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes, mark_inset
 
+from Constants import *
+
 plt.rcParams['grid.linewidth'] = 0.25
 
 class Simulator:
@@ -87,7 +89,7 @@ class Simulator:
         for _ in range(length):
             uniformdDist.append(random.randint(l_bound, u_bound))
 
-        print(f"Distribution: Uniform Distribution\nArrangement: {uniformdDist}")
+        # print(f"Distribution: Uniform Distribution\nArrangement: {uniformdDist}")
 
         return uniformdDist
 
@@ -128,43 +130,49 @@ class Simulator:
 
         return exponentialDist
     
-    def generateDistribution(self, genType = 1, distType = 1, dLength = 24, dMean = 8, dDev = 4, dScale = 6):
+    def generateDistribution(self, genType = 1, distType = 2, dLength = 24, dMean = 8, dDev = 4, dScale = 6):
         match (genType, distType):
-            case (1, 1): # Discrete, fixed, normal
+            case (1, 2): # Discrete, fixed, normal
                 dSlice1 = self.normalDist(mean=5, dev=2, length=int(dLength/3), distType=2)
                 dSlice2 = self.normalDist(mean=8, dev=2, length=int(dLength/3), distType=2)
                 dSlice3 = self.normalDist(mean=5, dev=2, length=int(dLength/3), distType=2)
                 distribution = dSlice1 + dSlice2 + dSlice3
-            case (1, 2): # Discrete, fixed, exponential
+            case (1, 3): # Discrete, fixed, exponential
                 dSlice1 = self.exponentialDist(scale=3, length=int(dLength/3), distType=2)
                 dSlice2 = self.exponentialDist(scale=9, length=int(dLength/3), distType=2)
                 dSlice3 = self.exponentialDist(scale=3, length=int(dLength/3), distType=2)
                 distribution = dSlice1 + dSlice2 + dSlice3
-            case (2, 1): # Discrete, variable, normal
+            case (2, 2): # Discrete, variable, normal
                 dSlice1 = self.normalDist(mean=6, dev=2, length=int(dLength/3), distType=3)
                 dSlice2 = self.normalDist(mean=9, dev=2, length=int(dLength/3), distType=3)
                 dSlice3 = self.normalDist(mean=6, dev=2, length=int(dLength/3), distType=3)
                 distribution = dSlice1 + dSlice2 + dSlice3
-            case (2, 2): # Discrete, variable, exponential
+            case (2, 3): # Discrete, variable, exponential
                 dSlice1 = self.exponentialDist(scale=3, length=int(dLength/3), distType=3)
                 dSlice2 = self.exponentialDist(scale=9, length=int(dLength/3), distType=3)
                 dSlice3 = self.exponentialDist(scale=3, length=int(dLength/3), distType=3)
                 distribution = dSlice1 + dSlice2 + dSlice3
-            case (3, 1): # Continuous, fixed, normal
+            case (3, 1): # Continuous, fixed, uniform
+                distribution = self.uniformDist(NUM_OF_CARS, NUM_OF_CARS*2, length=dLength)
+            case (3, 2): # Continuous, fixed, normal
                 distribution = self.normalDist(mean=dMean, dev=dDev, length=dLength, distType=2)
-            case (3, 2): # Continuous, fixed, exponential
+            case (3, 3): # Continuous, fixed, exponential
                 distribution = self.exponentialDist(scale=dScale, length=dLength, distType=2)
-            case (4, 1): # Continuous, variable, normal
+            case (4, 1): # Continuous, variable, uniform
+                distribution = self.uniformDist(random.randint(NUM_OF_CARS / 2, NUM_OF_CARS), random.randint(NUM_OF_CARS, NUM_OF_CARS * 2), length=dLength)
+            case (4, 2): # Continuous, variable, normal
                 distribution = self.normalDist(mean=dMean, dev=dDev, length=dLength, distType=3)
-            case (4, 2): # Continuous, variable, exponential
+            case (4, 3): # Continuous, variable, exponential
                 distribution = self.exponentialDist(scale=dScale, length=dLength, distType=3)
             case (_, _): # Default
                 distribution = [1] * dLength
 
         match distType:
             case 1:
-                print(f"Distribution: Normal Distribution\nArrangement: {distribution}")
+                print(f"Distribution: Uniform Distribution\nArrangement: {distribution}")
             case 2:
+                print(f"Distribution: Normal Distribution\nArrangement: {distribution}")
+            case 3:
                 print(f"Distribution: Exponential Distribution\nArrangement: {distribution}")
             case _:
                 print(f"Distribution: _ Distribution\nArrangement: {distribution}")

@@ -1,9 +1,8 @@
 from random import randint
 from Constants import NUM_OF_TYPES
-from Constants import TIME_BETWEEN_ROUNDS
 
 def createRandomJobValues(num_of_machines, num_of_jobs, min_processing_time, max_processing_time, first_index):
-    inpt = open("input.txt", 'w')
+    inpt = open("start/input.txt", 'w')
 
     inpt.write(str(num_of_machines))
     inpt.write("\n")

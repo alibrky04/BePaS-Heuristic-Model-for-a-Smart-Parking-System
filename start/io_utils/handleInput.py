@@ -20,7 +20,7 @@ def handleInput():
 
     # Generate random number of jobs
     else:
-        inpt = open("input.txt", 'r')
+        inpt = open("start/input.txt", 'r')
         jobs = []
         for index, line in enumerate(inpt):
             if index == 0:

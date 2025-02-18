@@ -1,4 +1,4 @@
-from Constants import SIMULATION_DISTRIBUTION
+from Constants import SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE, MAX_ROUNDS
 
 import json
 
@@ -25,13 +25,16 @@ def simulationStatOut(ToD, num_of_machines, num_of_jobs, min_processing_time, ma
             "simulation_id": simulation_id,
             "simulation_distribution": simulation_distribution,
             "ToD": ToD_str,
+            "car_batch_size": MAX_ROUNDS/2,
             "num_of_machines": num_of_machines,
             "num_of_jobs": num_of_jobs,
             "min_processing_time": min_processing_time,
-            "max_processing_time": max_processing_time
+            "max_processing_time": max_processing_time,
+            "mean": MEAN,
+            "deviation": DEVIATION,
+            "scale": SCALE
         })
 
-        # Write back to file
         simulation_file.seek(0)
         json.dump(existing_data, simulation_file, indent=4)
         simulation_file.truncate()
