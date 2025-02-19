@@ -1,188 +1,26 @@
 [
     {
         "simulation_id": 1,
-        "simulation_distribution": "uniform",
-        "ToD": "1, 1, 0, 0, 0, 0, 0, 1, 1, 2",
+        "simulation_distribution": "static",
+        "ToD": "2, 0, 0, 1, 0, 0, 2, 1, 0, 2",
         "num_of_machines": 3,
         "num_of_jobs": 10,
         "min_processing_time": 1,
-        "max_processing_time": 100
+        "max_processing_time": 6
     },
     {
         "simulation_id": 2,
-        "simulation_distribution": "uniform",
-        "ToD": "2, 1, 0, 1, 0, 1, 1, 2, 1, 1",
+        "simulation_distribution": "static",
+        "ToD": "0, 1, 0, 0, 2, 2, 2, 0, 0, 0",
         "num_of_machines": 3,
         "num_of_jobs": 10,
         "min_processing_time": 1,
-        "max_processing_time": 100
+        "max_processing_time": 6
     },
     {
         "simulation_id": 3,
-        "simulation_distribution": "uniform",
-        "ToD": "1, 0, 2, 0, 1, 1, 0, 1, 1, 0",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 100
-    },
-    {
-        "simulation_id": 4,
-        "simulation_distribution": "uniform",
-        "ToD": "1, 2, 0, 1, 0, 2, 1, 0, 0, 8",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 5,
-        "simulation_distribution": "uniform",
-        "ToD": "0, 0, 0, 2, 1, 2, 1, 1, 0, 1",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 6,
-        "simulation_distribution": "uniform",
-        "ToD": "2, 2, 1, 1, 0, 1, 0, 1, 0, 0",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 7,
-        "simulation_distribution": "exponential",
-        "ToD": "3, 2, 1, 0, 2, 2, 1, 1, 1, 1",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 8,
-        "simulation_distribution": "exponential",
-        "ToD": "1, 1, 1, 1, 2, 1, 1, 0, 2, 2",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 9,
-        "simulation_distribution": "exponential",
-        "ToD": "0, 1, 2, 3, 2, 0, 1, 2, 0, 2",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 10,
-        "simulation_distribution": "normal",
-        "ToD": "0, 2, 0, 1, 1, 1, 0, 0, 0, 0",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 11,
-        "simulation_distribution": "normal",
-        "ToD": "0, 0, 0, 1, 0, 0, 0, 0, 2, 2",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 12,
-        "simulation_distribution": "normal",
-        "ToD": "1, 2, 0, 1, 2, 0, 1, 0, 2, 1",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 13,
-        "simulation_distribution": "uniform",
-        "ToD": "2, 0, 2, 1, 0, 2, 4, 1, 1, 0",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 14,
-        "simulation_distribution": "uniform",
-        "ToD": "1, 2, 0, 1, 0, 1, 0, 1, 1, 0",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 15,
-        "simulation_distribution": "uniform",
-        "ToD": "0, 2, 2, 0, 1, 2, 1, 1, 0, 0",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 16,
         "simulation_distribution": "static",
-        "ToD": "1, 1, 2, 0, 1, 0, 2, 1, 1, 0",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 17,
-        "simulation_distribution": "static",
-        "ToD": "0, 0, 0, 1, 2, 2, 1, 2, 1, 2",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 18,
-        "simulation_distribution": "static",
-        "ToD": "0, 1, 2, 0, 2, 1, 0, 0, 2, 2",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 19,
-        "simulation_distribution": "static",
-        "ToD": "1, 0, 2, 0, 0, 0, 0, 0, 1, 2",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 20,
-        "simulation_distribution": "static",
-        "ToD": "0, 0, 0, 2, 1, 2, 0, 2, 0, 0",
-        "num_of_machines": 3,
-        "num_of_jobs": 10,
-        "min_processing_time": 1,
-        "max_processing_time": 6
-    },
-    {
-        "simulation_id": 21,
-        "simulation_distribution": "static",
-        "ToD": "2, 1, 0, 1, 1, 2, 0, 2, 1, 2",
+        "ToD": "2, 1, 2, 0, 1, 0, 0, 2, 2, 1",
         "num_of_machines": 3,
         "num_of_jobs": 10,
         "min_processing_time": 1,

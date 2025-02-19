@@ -302,23 +302,6 @@ def evaluateOne(chromosome: list):
     return span
 
 
-"""
-here we can choose between one of three fitness functions
-comment the unwanted version / uncomment the wanted one
-"""
-# current fitness function = the difference between chromosome's makespan and the worst chromosome's makespan
-# def updateFitness(chormosome,worst):
-#     fitness = (worst-chormosome[1])+1   # smoothing
-#     chormosome.append(fitness)
-#     return fitness
-
-# another fitness option = 1/makespan
-# def updateFitness(chormosome,worst):
-#     fitness = 1/(chormosome[1])
-#     chormosome.append(fitness)
-#     return fitness
-
-
 # using 1/squared distance
 def updateFitness(chromosome,worst):
     for i in range(len(chromosome[0])):

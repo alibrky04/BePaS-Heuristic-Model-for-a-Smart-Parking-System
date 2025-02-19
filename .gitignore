@@ -7,3 +7,8 @@ branch_and_bound/Constants.py
 branch_and_bound/output/debug_out.txt
 branch_and_bound/output/output.txt
 branch_and_bound/output/simulation.json.txt
+
+genetic.py/Constants.py
+genetic/output/debug_out.txt
+genetic/output/output.txt
+genetic/output/simulation.json.txt

@@ -15,13 +15,13 @@ MIN_NUM_OF_JOBS = 1
 file_times = (time.time()/10000)
 
 # This is the length of the simulation
-MAX_ROUNDS = 48
+MAX_ROUNDS = 5
 
 # This is the time between rounds
 TIME_BETWEEN_ROUNDS = 12
 
 # Number of simulations
-NUM_OF_SIMULATIONS = 20
+NUM_OF_SIMULATIONS = 1
 
 # Simulation distribution
 SIMULATION_DISTRIBUTION = 1 # 1 = uniform, 2 = normal, 3 = exponential

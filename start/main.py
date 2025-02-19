@@ -71,7 +71,3 @@ if __name__ == "__main__":
             printMachineStatOut(simulation_machines, out_file, "Final state after waiting period")
         
         simulationStatOut(ToD, num_of_machines, num_of_jobs, min_processing_time, max_processing_time, simulation_file)
-
-    debug_file.close()
-    out_file.close()
-    simulation_file.close()
