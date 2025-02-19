@@ -1,13 +1,13 @@
 import os
 
-from branch_and_bound.Constants import NUMBER_OF_SIMULATIONS, NUMBER_OF_ROUNDS, NUMBER_OF_MACHINES, \
+from Constants import NUMBER_OF_SIMULATIONS, NUMBER_OF_ROUNDS, NUMBER_OF_MACHINES, \
     NUMBER_OF_JOBS_PER_ROUND, DECAY_PER_ROUND, MINIMUM_JOB_LENGTH, MAXIMUM_JOB_LENGTH
-from branch_and_bound.formatters import create_section_line, format_parameters, create_machine_lines, \
+from formatters import create_section_line, format_parameters, create_machine_lines, \
     create_job_lines, create_machine_state_line, create_machine_state_histogram_line
-from branch_and_bound.helpers.job_helpers import create_jobs, createDistribution
-from branch_and_bound.helpers.machine_helpers import calculate_tod, create_machines
-from branch_and_bound.helpers.simulation_stat_out import simulation_stat_out
-from branch_and_bound.heuristic_model.branch_and_bound import branch_and_bound
+from helpers.job_helpers import create_jobs, createDistribution
+from helpers.machine_helpers import calculate_tod, create_machines
+from helpers.simulation_stat_out import simulation_stat_out
+from heuristic_model.branch_and_bound import branch_and_bound
 
 # ----- Branch and Bound Assignment -----
 
