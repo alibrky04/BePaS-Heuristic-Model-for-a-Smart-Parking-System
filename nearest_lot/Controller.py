@@ -377,7 +377,7 @@ data;
                         # print()
         
     def storeData(self):
-        with open('nearest_lot/output/simulation.json', 'r+') as simulation_file:
+        with open('nearest_lot/simulationData/simulation7.json', 'r+') as simulation_file:
             try:
                 ToD_str = ', '.join(map(str, self.total_of_differences))
                 cars_str = ', '.join(map(str, self.distribution))
@@ -401,7 +401,7 @@ data;
                     "simulation_id": simulation_id,
                     "simulation_distribution": simulation_distribution,
                     "ToD": ToD_str,
-                    "car_batch_time": BATCH_TIME,
+                    "car_batch_time": MAX_ROUNDS,
                     "num_of_parking_lots": self.P_LOT,
                     "num_of_cars": cars_str,
                     "min_people": MIN_PEOPLE,

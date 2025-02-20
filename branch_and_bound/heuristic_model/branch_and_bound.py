@@ -1,6 +1,5 @@
 import copy
 
-
 def branch_and_bound(new_jobs, machines, index, current_best, best_assignment, num_machines):
     """
     Recursive BnB: assign new_jobs (already sorted in descending order by length)

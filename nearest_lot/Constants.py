@@ -23,7 +23,7 @@ MIN_PEOPLE = 1
 MAX_PEOPLE = 5
 
 # This is batch time of rounds by minutes
-BATCH_TIME = 5
+BATCH_TIME = 10
 
 # This is the length of the simulation. !!! ONLY FOR 1 DAY !!!
 MAX_ROUNDS = int((60 / BATCH_TIME) * 24)
@@ -32,19 +32,19 @@ MAX_ROUNDS = int((60 / BATCH_TIME) * 24)
 TIME_BETWEEN_ROUNDS = BATCH_TIME
 
 # Number of simulations
-NUM_OF_SIMULATIONS = 3
+NUM_OF_SIMULATIONS = 20
 
 # Distribution generation type
 GENERATION_TYPE = 3 # 1 = Discrete, fixed 2 = Discrete, variable 3 = Continuous, fixed 4 = Continuous, variable
 
 # Simulation distribution
-SIMULATION_DISTRIBUTION = 1 # 1= uniform, 2 = normal, 3 = exponential
+SIMULATION_DISTRIBUTION = 2 # 1= uniform, 2 = normal, 3 = exponential
 
 # Simulation distribution parameters
-MEAN = 150
+MEAN = 75
 DEVIATION = 25
 
-SCALE = 150
+SCALE = 75
 
 # A few non-mandatory constants
 COMMAND = ''

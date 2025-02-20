@@ -1,7 +1,6 @@
 import json
 
-from Constants import SIMULATION_DISTRIBUTION, MINIMUM_JOB_LENGTH, MAXIMUM_JOB_LENGTH, \
-    NUMBER_OF_MACHINES
+from Constants import *
 
 
 def simulation_stat_out(ToD, num_of_jobs, simulation_file):
@@ -29,10 +28,14 @@ def simulation_stat_out(ToD, num_of_jobs, simulation_file):
             "simulation_id": simulation_id,
             "simulation_distribution": simulation_distribution,
             "ToD": ToD_str,
+            "car_batch_size": NUMBER_OF_ROUNDS/2,
             "num_of_machines": NUMBER_OF_MACHINES,
             "num_of_jobs": num_of_jobs,
             "min_processing_time": MINIMUM_JOB_LENGTH,
-            "max_processing_time": MAXIMUM_JOB_LENGTH
+            "max_processing_time": MAXIMUM_JOB_LENGTH,
+            "mean": MEAN,
+            "deviation": DEVIATION,
+            "scale": SCALE
         })
 
         # Write back to file

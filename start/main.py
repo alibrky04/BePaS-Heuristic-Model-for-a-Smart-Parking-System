@@ -4,24 +4,26 @@ from helpers.createRandomJobValues import createRandomJobValues
 from helpers.removeJobs import removeJobs
 from helpers.calculateToD import calculateToD
 from helpers.createDistribution import createDistribution
+
 from heuristic_model.initialAssing import initialAssign
 from heuristic_model.local_search_algorithm import localSearch
 from heuristic_model.lpt_algorithm import legalLpt
 
-from io_utils.handleInput import handleInput
 from io_utils.printMachineStat import printMachineStat
 from io_utils.printMachineStatOut import printMachineStatOut
 from io_utils.simulationStatOut import simulationStatOut
 
-from Constants import MAX_ROUNDS, NUM_OF_SIMULATIONS
-from Constants import NUM_OF_MACHINES, NUM_OF_JOBS, MIN_PROCESSING_TIME, MAX_PROCESSING_TIME
+from Constants import *
 
 import os
+import random
+
+random.seed(42)
 
 if __name__ == "__main__":
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
-    simulation_file = open(os.path.join(os.path.dirname(__file__), "output/simulation.json"), "r+")
+    simulation_file = open(os.path.join(os.path.dirname(__file__), "simulationData/simulation4.json"), "r+")
 
     # num_of_machines, num_of_jobs, min_processing_time, max_processing_time = handleInput()
 
@@ -32,7 +34,7 @@ if __name__ == "__main__":
         for i in range(MAX_ROUNDS):
             # Check constants.py for the distribution types
             # num_of_jobs is only used for the uniform distribution
-            rand_job_num = createDistribution(NUM_OF_JOBS) 
+            rand_job_num = createDistribution(NUM_OF_JOBS)
 
             raw_jobs = createRandomJobValues(NUM_OF_MACHINES, rand_job_num, MIN_PROCESSING_TIME, MAX_PROCESSING_TIME, i)
 

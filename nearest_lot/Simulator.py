@@ -59,9 +59,7 @@ class Simulator:
                 normalDist = [int(num) for num in normalDist]
 
                 for i in range(len(normalDist)):
-                    if normalDist[i] > 9:
-                        normalDist[i] = 9
-                    elif normalDist[i] == 0:
+                    if normalDist[i] == 0:
                         normalDist[i] = 1
             case 3: # Variable
                 normalDist = []
@@ -75,9 +73,7 @@ class Simulator:
                 normalDist = [int(num) for num in normalDist]
 
                 for i in range(len(normalDist)):
-                    if normalDist[i] > 9:
-                        normalDist[i] = 9
-                    elif normalDist[i] == 0:
+                    if normalDist[i] == 0:
                         normalDist[i] = 1
             case _:
                 normalDist = [1] * length
@@ -130,7 +126,7 @@ class Simulator:
 
         return exponentialDist
     
-    def generateDistribution(self, genType = 1, distType = 2, dLength = 24, dMean = 8, dDev = 4, dScale = 6):
+    def generateDistribution(self, genType = 1, distType = 2, dLength = 24, dMean = MEAN, dDev = DEVIATION, dScale = SCALE):
         match (genType, distType):
             case (1, 2): # Discrete, fixed, normal
                 dSlice1 = self.normalDist(mean=5, dev=2, length=int(dLength/3), distType=2)

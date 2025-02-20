@@ -1,16 +1,18 @@
 import os
+import random
 
-from Constants import NUMBER_OF_SIMULATIONS, NUMBER_OF_ROUNDS, NUMBER_OF_MACHINES, \
-    NUMBER_OF_JOBS_PER_ROUND, DECAY_PER_ROUND, MINIMUM_JOB_LENGTH, MAXIMUM_JOB_LENGTH
-from formatters import create_section_line, format_parameters, create_machine_lines, \
-    create_job_lines, create_machine_state_line, create_machine_state_histogram_line
+random.seed(42)
+
+from Constants import *
+from formatters import *
+
 from helpers.job_helpers import create_jobs, createDistribution
 from helpers.machine_helpers import calculate_tod, create_machines
 from helpers.simulation_stat_out import simulation_stat_out
+
 from heuristic_model.branch_and_bound import branch_and_bound
 
 # ----- Branch and Bound Assignment -----
-
 
 if __name__ == "__main__":
 
@@ -21,7 +23,7 @@ if __name__ == "__main__":
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
 
     # add json file later
-    simulation_file = open(os.path.join(os.path.dirname(__file__), "output/simulation.json"), "r+")
+    simulation_file = open(os.path.join(os.path.dirname(__file__), "simulationData/simulation1.json"), "r+")
 
     print(create_section_line("INITIALIZING SIMULATION"), file=debug_file)
     print(create_section_line("PARAMETERS"), "\n", file=debug_file)
@@ -54,6 +56,7 @@ if __name__ == "__main__":
 
             # Generate new jobs randomly.
             random_number_of_jobs = int(createDistribution(NUMBER_OF_JOBS_PER_ROUND))
+            print(f"Number of jobs in round {round_id}: {random_number_of_jobs}")
             new_jobs = create_jobs(random_number_of_jobs, MINIMUM_JOB_LENGTH, MAXIMUM_JOB_LENGTH, round_id)
             print(create_section_line("Creating Jobs"), "\n", file=debug_file)
             print(create_job_lines(new_jobs), file=debug_file)
@@ -85,6 +88,6 @@ if __name__ == "__main__":
 
         simulation_data.append(round_results)
         print(f"Simulation {simulation + 1} results: {', '.join(map(str, round_results))}", file=out_file)
-        simulation_stat_out(round_results, NUMBER_OF_JOBS_PER_ROUND, simulation_file)
+        simulation_stat_out(round_results, random_number_of_jobs, simulation_file)
 
     print(create_section_line("Simulation Ended"), "\n", file=debug_file)

@@ -1,4 +1,8 @@
 import os
+import random
+
+random.seed(42)
+
 from Controller import Controller
 from Simulator import Simulator
 from Constants import *

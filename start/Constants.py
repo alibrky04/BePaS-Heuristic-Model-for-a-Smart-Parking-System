@@ -27,7 +27,7 @@ MIN_PROCESSING_TIME = 1
 MAX_PROCESSING_TIME = 5
 
 # This is batch time of rounds by minutes
-BATCH_TIME = 5
+BATCH_TIME = 30
 
 # This is the length of the simulation
 MAX_ROUNDS = int((60 / BATCH_TIME) * 48)
@@ -39,10 +39,10 @@ TIME_BETWEEN_ROUNDS = BATCH_TIME
 NUM_OF_SIMULATIONS = 20
 
 # Simulation distribution
-SIMULATION_DISTRIBUTION = 1 # 1 = uniform, 2 = normal, 3 = exponential
+SIMULATION_DISTRIBUTION = 2 # 1 = uniform, 2 = normal, 3 = exponential
 
 # Simulation distribution parameters
-MEAN = 150
+MEAN = 75
 DEVIATION = 25
 
-SCALE = 150
+SCALE = 100

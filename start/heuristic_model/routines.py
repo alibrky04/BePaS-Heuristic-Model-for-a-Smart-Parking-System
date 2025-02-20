@@ -181,7 +181,7 @@ def twoByTwoSwapRoutine(machine_list,number_of_machines ,number_of_jobs,output_f
 
             # generate all unique jobs pairs in the machine
             swapped = True
-            print("im in machine", machine.number, "final makespan= ", calculateMakeSpan(machine_list))
+            # print("im in machine", machine.number, "final makespan= ", calculateMakeSpan(machine_list))
 
             while swapped is True:
                 swapped = twoRoutineHelper(machine_list,number_of_machines,debug_file,machine)

@@ -9,7 +9,7 @@ def createDistribution(num_of_jobs):
         return randint(num_of_jobs, num_of_jobs * 2)
     # Normal distribution
     elif SIMULATION_DISTRIBUTION == 2:
-        return np.round(np.abs(normal(MEAN, DEVIATION)))
+        return int(np.round(np.abs(normal(MEAN, DEVIATION))))
     # Exponential distribution
     elif SIMULATION_DISTRIBUTION == 3:
-        return np.round(np.abs(exponential(SCALE)))
+        return int(np.round(np.abs(exponential(SCALE))))
