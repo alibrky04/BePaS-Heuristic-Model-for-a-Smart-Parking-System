@@ -1,0 +1,29 @@
+[
+    {
+        "simulation_id": 1,
+        "simulation_distribution": "static",
+        "ToD": "0, 3, 3, 1, 5, 1, 6, 2, 4, 5",
+        "num_of_machines": 3,
+        "num_of_jobs": 10,
+        "min_processing_time": 1,
+        "max_processing_time": 6
+    },
+    {
+        "simulation_id": 2,
+        "simulation_distribution": "static",
+        "ToD": "2, 1, 2, 3, 3, 3, 9, 2, 3, 5",
+        "num_of_machines": 3,
+        "num_of_jobs": 10,
+        "min_processing_time": 1,
+        "max_processing_time": 6
+    },
+    {
+        "simulation_id": 3,
+        "simulation_distribution": "static",
+        "ToD": "2, 6, 1, 2, 1, 5, 2, 4, 2, 6",
+        "num_of_machines": 3,
+        "num_of_jobs": 10,
+        "min_processing_time": 1,
+        "max_processing_time": 6
+    }
+]
