@@ -1,4 +1,4 @@
-from  v1.local_search.Constants import TIME_BETWEEN_ROUNDS
+from Constants import TIME_BETWEEN_ROUNDS
 
 def removeJobs(machine_list):
     for machine in machine_list:

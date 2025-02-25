@@ -1,7 +1,7 @@
 # prints a certain rank of balance,mainly for debugging
 import math
 
-from  v1.local_search.heuristic_model.calculateMakeSpan import calculateMakeSpan
+from  heuristic_model.calculateMakeSpan import calculateMakeSpan
 
 
 def printRank(machine_list, output_file):

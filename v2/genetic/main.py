@@ -1,13 +1,12 @@
 import os
 
-from v1.genetic.Constants import NUMBER_OF_SIMULATIONS, NUMBER_OF_MACHINES, NUMBER_OF_ROUNDS, DECAY_PER_ROUND, \
-    NUMBER_OF_JOBS_PER_ROUND, NUMBER_OF_GEN, NUMBER_OF_CHROMOSOMES
-from v1.genetic.formatters import create_section_line, format_parameters, create_machine_lines, create_job_lines, \
+from Constants import *
+from formatters import create_section_line, format_parameters, create_machine_lines, create_job_lines, \
     create_machine_state_line, create_machine_state_histogram_line
-from v1.genetic.helpers.job_helpers import createDistribution, create_jobs
-from v1.genetic.helpers.machine_helpers import create_machines, calculate_tod
-from v1.genetic.helpers.simulation_stat_out import simulation_stat_out
-from v1.genetic.heuristic_model.genetic import genetic
+from helpers.job_helpers import createDistribution, create_jobs
+from helpers.machine_helpers import create_machines, calculate_tod
+from helpers.simulation_stat_out import simulation_stat_out
+from heuristic_model.genetic import genetic
 
 if __name__ == "__main__":
 
@@ -18,7 +17,7 @@ if __name__ == "__main__":
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
 
     # add json file later
-    simulation_file = open(os.path.join(os.path.dirname(__file__), "output/simulation.json"), "r+")
+    simulation_file = open(os.path.join(os.path.dirname(__file__), SIM_OUTPUT_FILE), "r+")
 
     print(create_section_line("INITIALIZING SIMULATION"), file=debug_file)
     print(create_section_line("PARAMETERS"), "\n", file=debug_file)

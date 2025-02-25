@@ -1,7 +1,6 @@
 import copy
 
-from  v1.local_search.heuristic_model.helper import findMinLoadMachineLegaly
-
+from  heuristic_model.helper import findMinLoadMachineLegaly
 
 def legalLpt(jobs, m_list):
     job_list_sorted_by_length = sorted(jobs, key=lambda x: x.length, reverse=True)

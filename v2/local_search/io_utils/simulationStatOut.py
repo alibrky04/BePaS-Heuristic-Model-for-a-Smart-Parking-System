@@ -1,4 +1,4 @@
-from v1.local_search.Constants import SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE, MAX_ROUNDS
+from Constants import SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE, MAX_ROUNDS
 
 import json
 

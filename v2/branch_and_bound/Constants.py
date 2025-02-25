@@ -28,3 +28,5 @@ MEAN = 75
 DEVIATION = 25
 
 SCALE = 75
+
+SIM_OUTPUT_FILE = "output/simulation.json"

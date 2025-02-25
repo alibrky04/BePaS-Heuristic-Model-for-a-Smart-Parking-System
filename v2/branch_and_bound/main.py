@@ -1,11 +1,11 @@
 import os
 import random
 
-from v1.branch_and_bound.formatters import *
+from formatters import *
 
-from v1.branch_and_bound.helpers.job_helpers import create_jobs, createDistribution
-from v1.branch_and_bound.helpers.machine_helpers import calculate_tod, create_machines
-from v1.branch_and_bound.helpers.simulation_stat_out import simulation_stat_out
+from helpers.job_helpers import create_jobs, createDistribution
+from helpers.machine_helpers import calculate_tod, create_machines
+from helpers.simulation_stat_out import simulation_stat_out
 
 from heuristic_model.branch_and_bound import branch_and_bound
 
@@ -21,7 +21,7 @@ if __name__ == "__main__":
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
 
     # add json file later
-    simulation_file = open(os.path.join(os.path.dirname(__file__), "simulationData/simulation1.json"), "r+")
+    simulation_file = open(os.path.join(os.path.dirname(__file__), SIM_OUTPUT_FILE), "r+")
 
     print(create_section_line("INITIALIZING SIMULATION"), file=debug_file)
     print(create_section_line("PARAMETERS"), "\n", file=debug_file)

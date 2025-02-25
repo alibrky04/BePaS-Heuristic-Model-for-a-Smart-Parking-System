@@ -1,19 +1,19 @@
-from v1.local_search.helpers.createMachines import createMachines
-from v1.local_search.helpers.createJobs import createJobs
-from v1.local_search.helpers.createRandomJobValues import createRandomJobValues
-from v1.local_search.helpers.removeJobs import removeJobs
-from v1.local_search.helpers.calculateToD import calculateToD
-from v1.local_search.helpers.createDistribution import createDistribution
+from helpers.createMachines import createMachines
+from helpers.createJobs import createJobs
+from helpers.createRandomJobValues import createRandomJobValues
+from helpers.removeJobs import removeJobs
+from helpers.calculateToD import calculateToD
+from helpers.createDistribution import createDistribution
 
-from v1.local_search.heuristic_model.initialAssing import initialAssign
-from v1.local_search.heuristic_model.local_search_algorithm import localSearch
-from v1.local_search.heuristic_model.lpt_algorithm import legalLpt
+from heuristic_model.initialAssing import initialAssign
+from heuristic_model.local_search_algorithm import localSearch
+from heuristic_model.lpt_algorithm import legalLpt
 
-from v1.local_search.io_utils.printMachineStat import printMachineStat
-from v1.local_search.io_utils.printMachineStatOut import printMachineStatOut
-from v1.local_search.io_utils.simulationStatOut import simulationStatOut
+from io_utils.printMachineStat import printMachineStat
+from io_utils.printMachineStatOut import printMachineStatOut
+from io_utils.simulationStatOut import simulationStatOut
 
-from v1.local_search.Constants import *
+from Constants import *
 
 import os
 import random
@@ -23,7 +23,7 @@ random.seed(42)
 if __name__ == "__main__":
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
-    simulation_file = open(os.path.join(os.path.dirname(__file__), "simulationData/simulation4.json"), "r+")
+    simulation_file = open(os.path.join(os.path.dirname(__file__), SIM_OUTPUT_FILE), "r+")
 
     # num_of_machines, num_of_jobs, min_processing_time, max_processing_time = handleInput()
 

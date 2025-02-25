@@ -1,4 +1,4 @@
-from v1.local_search.Constants import NUM_OF_TYPES
+from Constants import NUM_OF_TYPES
 
 
 class Machine(object):

@@ -49,3 +49,5 @@ SCALE = 75
 # A few non-mandatory constants
 COMMAND = ''
 DATAFILE = ''
+
+SIM_OUTPUT_FILE = "v2/nearest_lot/output/simulation.json"

@@ -1,4 +1,4 @@
-from  v1.local_search.helpers.createRandomJobValues import createRandomJobValues
+from  helpers.createRandomJobValues import createRandomJobValues
 
 def handleInput():
     if input("Would you like to generate a new input file? Y/N\n") == "Y":

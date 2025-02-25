@@ -27,11 +27,10 @@ NUMBER_OF_GEN = 50
 # Simulation distribution
 SIMULATION_DISTRIBUTION = "STATIC" # 1 = UNIFORM, 2 = NORMAL, 3 = EXPONENTIAL, 4= STATIC
 
-
-
 # Simulation distribution parameters
 MEAN = 16
 DEVIATION = 2
 
 SCALE = 16
 
+SIM_OUTPUT_FILE = "output/simulation.json"

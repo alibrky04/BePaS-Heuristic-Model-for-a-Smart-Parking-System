@@ -46,3 +46,5 @@ MEAN = 10
 DEVIATION = 15
 
 SCALE = 100
+
+SIM_OUTPUT_FILE = "output/simulation.json"

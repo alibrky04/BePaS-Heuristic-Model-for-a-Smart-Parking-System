@@ -1,5 +1,4 @@
-from v1.branch_and_bound.Constants import NUMBER_OF_SIMULATIONS, NUMBER_OF_ROUNDS, MINIMUM_JOB_LENGTH, MAXIMUM_JOB_LENGTH, NUMBER_OF_MACHINES, \
-    NUMBER_OF_JOBS_PER_ROUND, DECAY_PER_ROUND, SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE
+from Constants import *
 
 
 def create_machine_lines(machines):

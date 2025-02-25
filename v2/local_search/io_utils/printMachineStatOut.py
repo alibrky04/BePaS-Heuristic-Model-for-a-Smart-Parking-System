@@ -1,4 +1,4 @@
-from v1.local_search.heuristic_model.calculateMakeSpan import calculateMakeSpan
+from heuristic_model.calculateMakeSpan import calculateMakeSpan
 
 
 def printMachineStatOut(machine_list, out_file,action):
