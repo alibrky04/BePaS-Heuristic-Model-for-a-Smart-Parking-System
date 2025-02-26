@@ -1,4 +1,4 @@
-from models.Machine import Machine
+from v2.genetic.models.Machine import Machine
 
 
 def create_machines(number_of_machines):

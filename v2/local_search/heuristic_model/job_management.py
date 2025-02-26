@@ -1,5 +1,5 @@
-from  heuristic_model.calculateMakeSpan import calculateMakeSpan
-from  models.Machine import Machine
+from v2.local_search.heuristic_model.calculateMakeSpan import calculateMakeSpan
+from v2.local_search.models.Machine import Machine
 
 
 def removeAllJobs(machine_list):
@@ -41,7 +41,8 @@ def swapJobs(origin_machine: Machine, target_machine: Machine, origin_job, targe
     origin_machine.addJob(temp)
     return True
 
-def checkSwapSpan(machine_list, job_list ,origin_machine: Machine, target_machine: Machine, origin_job, target_job):
+
+def checkSwapSpan(machine_list, job_list, origin_machine: Machine, target_machine: Machine, origin_job, target_job):
     cur_span = calculateMakeSpan(machine_list)
     origin_span = origin_machine.span
     target_span = target_machine.span

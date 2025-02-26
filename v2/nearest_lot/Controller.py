@@ -3,8 +3,8 @@ import subprocess
 import re
 import math as m
 import json
-from Simulator import Simulator
-from Constants import *
+from v2.nearest_lot.Simulator import Simulator
+from v2.nearest_lot.Constants import *
 
 class Controller:
     def __init__(self, COMMAND, glpk_folder_path, distribution, W_CAR = 5, MAP_SIZE = 50):

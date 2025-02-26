@@ -1,9 +1,10 @@
-from  heuristic_model.calculateMakeSpan import calculateMakeSpan
-from  heuristic_model.job_management import isLegalMove, checkMoveSpan, moveJob, checkColorChangeSpan, moveColor, \
+from v2.local_search.heuristic_model.calculateMakeSpan import calculateMakeSpan
+from v2.local_search.heuristic_model.job_management import isLegalMove, checkMoveSpan, moveJob, checkColorChangeSpan, \
+    moveColor, \
     isLegalSwap, checkSwapSpan, swapJobs, isLegalTwoSwap, checkTwoSwapSpan, swapTwoJobs, isLegalCircularSwap, \
     checkCircularSwapSpan, circularSwap
-from  io_utils.printMachineStatOut import printMachineStatOut
-from  models.Machine import Machine
+from v2.local_search.io_utils.printMachineStatOut import printMachineStatOut
+from v2.local_search.models.Machine import Machine
 
 
 def isDone(d_list):
@@ -166,7 +167,7 @@ def twoRoutineHelper(machine_list, number_of_machines, debug_file, machine: Mach
     return False
 
 
-def twoByTwoSwapRoutine(machine_list,number_of_machines ,number_of_jobs,output_file ,debug_file):
+def twoByTwoSwapRoutine(machine_list, number_of_machines, number_of_jobs, output_file, debug_file):
     done = False
     machine_one_counter = 0
 
@@ -184,7 +185,7 @@ def twoByTwoSwapRoutine(machine_list,number_of_machines ,number_of_jobs,output_f
             # print("im in machine", machine.number, "final makespan= ", calculateMakeSpan(machine_list))
 
             while swapped is True:
-                swapped = twoRoutineHelper(machine_list,number_of_machines,debug_file,machine)
+                swapped = twoRoutineHelper(machine_list, number_of_machines, debug_file, machine)
 
             if number_of_jobs <= 500:
                 pass
@@ -207,7 +208,8 @@ def circularSwapHelper(machine_list, number_of_machines):
 
                             if isLegalCircularSwap(machine_list[i], machine_list[j], machine_list[k],
                                                    job1, job2, job3):  # check if the circular swap can be legal
-                                move_or_not_to_move = checkCircularSwapSpan(machine_list,machine_list[i], machine_list[j],
+                                move_or_not_to_move = checkCircularSwapSpan(machine_list, machine_list[i],
+                                                                            machine_list[j],
                                                                             machine_list[k], job1, job2, job3)
 
                                 if move_or_not_to_move is True:
@@ -218,7 +220,7 @@ def circularSwapHelper(machine_list, number_of_machines):
     return False
 
 
-def circularSwapRoutine(machine_list,number_of_machines ,number_of_jobs, output_file,debug_file):
+def circularSwapRoutine(machine_list, number_of_machines, number_of_jobs, output_file, debug_file):
     done = False
     no_swap_count = 0
 
@@ -228,7 +230,7 @@ def circularSwapRoutine(machine_list,number_of_machines ,number_of_jobs, output_
         swapped = True
 
         while swapped is True:
-            swapped = circularSwapHelper(machine_list,number_of_machines)
+            swapped = circularSwapHelper(machine_list, number_of_machines)
             if swapped is False:
                 no_swap_count += 1
 

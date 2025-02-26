@@ -1,7 +1,7 @@
 # prints a certain rank of balance,mainly for debugging
 import math
 
-from  heuristic_model.calculateMakeSpan import calculateMakeSpan
+from v2.local_search.heuristic_model.calculateMakeSpan import calculateMakeSpan
 
 
 def printRank(machine_list, output_file):
@@ -13,7 +13,7 @@ def printRank(machine_list, output_file):
 
 
 # Checks if all machines are even so we can stop the run
-def isEven(machines_list,average_job):
+def isEven(machines_list, average_job):
     if machines_list.count(machines_list[0].span) == len(machines_list):
         return True
     else:  # might be a case of non-even optimal solution

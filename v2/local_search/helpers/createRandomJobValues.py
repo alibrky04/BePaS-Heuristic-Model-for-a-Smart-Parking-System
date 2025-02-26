@@ -1,5 +1,6 @@
 from random import randint
-from Constants import NUM_OF_TYPES
+from v2.local_search.Constants import NUM_OF_TYPES
+
 
 def createRandomJobValues(num_of_machines, num_of_jobs, min_processing_time, max_processing_time, first_index):
     inpt = open("./input.txt", 'w')
@@ -14,7 +15,7 @@ def createRandomJobValues(num_of_machines, num_of_jobs, min_processing_time, max
     inpt.write("\n")
 
     print("number of jobs generated: ", num_of_jobs)
-    
+
     jobs = []
     for index in range(first_index, first_index + num_of_jobs):
         j = []
@@ -32,7 +33,7 @@ def createRandomJobValues(num_of_machines, num_of_jobs, min_processing_time, max
         inpt.write(str(type))
         inpt.write("\n")
         jobs.append(j)
-    
+
     inpt.close()
 
     return jobs

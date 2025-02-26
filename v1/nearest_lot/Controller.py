@@ -3,11 +3,12 @@ import subprocess
 import re
 import math as m
 import json
-from Simulator import Simulator
-from Constants import *
+from v1.nearest_lot.Simulator import Simulator
+from v1.nearest_lot.Constants import *
+
 
 class Controller:
-    def __init__(self, COMMAND, glpk_folder_path, distribution, W_CAR = 5, MAP_SIZE = 50):
+    def __init__(self, COMMAND, glpk_folder_path, distribution, W_CAR=5, MAP_SIZE=50):
         self.simulator = Simulator()
 
         self.P_LOT = NUM_OF_LOTS
@@ -19,32 +20,34 @@ class Controller:
         self.distribution = distribution
 
         # parking_spaces = [[park state, car_load, res time], x, y]
-        self.parking_spaces = {f'p{i + 1}' : 
-                               [[[0, 0, 0] for _ in range(self.MAX_CAPACITY)], random.randint(0, self.MAP_SIZE), 
-                                random.randint(0, self.MAP_SIZE)] 
+        self.parking_spaces = {f'p{i + 1}':
+                                   [[[0, 0, 0] for _ in range(self.MAX_CAPACITY)], random.randint(0, self.MAP_SIZE),
+                                    random.randint(0, self.MAP_SIZE)]
                                for i in range(self.P_LOT)}
-        
-        self.parking_spaces_loads = {f'p{i + 1}' : 0 for i in range(self.P_LOT)}
-        self.number_of_cars = {f'p{i + 1}' : 0 for i in range(self.P_LOT)}
-        self.waiting_cars = {f'Car{i + 1}': [0, 0, random.randint(0, self.MAP_SIZE), 
-                                            random.randint(0, self.MAP_SIZE)] 
-                                            for i in range(self.W_CAR)} # [num_of_people, res_time, x, y]
+
+        self.parking_spaces_loads = {f'p{i + 1}': 0 for i in range(self.P_LOT)}
+        self.number_of_cars = {f'p{i + 1}': 0 for i in range(self.P_LOT)}
+        self.waiting_cars = {f'Car{i + 1}': [0, 0, random.randint(0, self.MAP_SIZE),
+                                             random.randint(0, self.MAP_SIZE)]
+                             for i in range(self.W_CAR)}  # [num_of_people, res_time, x, y]
 
         self.total_of_differences = []
         self.epoch_car_num = []
         self.epoch_people_num = []
-        self.epoch_lot_assigned_car_num = [{f'p{i + 1}' : 0 for i in range(self.P_LOT)} for _ in range(len(self.distribution))]
-    
-    def createCars(self, doChange = False, new_car_num = 5):
+        self.epoch_lot_assigned_car_num = [{f'p{i + 1}': 0 for i in range(self.P_LOT)} for _ in
+                                           range(len(self.distribution))]
+
+    def createCars(self, doChange=False, new_car_num=5):
         if doChange:
             self.W_CAR = new_car_num
 
-        self.waiting_cars = {f'Car{i + 1}': [random.randint(MIN_PEOPLE, MAX_PEOPLE), 0, random.randint(0, self.MAP_SIZE),
-                                            random.randint(0, self.MAP_SIZE)] for i in range(self.W_CAR)}
+        self.waiting_cars = {
+            f'Car{i + 1}': [random.randint(MIN_PEOPLE, MAX_PEOPLE), 0, random.randint(0, self.MAP_SIZE),
+                            random.randint(0, self.MAP_SIZE)] for i in range(self.W_CAR)}
 
         # print('The cars in the queuing area')
         # for i in range(self.W_CAR):
-            # print(f'Number of people in car {i + 1} is', self.waiting_cars[f'Car{i + 1}'][0])
+        # print(f'Number of people in car {i + 1} is', self.waiting_cars[f'Car{i + 1}'][0])
 
     def createData(self):
         data_start = """# Data section
@@ -56,11 +59,11 @@ data;
 
         for i in range(self.P_LOT):
             data_parking_space += f" p{i + 1}"
-        
+
         data_parking_space += ";\n"
 
         data_waiting_cars = "set WaitingCars :="""
-        
+
         for i in range(self.W_CAR):
             data_waiting_cars += f" Car{i + 1}"
 
@@ -99,9 +102,9 @@ data;
         data_num_people += ";"
 
         data = data_start + data_parking_space + data_waiting_cars + data_init_load + data_max + data_parked_car + data_num_people
-        
+
         return data
-    
+
     def createDataForCarModel(self):
         data_start = """# Data section
 data;
@@ -112,11 +115,11 @@ data;
 
         for i in range(self.P_LOT):
             data_parking_space += f" p{i + 1}"
-        
+
         data_parking_space += ";\n"
 
         data_waiting_cars = "set WaitingCars :="""
-        
+
         for i in range(self.W_CAR):
             data_waiting_cars += f" Car{i + 1}"
 
@@ -139,10 +142,10 @@ data;
         data_parked_car += ";"
 
         data = data_start + data_parking_space + data_waiting_cars + data_init_load + data_parked_car
-        
+
         return data
 
-    def writeData(self, path, model = 1):
+    def writeData(self, path, model=1):
         match model:
             case 1:
                 data = self.createData()
@@ -150,11 +153,11 @@ data;
                 data = self.createDataForCarModel()
             case _:
                 data = ""
-        
+
         with open(path, 'w') as file:
             file.write(data)
-        
-    def runSolver(self, doPrint = False):
+
+    def runSolver(self, doPrint=False):
         result = subprocess.run(self.COMMAND, shell=True, cwd=self.glpk_folder_path, capture_output=True, text=True)
 
         if doPrint:
@@ -165,7 +168,7 @@ data;
         try:
             with open(self.glpk_folder_path + "/SPS.out", 'r') as file:
                 solver_output = file.read()
-                
+
                 car_assignments = {}
                 parking_space_loads = {}
                 total_of_differences = 0
@@ -206,12 +209,12 @@ data;
         except FileNotFoundError:
             print(f'The file "{self.glpk_folder_path}" does not exist.')
             return None
-        
+
     def takeOutputForCarModel(self):
         try:
             with open(self.glpk_folder_path + "/SPS_CAR.out", 'r') as file:
                 solver_output = file.read()
-                
+
                 car_assignments = {}
                 num_of_cars = {}
                 total_of_differences = 0
@@ -252,8 +255,8 @@ data;
         except FileNotFoundError:
             print(f'The file "{self.glpk_folder_path}" does not exist.')
             return None
-    
-    def takeOutputForNearModel(self, nearModelType = 1):
+
+    def takeOutputForNearModel(self, nearModelType=1):
         assigned_parking_spaces = {}
         parking_space_loads = {}
         total_of_differences = 0
@@ -261,8 +264,8 @@ data;
         for car in self.waiting_cars:
             nearest_parking_lot = self.findNearestParkingLot(car)
             assigned_parking_spaces[car] = nearest_parking_lot
-        
-        if nearModelType == 1: # For people model comparison
+
+        if nearModelType == 1:  # For people model comparison
             for car, ps in assigned_parking_spaces.items():
                 if ps in parking_space_loads:
                     parking_space_loads[ps] += self.waiting_cars[car][0]
@@ -272,14 +275,14 @@ data;
             for ps in self.parking_spaces_loads:
                 if ps not in parking_space_loads:
                     parking_space_loads[ps] = self.parking_spaces_loads[ps]
-        elif nearModelType == 2: # For car model comparison
+        elif nearModelType == 2:  # For car model comparison
             for car, ps in assigned_parking_spaces.items():
                 parking_space_loads[ps] = self.number_of_cars[ps]
 
             for ps in self.number_of_cars:
                 if ps not in parking_space_loads:
                     parking_space_loads[ps] = self.number_of_cars[ps]
-        
+
         min_load = 100000
         for ps, load in parking_space_loads.items():
             min_load = min(load, min_load)
@@ -288,20 +291,21 @@ data;
             total_of_differences += load - min_load
 
         return assigned_parking_spaces, parking_space_loads, total_of_differences
-        
-    def updateState(self, ct=0, isMaxday=0, simType = 3, nearModelType = 1):
+
+    def updateState(self, ct=0, isMaxday=0, simType=3, nearModelType=1):
         match simType:
             case 1:
                 assigned_parking_spaces, parking_space_loads, total_of_differences = self.takeOutput()
             case 2:
                 assigned_parking_spaces, parking_space_loads, total_of_differences = self.takeOutputForCarModel()
             case 3:
-                assigned_parking_spaces, parking_space_loads, total_of_differences = self.takeOutputForNearModel(nearModelType)
+                assigned_parking_spaces, parking_space_loads, total_of_differences = self.takeOutputForNearModel(
+                    nearModelType)
             case _:
                 assigned_parking_spaces, parking_space_loads, total_of_differences = {}, {}, 0
 
         # print()
-        
+
         # Set reservations for the appended cars
         for car, value in self.waiting_cars.items():
             value[1] = self.simulator.SetTimeSlot()
@@ -340,21 +344,22 @@ data;
 
         # Store the total_of_differences of this epoch
         self.total_of_differences.append(total_of_differences)
-    
+
     def showParkingLots(self):
         for p, pl in self.parking_spaces.items():
-            print(f'{p} :', ''.join('|#|  ' if space[0] == 1 else '| |  ' for space in pl[0]), f'({self.number_of_cars[p]})')
+            print(f'{p} :', ''.join('|#|  ' if space[0] == 1 else '| |  ' for space in pl[0]),
+                  f'({self.number_of_cars[p]})')
 
     def showData(self):
         print()
 
         # self.showParkingLots()
-        
+
         print()
 
-        for p,l in self.parking_spaces_loads.items():
+        for p, l in self.parking_spaces_loads.items():
             print(f'The load of {p} is {l}')
-        
+
         print()
 
         print(f'Current total of differences is {self.total_of_differences[-1]}\n')
@@ -375,13 +380,13 @@ data;
 
                         # self.showParkingLots()
                         # print()
-        
+
     def storeData(self):
         with open('nearest_lot/simulationData/simulation7.json', 'r+') as simulation_file:
             try:
                 ToD_str = ', '.join(map(str, self.total_of_differences))
                 cars_str = ', '.join(map(str, self.distribution))
-                
+
                 try:
                     simulation_file.seek(0)
                     existing_data = json.load(simulation_file)
@@ -416,7 +421,7 @@ data;
                 simulation_file.truncate()
             except Exception as e:
                 print(f"Error writing to simulation file: {e}")
-    
+
     def findNearestParkingLot(self, car):
         min_length = 100000
         nearest_parking_lot = ''
@@ -424,15 +429,15 @@ data;
             """print(f'{p} x = {data[1]}, {p} y = {data[2]}')
             print(f'{car} x = {self.waiting_cars[car][2]}, {car} y = {self.waiting_cars[car][3]}')"""
 
-            length = m.sqrt((data[1] - self.waiting_cars[car][2])**2 +
-                            (data[2] - self.waiting_cars[car][3])**2)
-            
+            length = m.sqrt((data[1] - self.waiting_cars[car][2]) ** 2 +
+                            (data[2] - self.waiting_cars[car][3]) ** 2)
+
             if length < min_length and self.number_of_cars[p] < self.MAX_CAPACITY:
                 min_length = length
                 nearest_parking_lot = p
-        
+
         self.number_of_cars[nearest_parking_lot] += 1
         return nearest_parking_lot
-    
+
     def __del__(self):
         pass

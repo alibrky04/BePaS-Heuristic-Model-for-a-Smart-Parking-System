@@ -1,4 +1,4 @@
-from Constants import *
+from v2.branch_and_bound.Constants import *
 
 
 def create_machine_lines(machines):
