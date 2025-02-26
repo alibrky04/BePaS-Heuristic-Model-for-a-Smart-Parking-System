@@ -5,13 +5,13 @@ import numpy as np
 random.seed(42)
 np.random.seed(42)
 
-from Constants import *
-from formatters import create_section_line, format_parameters, create_machine_lines, create_job_lines, \
+from v2.genetic.Constants import *
+from v2.genetic.formatters import create_section_line, format_parameters, create_machine_lines, create_job_lines, \
     create_machine_state_line, create_machine_state_histogram_line
-from helpers.job_helpers import createDistribution, create_jobs
-from helpers.machine_helpers import create_machines, calculate_tod
-from helpers.simulation_stat_out import simulation_stat_out
-from heuristic_model.genetic import genetic
+from v2.genetic.helpers.job_helpers import createDistribution, create_jobs
+from v2.genetic.helpers.machine_helpers import create_machines, calculate_tod
+from v2.genetic.helpers.simulation_stat_out import simulation_stat_out
+from v2.genetic.heuristic_model.genetic import genetic
 
 if __name__ == "__main__":
 

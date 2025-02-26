@@ -4,11 +4,11 @@ import numpy as np
 
 from formatters import *
 
-from helpers.job_helpers import create_jobs, createDistribution
-from helpers.machine_helpers import calculate_tod, create_machines
-from helpers.simulation_stat_out import simulation_stat_out
+from v2.branch_and_bound.helpers.job_helpers import create_jobs, createDistribution
+from v2.branch_and_bound.helpers.machine_helpers import calculate_tod, create_machines
+from v2.branch_and_bound.helpers.simulation_stat_out import simulation_stat_out
 
-from heuristic_model.branch_and_bound import branch_and_bound
+from v2.branch_and_bound.heuristic_model.branch_and_bound import branch_and_bound
 
 # ----- Branch and Bound Assignment -----
 random.seed(42)

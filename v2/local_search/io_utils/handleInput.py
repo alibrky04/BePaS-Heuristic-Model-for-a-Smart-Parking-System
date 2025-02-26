@@ -1,5 +1,3 @@
-from  helpers.createRandomJobValues import createRandomJobValues
-
 def handleInput():
     if input("Would you like to generate a new input file? Y/N\n") == "Y":
         num_of_machines = int(input("Please enter the number of machines: \n"))

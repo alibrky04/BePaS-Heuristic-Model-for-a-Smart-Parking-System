@@ -1,4 +1,4 @@
-from Constants import SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE
+from v2.local_search.Constants import SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE
 from random import randint
 from numpy.random import normal, exponential
 import numpy as np
