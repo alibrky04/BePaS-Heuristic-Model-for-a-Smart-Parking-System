@@ -1,4 +1,4 @@
-from v2.genetic.Constants import *
+from Constants import *
 
 
 def create_machine_lines(machines):

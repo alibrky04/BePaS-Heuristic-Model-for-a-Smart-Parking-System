@@ -1,4 +1,4 @@
-from v2.local_search.models.Job import Job
+from models.Job import Job
 
 
 def createJobs(unprocessed_jobs, debug_file):

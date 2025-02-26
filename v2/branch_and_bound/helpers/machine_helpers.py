@@ -1,5 +1,4 @@
-from v2.branch_and_bound.models.Machine import Machine
-
+from models.Machine import Machine
 
 def create_machines(number_of_machines):
     return [Machine(i) for i in range(number_of_machines)]

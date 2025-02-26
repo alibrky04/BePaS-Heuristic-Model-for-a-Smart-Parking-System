@@ -1,6 +1,6 @@
 import random
 
-from v2.genetic.Constants import NUMBER_OF_CHROMOSOMES, NUMBER_OF_GEN
+from Constants import NUMBER_OF_CHROMOSOMES, NUMBER_OF_GEN
 
 
 def genetic_create_chrom(new_jobs, machines, number_of_machines):

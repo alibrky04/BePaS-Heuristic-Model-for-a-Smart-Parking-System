@@ -1,5 +1,4 @@
-from v2.branch_and_bound.Constants import *
-
+from Constants import *
 
 def create_machine_lines(machines):
     text_with_spaces = f""

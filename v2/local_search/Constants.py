@@ -27,7 +27,7 @@ MIN_PROCESSING_TIME = 1
 MAX_PROCESSING_TIME = 5
 
 # This is batch time of rounds by minutes
-BATCH_TIME = 5
+BATCH_TIME = 60
 
 # This is the length of the simulation
 MAX_ROUNDS = int((60 / BATCH_TIME) * 48)
@@ -47,4 +47,4 @@ DEVIATION = 25
 
 SCALE = 75
 
-SIM_OUTPUT_FILE = "simulationData/simulation4.json"
+SIM_OUTPUT_FILE = "simulationData/simulation1.json"

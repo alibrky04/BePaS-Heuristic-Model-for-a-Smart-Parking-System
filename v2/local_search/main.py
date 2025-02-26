@@ -1,19 +1,19 @@
-from v2.local_search.helpers.createMachines import createMachines
-from v2.local_search.helpers.createJobs import createJobs
-from v2.local_search.helpers.createRandomJobValues import createRandomJobValues
-from v2.local_search.helpers.removeJobs import removeJobs
-from v2.local_search.helpers.calculateToD import calculateToD
-from v2.local_search.helpers.createDistribution import createDistribution
+from helpers.createMachines import createMachines
+from helpers.createJobs import createJobs
+from helpers.createRandomJobValues import createRandomJobValues
+from helpers.removeJobs import removeJobs
+from helpers.calculateToD import calculateToD
+from helpers.createDistribution import createDistribution
 
-from v2.local_search.heuristic_model.initialAssing import initialAssign
-from v2.local_search.heuristic_model.local_search_algorithm import localSearch
-from v2.local_search.heuristic_model.lpt_algorithm import legalLpt
+from heuristic_model.initialAssing import initialAssign
+from heuristic_model.local_search_algorithm import localSearch
+from heuristic_model.lpt_algorithm import legalLpt
 
-from v2.local_search.io_utils.printMachineStat import printMachineStat
-from v2.local_search.io_utils.printMachineStatOut import printMachineStatOut
-from v2.local_search.io_utils.simulationStatOut import simulationStatOut
+from io_utils.printMachineStat import printMachineStat
+from io_utils.printMachineStatOut import printMachineStatOut
+from io_utils.simulationStatOut import simulationStatOut
 
-from v2.local_search.Constants import *
+from Constants import *
 
 import os
 import random

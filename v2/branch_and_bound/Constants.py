@@ -1,5 +1,5 @@
 #Number of simulations to be performed
-NUMBER_OF_SIMULATIONS = 1
+NUMBER_OF_SIMULATIONS = 20
 
 # This is batch time of rounds by minutes
 BATCH_TIME = 60
@@ -14,14 +14,14 @@ MINIMUM_JOB_LENGTH = 1
 MAXIMUM_JOB_LENGTH = 5
 
 # Number of Machines
-NUMBER_OF_MACHINES = 10
+NUMBER_OF_MACHINES = 50
 
-NUMBER_OF_JOBS_PER_ROUND = 10
+NUMBER_OF_JOBS_PER_ROUND = 50
 
 DECAY_PER_ROUND = BATCH_TIME
 
 # Simulation distribution
-SIMULATION_DISTRIBUTION = "STATIC" # 1 = UNIFORM, 2 = NORMAL, 3 = EXPONENTIAL, 4= STATIC
+SIMULATION_DISTRIBUTION = "UNIFORM" # 1 = UNIFORM, 2 = NORMAL, 3 = EXPONENTIAL, 4= STATIC
 
 # Simulation distribution parameters
 MEAN = 75
@@ -29,4 +29,4 @@ DEVIATION = 25
 
 SCALE = 75
 
-SIM_OUTPUT_FILE = "output/simulation.json"
+SIM_OUTPUT_FILE = "simulationData/simulation1.json"

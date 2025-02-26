@@ -5,13 +5,13 @@ import numpy as np
 random.seed(42)
 np.random.seed(42)
 
-from v2.genetic.Constants import *
-from v2.genetic.formatters import create_section_line, format_parameters, create_machine_lines, create_job_lines, \
+from Constants import *
+from formatters import create_section_line, format_parameters, create_machine_lines, create_job_lines, \
     create_machine_state_line, create_machine_state_histogram_line
-from v2.genetic.helpers.job_helpers import createDistribution, create_jobs
-from v2.genetic.helpers.machine_helpers import create_machines, calculate_tod
-from v2.genetic.helpers.simulation_stat_out import simulation_stat_out
-from v2.genetic.heuristic_model.genetic import genetic
+from helpers.job_helpers import createDistribution, create_jobs
+from helpers.machine_helpers import create_machines, calculate_tod
+from helpers.simulation_stat_out import simulation_stat_out
+from heuristic_model.genetic import genetic
 
 if __name__ == "__main__":
 
@@ -86,6 +86,6 @@ if __name__ == "__main__":
 
         simulation_data.append(round_results)
         print(f"Simulation results: {', '.join(map(str, round_results))}", file=out_file)
-        simulation_stat_out(round_results, NUMBER_OF_JOBS_PER_ROUND, simulation_file)
+        simulation_stat_out(round_results, random_number_of_jobs, simulation_file)
 
     print(create_section_line("Simulation Ended"), "\n", file=debug_file)

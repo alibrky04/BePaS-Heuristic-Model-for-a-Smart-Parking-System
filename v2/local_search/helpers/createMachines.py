@@ -1,4 +1,4 @@
-from v2.local_search.models.Machine import Machine
+from models.Machine import Machine
 
 
 def createMachines(number_of_machines, last_iteration_machines, round):

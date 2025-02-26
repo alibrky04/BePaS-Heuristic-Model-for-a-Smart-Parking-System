@@ -1,5 +1,5 @@
 from random import randint
-from v2.local_search.Constants import NUM_OF_TYPES
+from Constants import NUM_OF_TYPES
 
 
 def createRandomJobValues(num_of_machines, num_of_jobs, min_processing_time, max_processing_time, first_index):

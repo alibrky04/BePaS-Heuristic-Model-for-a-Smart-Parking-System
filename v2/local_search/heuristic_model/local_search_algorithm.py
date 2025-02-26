@@ -1,9 +1,9 @@
-from v2.local_search.heuristic_model.calculateMakeSpan import calculateMakeSpan
-from v2.local_search.heuristic_model.helper import isEven
-from v2.local_search.heuristic_model.routines import oneJobRoutine, oneByOneSwapRoutine, colorChangeRoutine, \
+from heuristic_model.calculateMakeSpan import calculateMakeSpan
+from heuristic_model.helper import isEven
+from heuristic_model.routines import oneJobRoutine, oneByOneSwapRoutine, colorChangeRoutine, \
     twoByTwoSwapRoutine, \
     circularSwapRoutine
-from v2.local_search.io_utils.printMachineStatOut import printMachineStatOut
+from io_utils.printMachineStatOut import printMachineStatOut
 
 
 def localSearch(machine_list, number_of_machines, job_list, number_of_jobs, output_file, debug_file):

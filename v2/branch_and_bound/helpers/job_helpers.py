@@ -3,9 +3,8 @@ import random
 import numpy as np
 from numpy.random import normal, exponential
 
-from v2.branch_and_bound.Constants import SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE, DECAY_PER_ROUND
-from v2.branch_and_bound.models.Job import Job
-
+from Constants import SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE, DECAY_PER_ROUND
+from models.Job import Job
 
 def create_jobs(number_of_jobs, minimum_job_length, maximum_job_length, round_id):
     new_jobs = []
