@@ -1,4 +1,9 @@
 import os
+import random
+import numpy as np
+
+random.seed(42)
+np.random.seed(42)
 
 from Constants import *
 from formatters import create_section_line, format_parameters, create_machine_lines, create_job_lines, \

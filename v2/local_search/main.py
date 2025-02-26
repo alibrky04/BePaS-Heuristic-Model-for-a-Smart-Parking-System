@@ -17,8 +17,10 @@ from Constants import *
 
 import os
 import random
+import numpy as np
 
 random.seed(42)
+np.random.seed(42)
 
 if __name__ == "__main__":
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")

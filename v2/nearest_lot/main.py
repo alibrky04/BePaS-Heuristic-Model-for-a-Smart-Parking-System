@@ -1,7 +1,9 @@
 import os
 import random
+import numpy as np
 
 random.seed(42)
+np.random.seed(42)
 
 from Controller import Controller
 from Simulator import Simulator

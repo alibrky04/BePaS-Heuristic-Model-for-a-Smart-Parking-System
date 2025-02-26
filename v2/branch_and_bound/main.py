@@ -1,5 +1,6 @@
 import os
 import random
+import numpy as np
 
 from formatters import *
 
@@ -11,6 +12,7 @@ from heuristic_model.branch_and_bound import branch_and_bound
 
 # ----- Branch and Bound Assignment -----
 random.seed(42)
+np.random.seed(42)
 
 if __name__ == "__main__":
 
