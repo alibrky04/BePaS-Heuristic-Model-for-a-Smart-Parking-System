@@ -1,6 +1,7 @@
 import os
 import random
 import numpy as np
+import time
 
 from formatters import *
 
@@ -67,7 +68,9 @@ if __name__ == "__main__":
             # Run branch and bound to assign these new jobs.
             current_best = [float('inf')]
             best_assignment = [[] for _ in range(NUMBER_OF_MACHINES)]
-            branch_and_bound(new_jobs, machines, 0, current_best, best_assignment, NUMBER_OF_MACHINES)
+            start_time = time.time()
+            first_solution_found = [False]
+            branch_and_bound(new_jobs, machines, 0, current_best, best_assignment, NUMBER_OF_MACHINES, start_time, MODEL_TIME_LIMIT, first_solution_found)
 
             # Update machines with the best found assignment.
             for i, machine in enumerate(machines):

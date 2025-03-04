@@ -1,46 +1,43 @@
 import copy
+import time
+from helpers.machine_helpers import load_std_dev
 
-def branch_and_bound(new_jobs, machines, index, current_best, best_assignment, num_machines):
-    """
-    Recursive BnB: assign new_jobs (already sorted in descending order by length)
-    to the machines (which already have some jobs from previous rounds) in order to
-    minimize the makespan (maximum machine load).
+def branch_and_bound(new_jobs, machines, index, current_best, best_assignment, num_machines, start_time, time_limit, first_solution_found):
+    # Check if time limit is exceeded AND at least one complete assignment has been found
+    if time.time() - start_time >= time_limit and first_solution_found[0]:
+        return  # Stop further recursion without breaking current assignments
 
-    Parameters:
-      new_jobs: list of Job objects to assign.
-      machines: list of Machine objects representing current state.
-      index: current index in new_jobs that we want to assign.
-      current_best: a single-element list containing the current best makespan found.
-      best_assignment: list (of lists) that will hold the best job assignment for each machine.
-      num_machines: total number of machines.
-    """
-    # Base: all new jobs have been assigned
+    # Base case: all new jobs have been assigned at least once
     if index == len(new_jobs):
         current_makespan = max(machine.load for machine in machines)
         if current_makespan < current_best[0]:
             current_best[0] = current_makespan
-            # Record the best assignment (deep copy the list of jobs for each machine)
             best_assignment[:] = [copy.deepcopy(machine.jobs) for machine in machines]
+        first_solution_found[0] = True  # Mark that at least one full assignment is complete
         return
 
-    # Lower bound: the maximum between the current maximum load and
-    # the ideal additional load if remaining work is evenly distributed.
+    print(f"Exploring job {index}, best makespan: {current_best[0]}, elapsed time: {time.time() - start_time}, std: {load_std_dev(machines)}")
+
+    # Lower bound calculation and pruning
     total_remaining = sum(job.length for job in new_jobs[index:])
     current_max = max(machine.load for machine in machines)
     current_min = min(machine.load for machine in machines)
     lb = max(current_max, current_min + total_remaining / num_machines)
+
     if lb >= current_best[0]:
-        return  # prune this branch
+        return  # Prune this branch
 
-    # Try assigning new_jobs[index] to each machine in turn.
+    # Try assigning new_jobs[index] to each machine
     for machine in machines:
-        # Save current state of this machine
-        orig_load = machine.load
-        orig_jobs = machine.jobs[:]  # shallow copy is enough since jobs are immutable in length
+        if time.time() - start_time >= time_limit and first_solution_found[0]:
+            return  # Stop recursion if time limit is exceeded
 
-        # Assign job to machine
+        orig_load = machine.load
+        orig_jobs = machine.jobs[:]  # Shallow copy
+
         machine.add_job(new_jobs[index])
-        branch_and_bound(new_jobs, machines, index + 1, current_best, best_assignment, num_machines)
-        # Backtrack: remove the job
+        branch_and_bound(new_jobs, machines, index + 1, current_best, best_assignment, num_machines, start_time, time_limit, first_solution_found)
+
+        # Backtrack
         machine.jobs = orig_jobs
         machine.load = orig_load
