@@ -1,6 +1,6 @@
 import json
 
-from v2.branch_and_bound.Constants import *
+from v2.branch_and_bound import Constants as cnst
 
 def simulation_stat_out(ToD, num_of_jobs, simulation_file):
     try:
@@ -14,27 +14,27 @@ def simulation_stat_out(ToD, num_of_jobs, simulation_file):
 
         simulation_id = len(existing_data) + 1
 
-        if SIMULATION_DISTRIBUTION == "UNIFORM":
+        if cnst.SIMULATION_DISTRIBUTION == "UNIFORM":
             simulation_distribution = "uniform"
-        elif SIMULATION_DISTRIBUTION == "NORMAL":
+        elif cnst.SIMULATION_DISTRIBUTION == "NORMAL":
             simulation_distribution = "normal"
-        elif SIMULATION_DISTRIBUTION == "EXPONENTIAL":
+        elif cnst.SIMULATION_DISTRIBUTION == "EXPONENTIAL":
             simulation_distribution = "exponential"
-        elif SIMULATION_DISTRIBUTION == "STATIC":
+        elif cnst.SIMULATION_DISTRIBUTION == "STATIC":
             simulation_distribution = "static"
 
         existing_data.append({
             "simulation_id": simulation_id,
             "simulation_distribution": simulation_distribution,
             "ToD": ToD_str,
-            "car_batch_size": NUMBER_OF_ROUNDS/2,
-            "num_of_machines": NUMBER_OF_MACHINES,
+            "car_batch_size": cnst.NUMBER_OF_ROUNDS/2,
+            "num_of_machines": cnst.NUMBER_OF_MACHINES,
             "num_of_jobs": num_of_jobs,
-            "min_processing_time": MINIMUM_JOB_LENGTH,
-            "max_processing_time": MAXIMUM_JOB_LENGTH,
-            "mean": MEAN,
-            "deviation": DEVIATION,
-            "scale": SCALE
+            "min_processing_time": cnst.MINIMUM_JOB_LENGTH,
+            "max_processing_time": cnst.MAXIMUM_JOB_LENGTH,
+            "mean": cnst.MEAN,
+            "deviation": cnst.DEVIATION,
+            "scale": cnst.SCALE
         })
 
         # Write back to file

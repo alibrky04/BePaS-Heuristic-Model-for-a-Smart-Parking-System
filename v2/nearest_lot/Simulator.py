@@ -7,7 +7,7 @@ from scipy.interpolate import make_interp_spline
 import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes, mark_inset
 
-from v2.nearest_lot.Constants import *
+from v2.nearest_lot import Constants as cnst
 
 plt.rcParams['grid.linewidth'] = 0.25
 
@@ -126,7 +126,7 @@ class Simulator:
 
         return exponentialDist
     
-    def generateDistribution(self, genType = 1, distType = "UNIFORM", dLength = 24, dMean = MEAN, dDev = DEVIATION, dScale = SCALE):
+    def generateDistribution(self, genType = 1, distType = "UNIFORM", dLength = 24, dMean = cnst.MEAN, dDev = cnst.DEVIATION, dScale = cnst.SCALE):
         match (genType, distType):
             case (1, "NORMAL"): # Discrete, fixed, normal
                 dSlice1 = self.normalDist(mean=5, dev=2, length=int(dLength/3), distType=2)
@@ -149,13 +149,14 @@ class Simulator:
                 dSlice3 = self.exponentialDist(scale=3, length=int(dLength/3), distType=3)
                 distribution = dSlice1 + dSlice2 + dSlice3
             case (3, "UNIFORM"): # Continuous, fixed, uniform
-                distribution = self.uniformDist(NUM_OF_CARS, NUM_OF_CARS*2, length=dLength)
+                distribution = self.uniformDist(cnst.NUM_OF_CARS, cnst.NUM_OF_CARS*2, length=dLength)
             case (3, "NORMAL"): # Continuous, fixed, normal
                 distribution = self.normalDist(mean=dMean, dev=dDev, length=dLength, distType=2)
             case (3, "EXPONENTIAL"): # Continuous, fixed, exponential
                 distribution = self.exponentialDist(scale=dScale, length=dLength, distType=2)
             case (4, "UNIFORM"): # Continuous, variable, uniform
-                distribution = self.uniformDist(random.randint(NUM_OF_CARS / 2, NUM_OF_CARS), random.randint(NUM_OF_CARS, NUM_OF_CARS * 2), length=dLength)
+                distribution = self.uniformDist(random.randint(cnst.NUM_OF_CARS / 2, cnst.NUM_OF_CARS)
+                                                , random.randint(cnst.NUM_OF_CARS, cnst.NUM_OF_CARS * 2), length=dLength)
             case (4, "NORMAL"): # Continuous, variable, normal
                 distribution = self.normalDist(mean=dMean, dev=dDev, length=dLength, distType=3)
             case (4, "EXPONENTIAL"): # Continuous, variable, exponential

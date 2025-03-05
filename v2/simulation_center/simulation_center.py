@@ -34,6 +34,5 @@ if __name__ == "__main__":
 
     for batch_time, distribution, (key, model) in parameters:
         path = f"{data_folder_path}/batch_time/{batch_time}/{distribution}/{key}.json"
-        model[1].BATCH_TIME = batch_time
-        model[1].SIMULATION_DISTRIBUTION = distribution
+        print(f"Running {key} with {distribution} distribution and {batch_time} batch time with path {path}")
         model[0].main(distribution, batch_time, path)

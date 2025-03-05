@@ -1,5 +1,5 @@
 from random import randint
-from v2.local_search.Constants import NUM_OF_TYPES
+from v2.local_search import Constants as cnst
 
 
 def createRandomJobValues(num_of_machines, num_of_jobs, min_processing_time, max_processing_time, first_index):
@@ -22,7 +22,7 @@ def createRandomJobValues(num_of_machines, num_of_jobs, min_processing_time, max
         j.append(index)
         job_size = randint(min_processing_time, int(max_processing_time))
         j.append(job_size)
-        type = randint(1, NUM_OF_TYPES)
+        type = randint(1, cnst.NUM_OF_TYPES)
         j.append(type)
         duration = randint(30, 180)
         j.append(duration)

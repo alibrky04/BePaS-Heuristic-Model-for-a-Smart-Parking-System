@@ -2,6 +2,7 @@ import os
 import time
 
 from v2.branch_and_bound.formatters import *
+from v2.branch_and_bound import Constants as cnst
 
 from v2.branch_and_bound.helpers.job_helpers import create_jobs, createDistribution
 from v2.branch_and_bound.helpers.machine_helpers import calculate_tod, create_machines
@@ -12,14 +13,12 @@ from v2.branch_and_bound.heuristic_model.branch_and_bound import branch_and_boun
 # ----- Branch and Bound Assignment -----
 
 def main(distribution, batch_time, sim_output_file):
-    from v2.branch_and_bound import Constants
-
     # Initialize parameters
-    Constants.SIMULATION_DISTRIBUTION = distribution
-    Constants.BATCH_TIME = batch_time
-    Constants.NUMBER_OF_ROUNDS = int((60 / batch_time) * 48)
-    Constants.DECAY_PER_ROUND = batch_time
-    Constants.SIM_OUTPUT_FILE = sim_output_file
+    cnst.SIMULATION_DISTRIBUTION = distribution
+    cnst.BATCH_TIME = batch_time
+    cnst.NUMBER_OF_ROUNDS = int((60 / batch_time) * 48)
+    cnst.DECAY_PER_ROUND = batch_time
+    cnst.SIM_OUTPUT_FILE = sim_output_file
 
     # open file for debug output
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
@@ -28,7 +27,7 @@ def main(distribution, batch_time, sim_output_file):
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
 
     # add json file later
-    simulation_file = open(SIM_OUTPUT_FILE, "w+")
+    simulation_file = open(cnst.SIM_OUTPUT_FILE, "w+")
 
     print(create_section_line("INITIALIZING SIMULATION"), file=debug_file)
     print(create_section_line("PARAMETERS"), "\n", file=debug_file)
@@ -40,29 +39,29 @@ def main(distribution, batch_time, sim_output_file):
 
     simulation_data = []
 
-    for simulation in range(NUMBER_OF_SIMULATIONS):
+    for simulation in range(cnst.NUMBER_OF_SIMULATIONS):
         print(create_section_line(f"Simulation {simulation + 1}"), "\n", file=debug_file)
         print(create_section_line(f"Simulation {simulation + 1}"), "\n", file=out_file)
         print(create_section_line("Creating Machines"), "\n", file=debug_file)
 
-        machines = create_machines(NUMBER_OF_MACHINES)
+        machines = create_machines(cnst.NUMBER_OF_MACHINES)
         print(create_machine_lines(machines), file=debug_file)
 
         print(create_section_line("-"), file=debug_file)
 
         round_results = []
 
-        for round_id in range(1, NUMBER_OF_ROUNDS + 1):
+        for round_id in range(1, cnst.NUMBER_OF_ROUNDS + 1):
             print(create_section_line(f"Round {round_id}"), "\n", file=debug_file)
             # For rounds after the first, update existing jobs.
             if round_id > 1:
                 for machine in machines:
-                    machine.update_jobs(DECAY_PER_ROUND)
+                    machine.update_jobs(cnst.DECAY_PER_ROUND)
 
             # Generate new jobs randomly.
-            random_number_of_jobs = int(createDistribution(NUMBER_OF_JOBS_PER_ROUND))
+            random_number_of_jobs = int(createDistribution(cnst.NUMBER_OF_JOBS_PER_ROUND))
             print(f"Number of jobs in round {round_id}: {random_number_of_jobs}")
-            new_jobs = create_jobs(random_number_of_jobs, MINIMUM_JOB_LENGTH, MAXIMUM_JOB_LENGTH, round_id)
+            new_jobs = create_jobs(random_number_of_jobs, cnst.MINIMUM_JOB_LENGTH, cnst.MAXIMUM_JOB_LENGTH, round_id)
             print(create_section_line("Creating Jobs"), "\n", file=debug_file)
             print(create_job_lines(new_jobs), file=debug_file)
 
@@ -71,10 +70,10 @@ def main(distribution, batch_time, sim_output_file):
 
             # Run branch and bound to assign these new jobs.
             current_best = [float('inf')]
-            best_assignment = [[] for _ in range(NUMBER_OF_MACHINES)]
+            best_assignment = [[] for _ in range(cnst.NUMBER_OF_MACHINES)]
             start_time = time.time()
             first_solution_found = [False]
-            branch_and_bound(new_jobs, machines, 0, current_best, best_assignment, NUMBER_OF_MACHINES, start_time, MODEL_TIME_LIMIT, first_solution_found)
+            branch_and_bound(new_jobs, machines, 0, current_best, best_assignment, cnst.NUMBER_OF_MACHINES, start_time, cnst.MODEL_TIME_LIMIT, first_solution_found)
 
             # Update machines with the best found assignment.
             for i, machine in enumerate(machines):

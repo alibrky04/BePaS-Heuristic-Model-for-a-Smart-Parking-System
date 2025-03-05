@@ -4,15 +4,15 @@ import re
 import math as m
 import json
 from v2.nearest_lot.Simulator import Simulator
-from v2.nearest_lot.Constants import *
+from v2.nearest_lot import Constants as cnst
 
 class Controller:
     def __init__(self, COMMAND, glpk_folder_path, distribution, W_CAR = 5, MAP_SIZE = 50):
         self.simulator = Simulator()
 
-        self.P_LOT = NUM_OF_LOTS
+        self.P_LOT = cnst.NUM_OF_LOTS
         self.W_CAR = W_CAR
-        self.MAX_CAPACITY = MAX_CAPACITY
+        self.MAX_CAPACITY = cnst.MAX_CAPACITY
         self.MAP_SIZE = MAP_SIZE
         self.COMMAND = COMMAND
         self.glpk_folder_path = glpk_folder_path
@@ -39,7 +39,7 @@ class Controller:
         if doChange:
             self.W_CAR = new_car_num
 
-        self.waiting_cars = {f'Car{i + 1}': [random.randint(MIN_PEOPLE, MAX_PEOPLE), 0, random.randint(0, self.MAP_SIZE),
+        self.waiting_cars = {f'Car{i + 1}': [random.randint(cnst.MIN_PEOPLE, cnst.MAX_PEOPLE), 0, random.randint(0, self.MAP_SIZE),
                                             random.randint(0, self.MAP_SIZE)] for i in range(self.W_CAR)}
 
         # print('The cars in the queuing area')
@@ -365,7 +365,7 @@ data;
         for space, p_lots in self.parking_spaces.items():
             for i, car in enumerate(p_lots[0]):
                 if car[0] == 1:
-                    car[2] -= TIME_BETWEEN_ROUNDS
+                    car[2] -= cnst.TIME_BETWEEN_ROUNDS
                     if car[2] <= 0:
                         # print(f'A car in the {space} and {i + 1}. lot has left')
 
@@ -377,7 +377,7 @@ data;
                         # print()
         
     def storeData(self):
-        with open(SIM_OUTPUT_FILE, 'w+') as simulation_file:
+        with open(cnst.SIM_OUTPUT_FILE, 'w+') as simulation_file:
             try:
                 ToD_str = ', '.join(map(str, self.total_of_differences))
                 cars_str = ', '.join(map(str, self.distribution))
@@ -392,25 +392,25 @@ data;
 
                 simulation_distribution = ""
 
-                if SIMULATION_DISTRIBUTION == "UNIFORM":
+                if cnst.SIMULATION_DISTRIBUTION == "UNIFORM":
                     simulation_distribution = "uniform"
-                elif SIMULATION_DISTRIBUTION == "NORMAL":
+                elif cnst.SIMULATION_DISTRIBUTION == "NORMAL":
                     simulation_distribution = "normal"
-                elif SIMULATION_DISTRIBUTION == "EXPONENTIAL":
+                elif cnst.SIMULATION_DISTRIBUTION == "EXPONENTIAL":
                     simulation_distribution = "exponential"
 
                 existing_data.append({
                     "simulation_id": simulation_id,
                     "simulation_distribution": simulation_distribution,
                     "ToD": ToD_str,
-                    "car_batch_time": MAX_ROUNDS,
+                    "car_batch_time": cnst.MAX_ROUNDS,
                     "num_of_parking_lots": self.P_LOT,
                     "num_of_cars": cars_str,
-                    "min_people": MIN_PEOPLE,
-                    "max_people": MAX_PEOPLE,
-                    "mean": MEAN,
-                    "deviation": DEVIATION,
-                    "scale": SCALE
+                    "min_people": cnst.MIN_PEOPLE,
+                    "max_people": cnst.MAX_PEOPLE,
+                    "mean": cnst.MEAN,
+                    "deviation": cnst.DEVIATION,
+                    "scale": cnst.SCALE
                 })
 
                 simulation_file.seek(0)

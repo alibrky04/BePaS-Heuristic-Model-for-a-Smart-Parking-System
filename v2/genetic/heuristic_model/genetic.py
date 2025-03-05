@@ -1,6 +1,6 @@
 import random
 
-from v2.genetic.Constants import NUMBER_OF_CHROMOSOMES, NUMBER_OF_GEN
+from v2.genetic import Constants as cnst
 
 def genetic_create_chrom(new_jobs, machines, number_of_machines):
     """
@@ -78,7 +78,7 @@ def genetic_mutate(chrom, mutation_rate, number_of_machines):
     return new_chrom
 
 
-def genetic(new_jobs, machines, number_of_machines, pop_size=NUMBER_OF_CHROMOSOMES, num_gen=NUMBER_OF_GEN,
+def genetic(new_jobs, machines, number_of_machines, pop_size=cnst.NUMBER_OF_CHROMOSOMES, num_gen=cnst.NUMBER_OF_GEN,
             mutation_rate=0.05):
     """
     Solve the assignment of new_jobs to machines using a genetic algorithm.

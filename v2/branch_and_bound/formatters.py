@@ -1,4 +1,4 @@
-from v2.branch_and_bound.Constants import *
+from v2.branch_and_bound import Constants as cnst
 
 def create_machine_lines(machines):
     text_with_spaces = f""
@@ -72,16 +72,16 @@ def create_machine_state_histogram_line(machine_list):
 
 def format_parameters():
     text_with_spaces = (
-        f"NUMBER_OF_SIMULATIONS: {NUMBER_OF_SIMULATIONS}\n"
-        f"NUMBER_OF_ROUNDS: {NUMBER_OF_ROUNDS}\n"
-        f"MINIMUM_JOB_LENGTH: {MINIMUM_JOB_LENGTH}\n"
-        f"MAXIMUM_JOB_LENGTH: {MAXIMUM_JOB_LENGTH}\n"
-        f"NUMBER_OF_MACHINES: {NUMBER_OF_MACHINES}\n"
-        f"NUMBER_OF_JOBS_PER_ROUND: {NUMBER_OF_JOBS_PER_ROUND}\n"
-        f"DECAY_PER_ROUND: {DECAY_PER_ROUND}\n"
-        f"SIMULATION_DISTRIBUTION: {SIMULATION_DISTRIBUTION}\n"
-        f"MEAN: {MEAN}\n"
-        f"DEVIATION: {DEVIATION}\n"
-        f"SCALE: {SCALE}\n"
+        f"NUMBER_OF_SIMULATIONS: {cnst.NUMBER_OF_SIMULATIONS}\n"
+        f"NUMBER_OF_ROUNDS: {cnst.NUMBER_OF_ROUNDS}\n"
+        f"MINIMUM_JOB_LENGTH: {cnst.MINIMUM_JOB_LENGTH}\n"
+        f"MAXIMUM_JOB_LENGTH: {cnst.MAXIMUM_JOB_LENGTH}\n"
+        f"NUMBER_OF_MACHINES: {cnst.NUMBER_OF_MACHINES}\n"
+        f"NUMBER_OF_JOBS_PER_ROUND: {cnst.NUMBER_OF_JOBS_PER_ROUND}\n"
+        f"DECAY_PER_ROUND: {cnst.DECAY_PER_ROUND}\n"
+        f"SIMULATION_DISTRIBUTION: {cnst.SIMULATION_DISTRIBUTION}\n"
+        f"MEAN: {cnst.MEAN}\n"
+        f"DEVIATION: {cnst.DEVIATION}\n"
+        f"SCALE: {cnst.SCALE}\n"
     )
     return text_with_spaces

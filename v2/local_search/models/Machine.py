@@ -1,12 +1,12 @@
-from v2.local_search.Constants import NUM_OF_TYPES
+from v2.local_search import Constants as cnst
 
 class Machine(object):
     def __init__(self, num, span = 0):
         self.assigned_jobs = {}
         self.number = num  # Machine serial #
         self.span = span  # Initial makespan
-        self.types = [0] * NUM_OF_TYPES  # Histogram of size 5 - to count each type assigned to the machine
-        self.types_sums = [0] * NUM_OF_TYPES
+        self.types = [0] * cnst.NUM_OF_TYPES  # Histogram of size 5 - to count each type assigned to the machine
+        self.types_sums = [0] * cnst.NUM_OF_TYPES
 
     def __str__(self):
         ret = ""

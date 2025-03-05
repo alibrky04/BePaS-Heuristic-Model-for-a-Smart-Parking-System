@@ -30,6 +30,6 @@ DEVIATION = 25
 SCALE = 75
 
 # Time limit for the model in seconds
-MODEL_TIME_LIMIT = 10
+MODEL_TIME_LIMIT = 5
 
 SIM_OUTPUT_FILE = "output/simulation.json"
