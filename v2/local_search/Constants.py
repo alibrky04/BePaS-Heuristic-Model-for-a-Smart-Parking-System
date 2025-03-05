@@ -39,7 +39,7 @@ TIME_BETWEEN_ROUNDS = BATCH_TIME
 NUM_OF_SIMULATIONS = 20
 
 # Simulation distribution
-SIMULATION_DISTRIBUTION = 1 # 1 = uniform, 2 = normal, 3 = exponential
+SIMULATION_DISTRIBUTION = "UNIFORM" # 1 = uniform, 2 = normal, 3 = exponential
 
 # Simulation distribution parameters
 MEAN = 75
@@ -47,4 +47,4 @@ DEVIATION = 25
 
 SCALE = 75
 
-SIM_OUTPUT_FILE = "simulationData/simulation1.json"
+SIM_OUTPUT_FILE = "output/simulation.json"

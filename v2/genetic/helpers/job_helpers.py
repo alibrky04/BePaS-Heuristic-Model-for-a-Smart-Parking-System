@@ -3,8 +3,8 @@ import random
 import numpy as np
 from numpy.random import normal, exponential
 
-from Constants import DECAY_PER_ROUND, SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE
-from models.Job import Job
+from v2.genetic.Constants import DECAY_PER_ROUND, SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE
+from v2.genetic.models.Job import Job
 
 
 def create_jobs(number_of_jobs, minimum_job_length, maximum_job_length, round_id):

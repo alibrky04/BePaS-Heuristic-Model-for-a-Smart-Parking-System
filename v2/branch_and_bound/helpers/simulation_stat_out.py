@@ -1,6 +1,6 @@
 import json
 
-from Constants import *
+from v2.branch_and_bound.Constants import *
 
 def simulation_stat_out(ToD, num_of_jobs, simulation_file):
     try:

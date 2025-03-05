@@ -1,19 +1,20 @@
 import os
-import random
-import numpy as np
 
-random.seed(42)
-np.random.seed(42)
+from v2.genetic.formatters import *
+from v2.genetic.helpers.job_helpers import createDistribution, create_jobs
+from v2.genetic.helpers.machine_helpers import create_machines, calculate_tod
+from v2.genetic.helpers.simulation_stat_out import simulation_stat_out
+from v2.genetic.heuristic_model.genetic import genetic
 
-from Constants import *
-from formatters import create_section_line, format_parameters, create_machine_lines, create_job_lines, \
-    create_machine_state_line, create_machine_state_histogram_line
-from helpers.job_helpers import createDistribution, create_jobs
-from helpers.machine_helpers import create_machines, calculate_tod
-from helpers.simulation_stat_out import simulation_stat_out
-from heuristic_model.genetic import genetic
-
-if __name__ == "__main__":
+def main(distribution, batch_time, sim_output_file):
+    from v2.genetic import Constants
+    
+    # Initialize parameters
+    Constants.SIMULATION_DISTRIBUTION = distribution
+    Constants.BATCH_TIME = batch_time
+    Constants.NUMBER_OF_ROUNDS = int((60 / batch_time) * 48)
+    Constants.DECAY_PER_ROUND = batch_time
+    Constants.SIM_OUTPUT_FILE = sim_output_file
 
     # open file for debug output
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
@@ -22,7 +23,7 @@ if __name__ == "__main__":
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
 
     # add json file later
-    simulation_file = open(os.path.join(os.path.dirname(__file__), SIM_OUTPUT_FILE), "r+")
+    simulation_file = open(SIM_OUTPUT_FILE, "w+")
 
     print(create_section_line("INITIALIZING SIMULATION"), file=debug_file)
     print(create_section_line("PARAMETERS"), "\n", file=debug_file)
@@ -53,7 +54,7 @@ if __name__ == "__main__":
 
             # Generate a random number of new jobs for this round.
             random_number_of_jobs = int(createDistribution(NUMBER_OF_JOBS_PER_ROUND))
-            new_jobs = create_jobs(random_number_of_jobs, 5, 20, round_id)
+            new_jobs = create_jobs(random_number_of_jobs, MINIMUM_JOB_LENGTH, MAXIMUM_JOB_LENGTH, round_id)
             print(create_section_line("Creating Jobs"), "\n", file=debug_file)
             print(create_job_lines(new_jobs), file=debug_file)
 

@@ -1,21 +1,25 @@
 import os
-import random
-import numpy as np
 import time
 
-from formatters import *
+from v2.branch_and_bound.formatters import *
 
-from helpers.job_helpers import create_jobs, createDistribution
-from helpers.machine_helpers import calculate_tod, create_machines
-from helpers.simulation_stat_out import simulation_stat_out
+from v2.branch_and_bound.helpers.job_helpers import create_jobs, createDistribution
+from v2.branch_and_bound.helpers.machine_helpers import calculate_tod, create_machines
+from v2.branch_and_bound.helpers.simulation_stat_out import simulation_stat_out
 
-from heuristic_model.branch_and_bound import branch_and_bound
+from v2.branch_and_bound.heuristic_model.branch_and_bound import branch_and_bound
 
 # ----- Branch and Bound Assignment -----
-random.seed(42)
-np.random.seed(42)
 
-if __name__ == "__main__":
+def main(distribution, batch_time, sim_output_file):
+    from v2.branch_and_bound import Constants
+
+    # Initialize parameters
+    Constants.SIMULATION_DISTRIBUTION = distribution
+    Constants.BATCH_TIME = batch_time
+    Constants.NUMBER_OF_ROUNDS = int((60 / batch_time) * 48)
+    Constants.DECAY_PER_ROUND = batch_time
+    Constants.SIM_OUTPUT_FILE = sim_output_file
 
     # open file for debug output
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
@@ -24,7 +28,7 @@ if __name__ == "__main__":
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
 
     # add json file later
-    simulation_file = open(os.path.join(os.path.dirname(__file__), SIM_OUTPUT_FILE), "r+")
+    simulation_file = open(SIM_OUTPUT_FILE, "w+")
 
     print(create_section_line("INITIALIZING SIMULATION"), file=debug_file)
     print(create_section_line("PARAMETERS"), "\n", file=debug_file)

@@ -1,6 +1,5 @@
 import copy
 import time
-from helpers.machine_helpers import load_std_dev
 
 def branch_and_bound(new_jobs, machines, index, current_best, best_assignment, num_machines, start_time, time_limit, first_solution_found):
     # Check if time limit is exceeded AND at least one complete assignment has been found
@@ -15,8 +14,6 @@ def branch_and_bound(new_jobs, machines, index, current_best, best_assignment, n
             best_assignment[:] = [copy.deepcopy(machine.jobs) for machine in machines]
         first_solution_found[0] = True  # Mark that at least one full assignment is complete
         return
-
-    print(f"Exploring job {index}, best makespan: {current_best[0]}, elapsed time: {time.time() - start_time}, std: {load_std_dev(machines)}")
 
     # Lower bound calculation and pruning
     total_remaining = sum(job.length for job in new_jobs[index:])

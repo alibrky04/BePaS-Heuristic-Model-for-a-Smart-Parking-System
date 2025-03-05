@@ -1,4 +1,4 @@
-from Constants import SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE, MAX_ROUNDS
+from v2.local_search.Constants import SIMULATION_DISTRIBUTION, MEAN, DEVIATION, SCALE, MAX_ROUNDS
 
 import json
 
@@ -14,12 +14,14 @@ def simulationStatOut(ToD, num_of_machines, num_of_jobs, min_processing_time, ma
 
         simulation_id = len(existing_data) + 1
 
-        if SIMULATION_DISTRIBUTION == 1:
+        if SIMULATION_DISTRIBUTION == "UNIFORM":
             simulation_distribution = "uniform"
-        elif SIMULATION_DISTRIBUTION == 2:
+        elif SIMULATION_DISTRIBUTION == "NORMAL":
             simulation_distribution = "normal"
-        elif SIMULATION_DISTRIBUTION == 3:
+        elif SIMULATION_DISTRIBUTION == "EXPONENTIAL":
             simulation_distribution = "exponential"
+        elif SIMULATION_DISTRIBUTION == "STATIC":
+            simulation_distribution = "static"
 
         existing_data.append({
             "simulation_id": simulation_id,

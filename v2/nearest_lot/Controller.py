@@ -3,8 +3,8 @@ import subprocess
 import re
 import math as m
 import json
-from Simulator import Simulator
-from Constants import *
+from v2.nearest_lot.Simulator import Simulator
+from v2.nearest_lot.Constants import *
 
 class Controller:
     def __init__(self, COMMAND, glpk_folder_path, distribution, W_CAR = 5, MAP_SIZE = 50):
@@ -377,7 +377,7 @@ data;
                         # print()
         
     def storeData(self):
-        with open(SIM_OUTPUT_FILE, 'r+') as simulation_file:
+        with open(SIM_OUTPUT_FILE, 'w+') as simulation_file:
             try:
                 ToD_str = ', '.join(map(str, self.total_of_differences))
                 cars_str = ', '.join(map(str, self.distribution))
@@ -390,11 +390,13 @@ data;
 
                 simulation_id = len(existing_data) + 1
 
-                if SIMULATION_DISTRIBUTION == 1:
+                simulation_distribution = ""
+
+                if SIMULATION_DISTRIBUTION == "UNIFORM":
                     simulation_distribution = "uniform"
-                elif SIMULATION_DISTRIBUTION == 2:
+                elif SIMULATION_DISTRIBUTION == "NORMAL":
                     simulation_distribution = "normal"
-                elif SIMULATION_DISTRIBUTION == 3:
+                elif SIMULATION_DISTRIBUTION == "EXPONENTIAL":
                     simulation_distribution = "exponential"
 
                 existing_data.append({

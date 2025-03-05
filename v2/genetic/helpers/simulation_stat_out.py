@@ -1,6 +1,6 @@
 import json
 
-from Constants import *
+from v2.genetic.Constants import *
 
 
 def simulation_stat_out(ToD, num_of_jobs, simulation_file):

@@ -1,31 +1,35 @@
-from helpers.createMachines import createMachines
-from helpers.createJobs import createJobs
-from helpers.createRandomJobValues import createRandomJobValues
-from helpers.removeJobs import removeJobs
-from helpers.calculateToD import calculateToD
-from helpers.createDistribution import createDistribution
+from v2.local_search.helpers.createMachines import createMachines
+from v2.local_search.helpers.createJobs import createJobs
+from v2.local_search.helpers.createRandomJobValues import createRandomJobValues
+from v2.local_search.helpers.removeJobs import removeJobs
+from v2.local_search.helpers.calculateToD import calculateToD
+from v2.local_search.helpers.createDistribution import createDistribution
 
-from heuristic_model.initialAssing import initialAssign
-from heuristic_model.local_search_algorithm import localSearch
-from heuristic_model.lpt_algorithm import legalLpt
+from v2.local_search.heuristic_model.initialAssing import initialAssign
+from v2.local_search.heuristic_model.local_search_algorithm import localSearch
+from v2.local_search.heuristic_model.lpt_algorithm import legalLpt
 
-from io_utils.printMachineStat import printMachineStat
-from io_utils.printMachineStatOut import printMachineStatOut
-from io_utils.simulationStatOut import simulationStatOut
+from v2.local_search.io_utils.printMachineStat import printMachineStat
+from v2.local_search.io_utils.printMachineStatOut import printMachineStatOut
+from v2.local_search.io_utils.simulationStatOut import simulationStatOut
 
-from Constants import *
+from v2.local_search.Constants import *
 
 import os
-import random
-import numpy as np
 
-random.seed(42)
-np.random.seed(42)
-
-if __name__ == "__main__":
+def main(distribution, batch_time, sim_output_file):
+    from v2.local_search import Constants
+    
+    # Initialize parameters
+    Constants.SIMULATION_DISTRIBUTION = distribution
+    Constants.BATCH_TIME = batch_time
+    Constants.NUMBER_OF_ROUNDS = int((60 / batch_time) * 48)
+    Constants.DECAY_PER_ROUND = batch_time
+    Constants.SIM_OUTPUT_FILE = sim_output_file
+    
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
-    simulation_file = open(os.path.join(os.path.dirname(__file__), SIM_OUTPUT_FILE), "r+")
+    simulation_file = open(SIM_OUTPUT_FILE, "w+")
 
     # num_of_machines, num_of_jobs, min_processing_time, max_processing_time = handleInput()
 

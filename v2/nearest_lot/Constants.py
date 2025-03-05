@@ -23,7 +23,7 @@ MIN_PEOPLE = 1
 MAX_PEOPLE = 5
 
 # This is batch time of rounds by minutes
-BATCH_TIME = 10
+BATCH_TIME = 60
 
 # This is the length of the simulation. !!! ONLY FOR 1 DAY !!!
 MAX_ROUNDS = int((60 / BATCH_TIME) * 24)
@@ -38,7 +38,7 @@ NUM_OF_SIMULATIONS = 20
 GENERATION_TYPE = 3 # 1 = Discrete, fixed 2 = Discrete, variable 3 = Continuous, fixed 4 = Continuous, variable
 
 # Simulation distribution
-SIMULATION_DISTRIBUTION = 2 # 1= uniform, 2 = normal, 3 = exponential
+SIMULATION_DISTRIBUTION = "UNIFORM" # 1= uniform, 2 = normal, 3 = exponential
 
 # Simulation distribution parameters
 MEAN = 75

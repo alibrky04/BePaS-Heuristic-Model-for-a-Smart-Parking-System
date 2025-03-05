@@ -1,8 +1,8 @@
 #Number of simulations to be performed
-NUMBER_OF_SIMULATIONS = 1
+NUMBER_OF_SIMULATIONS = 20
 
 # This is batch time of rounds by minutes
-BATCH_TIME = 180
+BATCH_TIME = 60
 
 # In each simulation certain amount (round) of cars come to lot
 NUMBER_OF_ROUNDS = int((60 / BATCH_TIME) * 48)
@@ -30,6 +30,6 @@ DEVIATION = 25
 SCALE = 75
 
 # Time limit for the model in seconds
-MODEL_TIME_LIMIT = 30
+MODEL_TIME_LIMIT = 10
 
-SIM_OUTPUT_FILE = "simulationData/simulation1.json"
+SIM_OUTPUT_FILE = "output/simulation.json"

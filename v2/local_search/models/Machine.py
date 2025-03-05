@@ -1,4 +1,4 @@
-from Constants import NUM_OF_TYPES
+from v2.local_search.Constants import NUM_OF_TYPES
 
 class Machine(object):
     def __init__(self, num, span = 0):

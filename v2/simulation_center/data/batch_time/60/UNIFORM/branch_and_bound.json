@@ -1,0 +1,15 @@
+[
+    {
+        "simulation_id": 1,
+        "simulation_distribution": "uniform",
+        "ToD": "267, 195, 343",
+        "car_batch_size": 1.5,
+        "num_of_machines": 50,
+        "num_of_jobs": 53,
+        "min_processing_time": 1,
+        "max_processing_time": 5,
+        "mean": 75,
+        "deviation": 25,
+        "scale": 75
+    }
+]

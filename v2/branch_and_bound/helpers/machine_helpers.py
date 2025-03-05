@@ -1,4 +1,4 @@
-from models.Machine import Machine
+from v2.branch_and_bound.models.Machine import Machine
 
 import numpy as np
 
