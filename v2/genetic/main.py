@@ -8,6 +8,12 @@ from v2.genetic.helpers.simulation_stat_out import simulation_stat_out
 from v2.genetic.heuristic_model.genetic import genetic
 
 def main(distribution, batch_time, sim_output_file):
+    import random
+    import numpy as np
+
+    random.seed(42)
+    np.random.seed(42)
+
     # Initialize parameters
     cnst.SIMULATION_DISTRIBUTION = distribution
     cnst.BATCH_TIME = batch_time
@@ -22,7 +28,7 @@ def main(distribution, batch_time, sim_output_file):
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
 
     # add json file later
-    simulation_file = open(cnst.SIM_OUTPUT_FILE, "w+")
+    simulation_file = open(cnst.SIM_OUTPUT_FILE, "r+")
 
     print(create_section_line("INITIALIZING SIMULATION"), file=debug_file)
     print(create_section_line("PARAMETERS"), "\n", file=debug_file)

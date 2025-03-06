@@ -11,11 +11,6 @@ from v2.nearest_lot import main as nl_main
 from v2.nearest_lot import Constants as nl_constants
 
 from itertools import product
-import random
-import numpy as np
-
-random.seed(42)
-np.random.seed(42)
 
 models_to_run = {
     "branch_and_bound": [bnb_main, bnb_constants],
@@ -24,7 +19,7 @@ models_to_run = {
     "nearest_lot": [nl_main, nl_constants]
 }
 
-distributions = ["UNIFORM", "NORMAL", "EXPONENTIAL"]
+distributions = ["NORMAL", "EXPONENTIAL"]
 batch_times = [60, 30, 10]
 
 data_folder_path = "v2/simulation_center/data"

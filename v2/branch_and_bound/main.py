@@ -13,6 +13,12 @@ from v2.branch_and_bound.heuristic_model.branch_and_bound import branch_and_boun
 # ----- Branch and Bound Assignment -----
 
 def main(distribution, batch_time, sim_output_file):
+    import random
+    import numpy as np
+
+    random.seed(42)
+    np.random.seed(42)
+    
     # Initialize parameters
     cnst.SIMULATION_DISTRIBUTION = distribution
     cnst.BATCH_TIME = batch_time
@@ -27,7 +33,7 @@ def main(distribution, batch_time, sim_output_file):
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
 
     # add json file later
-    simulation_file = open(cnst.SIM_OUTPUT_FILE, "w+")
+    simulation_file = open(cnst.SIM_OUTPUT_FILE, "r+")
 
     print(create_section_line("INITIALIZING SIMULATION"), file=debug_file)
     print(create_section_line("PARAMETERS"), "\n", file=debug_file)
@@ -90,7 +96,7 @@ def main(distribution, batch_time, sim_output_file):
             print(create_machine_state_histogram_line(machines), file=debug_file)
 
             print(f"TOD in round {round_id}: {tod}", "\n", file=debug_file)
-            print(f"{f"TOD in Simulation {simulation + 1} Round {round_id}:":<32}{tod}", file=out_file)
+            print(f"TOD in Simulation {simulation + 1} Round {round_id}:".ljust(32) + f"{tod}", file=out_file)
 
         simulation_data.append(round_results)
         print(f"Simulation {simulation + 1} results: {', '.join(map(str, round_results))}", file=out_file)

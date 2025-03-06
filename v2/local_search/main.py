@@ -16,8 +16,15 @@ from v2.local_search.io_utils.simulationStatOut import simulationStatOut
 from v2.local_search import Constants as cnst
 
 import os
+import copy
 
 def main(distribution, batch_time, sim_output_file):
+    import random
+    import numpy as np
+
+    random.seed(42)
+    np.random.seed(42)
+    
     # Initialize parameters
     cnst.SIMULATION_DISTRIBUTION = distribution
     cnst.BATCH_TIME = batch_time
@@ -27,7 +34,7 @@ def main(distribution, batch_time, sim_output_file):
     
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
-    simulation_file = open(cnst.SIM_OUTPUT_FILE, "w+")
+    simulation_file = open(cnst.SIM_OUTPUT_FILE, "r+")
 
     # num_of_machines, num_of_jobs, min_processing_time, max_processing_time = handleInput()
 
@@ -61,12 +68,11 @@ def main(distribution, batch_time, sim_output_file):
             localSearch(machine_list, cnst.NUM_OF_MACHINES, job_list, cnst.NUM_OF_JOBS, out_file, debug_file)
 
             if i == 0:
-                simulation_machines = machine_list.copy()
+                simulation_machines = copy.deepcopy(machine_list)
             else:
                 for j in range(cnst.NUM_OF_MACHINES):
                     simulation_machines[j].span = machine_list[j].span
-                    for job in machine_list[j].assigned_jobs.values():
-                        simulation_machines[j].assigned_jobs[job.number] = job
+                    simulation_machines[j].assigned_jobs = {job.number: job for job in machine_list[j].assigned_jobs.values()}
                     simulation_machines[j].types = machine_list[j].types.copy()
                     simulation_machines[j].types_sums = machine_list[j].types_sums.copy()
 

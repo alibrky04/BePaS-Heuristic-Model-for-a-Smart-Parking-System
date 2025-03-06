@@ -5,6 +5,12 @@ from v2.nearest_lot.Simulator import Simulator
 from v2.nearest_lot import Constants as cnst
 
 def main(dist, batch_time, sim_output_file):
+    import random
+    import numpy as np
+
+    random.seed(42)
+    np.random.seed(42)
+
     # Initialize parameters
     cnst.SIMULATION_DISTRIBUTION = dist
     cnst.BATCH_TIME = batch_time

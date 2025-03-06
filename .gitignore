@@ -12,3 +12,5 @@ genetic.py/Constants.py
 genetic/output/debug_out.txt
 genetic/output/output.txt
 genetic/output/simulation.json.txt
+
+nohup.out

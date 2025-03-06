@@ -377,7 +377,7 @@ data;
                         # print()
         
     def storeData(self):
-        with open(cnst.SIM_OUTPUT_FILE, 'w+') as simulation_file:
+        with open(cnst.SIM_OUTPUT_FILE, 'a+') as simulation_file:
             try:
                 ToD_str = ', '.join(map(str, self.total_of_differences))
                 cars_str = ', '.join(map(str, self.distribution))
