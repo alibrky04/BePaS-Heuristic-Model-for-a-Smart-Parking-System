@@ -6,9 +6,11 @@ from v2.branch_and_bound import Constants as cnst
 
 from v2.branch_and_bound.helpers.job_helpers import create_jobs, createDistribution
 from v2.branch_and_bound.helpers.machine_helpers import calculate_tod, create_machines
+from v2.branch_and_bound.helpers.profiling import profile_function
 from v2.branch_and_bound.helpers.simulation_stat_out import simulation_stat_out
 
 from v2.branch_and_bound.heuristic_model.branch_and_bound import branch_and_bound
+
 
 # ----- Branch and Bound Assignment -----
 
@@ -18,7 +20,7 @@ def main(distribution, batch_time, sim_output_file):
 
     random.seed(42)
     np.random.seed(42)
-    
+
     # Initialize parameters
     cnst.SIMULATION_DISTRIBUTION = distribution
     cnst.BATCH_TIME = batch_time
@@ -44,6 +46,7 @@ def main(distribution, batch_time, sim_output_file):
     print(format_parameters(), file=out_file)
 
     simulation_data = []
+    profiling_data = []
 
     for simulation in range(cnst.NUMBER_OF_SIMULATIONS):
         print(create_section_line(f"Simulation {simulation + 1}"), "\n", file=debug_file)
@@ -56,6 +59,7 @@ def main(distribution, batch_time, sim_output_file):
         print(create_section_line("-"), file=debug_file)
 
         round_results = []
+        profiling_results = []
 
         for round_id in range(1, cnst.NUMBER_OF_ROUNDS + 1):
             print(create_section_line(f"Round {round_id}"), "\n", file=debug_file)
@@ -79,7 +83,13 @@ def main(distribution, batch_time, sim_output_file):
             best_assignment = [[] for _ in range(cnst.NUMBER_OF_MACHINES)]
             start_time = time.time()
             first_solution_found = [False]
-            branch_and_bound(new_jobs, machines, 0, current_best, best_assignment, cnst.NUMBER_OF_MACHINES, start_time, cnst.MODEL_TIME_LIMIT, first_solution_found)
+            best_solution, exec_time, cpu_exec_time, memory_usage = profile_function(branch_and_bound, new_jobs,
+                                                                                     machines, 0, current_best,
+                                                                                     best_assignment,
+                                                                                     cnst.NUMBER_OF_MACHINES,
+                                                                                     start_time,
+                                                                                     cnst.MODEL_TIME_LIMIT,
+                                                                                     first_solution_found)
 
             # Update machines with the best found assignment.
             for i, machine in enumerate(machines):
@@ -88,6 +98,8 @@ def main(distribution, batch_time, sim_output_file):
 
             tod = calculate_tod(machines)
             round_results.append(tod)
+            profiling_results.append(
+                {"exec_time": exec_time, "cpu_exec_time": cpu_exec_time, "memory_usage": memory_usage})
 
             print(create_section_line("Machine states after assignment"), "\n", file=debug_file)
             print(create_section_line("Machine States"), "\n", file=debug_file)
@@ -99,7 +111,8 @@ def main(distribution, batch_time, sim_output_file):
             print(f"TOD in Simulation {simulation + 1} Round {round_id}:".ljust(32) + f"{tod}", file=out_file)
 
         simulation_data.append(round_results)
+        profiling_data.append(profiling_results)
         print(f"Simulation {simulation + 1} results: {', '.join(map(str, round_results))}", file=out_file)
-        simulation_stat_out(round_results, random_number_of_jobs, simulation_file)
+        simulation_stat_out(round_results, random_number_of_jobs, simulation_file, profiling_results)
 
     print(create_section_line("Simulation Ended"), "\n", file=debug_file)
