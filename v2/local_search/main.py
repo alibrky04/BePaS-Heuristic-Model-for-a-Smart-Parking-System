@@ -14,9 +14,11 @@ from v2.local_search.io_utils.printMachineStatOut import printMachineStatOut
 from v2.local_search.io_utils.simulationStatOut import simulationStatOut
 
 from v2.local_search import Constants as cnst
+from v2.local_search.helpers.profiling import profile_function
 
 import os
 import copy
+
 
 def main(distribution, batch_time, sim_output_file):
     import random
@@ -24,14 +26,14 @@ def main(distribution, batch_time, sim_output_file):
 
     random.seed(42)
     np.random.seed(42)
-    
+
     # Initialize parameters
     cnst.SIMULATION_DISTRIBUTION = distribution
     cnst.BATCH_TIME = batch_time
     cnst.NUMBER_OF_ROUNDS = int((60 / batch_time) * 48)
     cnst.DECAY_PER_ROUND = batch_time
     cnst.SIM_OUTPUT_FILE = sim_output_file
-    
+
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
     simulation_file = open(cnst.SIM_OUTPUT_FILE, "r+")
@@ -40,14 +42,16 @@ def main(distribution, batch_time, sim_output_file):
 
     for _ in range(cnst.NUM_OF_SIMULATIONS):
         ToD = []
+        profiling_results = []
         simulation_machines = None
-        
+
         for i in range(cnst.MAX_ROUNDS):
             # Check cnst.py for the distribution types
             # num_of_jobs is only used for the uniform distribution
             rand_job_num = createDistribution(cnst.NUM_OF_JOBS)
 
-            raw_jobs = createRandomJobValues(cnst.NUM_OF_MACHINES, rand_job_num, cnst.MIN_PROCESSING_TIME, cnst.MAX_PROCESSING_TIME, i)
+            raw_jobs = createRandomJobValues(cnst.NUM_OF_MACHINES, rand_job_num, cnst.MIN_PROCESSING_TIME,
+                                             cnst.MAX_PROCESSING_TIME, i)
 
             print("Number of Machines:", cnst.NUM_OF_MACHINES, file=out_file)
 
@@ -57,7 +61,7 @@ def main(distribution, batch_time, sim_output_file):
 
             print("---------------------------------", file=out_file)
 
-            machine_list = createMachines(cnst.NUM_OF_MACHINES, simulation_machines, i) 
+            machine_list = createMachines(cnst.NUM_OF_MACHINES, simulation_machines, i)
             job_list = createJobs(raw_jobs, debug_file)
             printMachineStatOut.out_stat_counter = 0
             if cnst.NUM_OF_JOBS > 500:
@@ -65,24 +69,31 @@ def main(distribution, batch_time, sim_output_file):
             else:
                 initialAssign(job_list, machine_list)
             printMachineStat(machine_list, debug_file)
-            localSearch(machine_list, cnst.NUM_OF_MACHINES, job_list, cnst.NUM_OF_JOBS, out_file, debug_file)
+            best_solution, exec_time, cpu_exec_time, memory_usage = profile_function(localSearch, machine_list,
+                                                                                     cnst.NUM_OF_MACHINES, job_list,
+                                                                                     cnst.NUM_OF_JOBS, out_file,
+                                                                                     debug_file)
 
             if i == 0:
                 simulation_machines = copy.deepcopy(machine_list)
             else:
                 for j in range(cnst.NUM_OF_MACHINES):
                     simulation_machines[j].span = machine_list[j].span
-                    simulation_machines[j].assigned_jobs = {job.number: job for job in machine_list[j].assigned_jobs.values()}
+                    simulation_machines[j].assigned_jobs = {job.number: job for job in
+                                                            machine_list[j].assigned_jobs.values()}
                     simulation_machines[j].types = machine_list[j].types.copy()
                     simulation_machines[j].types_sums = machine_list[j].types_sums.copy()
 
             ToD.append(calculateToD(machine_list))
+            profiling_results.append(
+                {"exec_time": exec_time, "cpu_exec_time": cpu_exec_time, "memory_usage": memory_usage})
 
             printMachineStatOut(simulation_machines, out_file, "Final state")
             removeJobs(simulation_machines)
             printMachineStatOut(simulation_machines, out_file, "Final state after waiting period")
-        
-        simulationStatOut(ToD, cnst.NUM_OF_MACHINES, rand_job_num, cnst.MIN_PROCESSING_TIME, cnst.MAX_PROCESSING_TIME, simulation_file)
+
+        simulationStatOut(ToD, cnst.NUM_OF_MACHINES, rand_job_num, cnst.MIN_PROCESSING_TIME, cnst.MAX_PROCESSING_TIME,
+                          simulation_file)
 
     debug_file.close()
     out_file.close()

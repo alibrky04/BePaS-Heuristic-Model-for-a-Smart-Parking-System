@@ -2,10 +2,15 @@ from v2.local_search import Constants as cnst
 
 import json
 
-def simulationStatOut(ToD, num_of_machines, num_of_jobs, min_processing_time, max_processing_time, simulation_file):
+
+def simulationStatOut(ToD, num_of_machines, num_of_jobs, min_processing_time, max_processing_time, simulation_file,
+                      profiling_results):
     try:
         ToD_str = ', '.join(map(str, ToD))
-        
+        profiling_time_stamp_string = ', '.join(map(lambda y: f"{y["exec_time"]:.3f}", profiling_results))
+        cpu_profiling_time_stamp_string = ', '.join(map(lambda y: f"{y["cpu_exec_time"]:.3f}", profiling_results))
+        memory_profiling_string = ', '.join(map(lambda y: str(y["memory_usage"]), profiling_results))
+
         try:
             simulation_file.seek(0)
             existing_data = json.load(simulation_file)
@@ -27,7 +32,10 @@ def simulationStatOut(ToD, num_of_machines, num_of_jobs, min_processing_time, ma
             "simulation_id": simulation_id,
             "simulation_distribution": simulation_distribution,
             "ToD": ToD_str,
-            "car_batch_size": cnst.MAX_ROUNDS/2,
+            "time_profile": profiling_time_stamp_string,
+            "cpu_profile": cpu_profiling_time_stamp_string,
+            "memory_profile": memory_profiling_string,
+            "car_batch_size": cnst.MAX_ROUNDS / 2,
             "num_of_machines": num_of_machines,
             "num_of_jobs": num_of_jobs,
             "min_processing_time": min_processing_time,
