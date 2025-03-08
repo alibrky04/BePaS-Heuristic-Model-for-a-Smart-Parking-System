@@ -4,8 +4,10 @@ from v2.genetic.formatters import *
 from v2.genetic import Constants as cnst
 from v2.genetic.helpers.job_helpers import createDistribution, create_jobs
 from v2.genetic.helpers.machine_helpers import create_machines, calculate_tod
+from v2.genetic.helpers.profiling import profile_function
 from v2.genetic.helpers.simulation_stat_out import simulation_stat_out
 from v2.genetic.heuristic_model.genetic import genetic
+
 
 def main(distribution, batch_time, sim_output_file):
     import random
@@ -38,6 +40,7 @@ def main(distribution, batch_time, sim_output_file):
     print(create_section_line("PARAMETERS"), "\n", file=out_file)
     print(format_parameters(), file=out_file)
     simulation_data = []
+    profiling_data = []
     for simulation in range(cnst.NUMBER_OF_SIMULATIONS):
         print(create_section_line(f"Simulation {simulation + 1}"), "\n", file=debug_file)
         print(create_section_line(f"Simulation {simulation + 1}"), "\n", file=out_file)
@@ -49,7 +52,7 @@ def main(distribution, batch_time, sim_output_file):
         print(create_section_line("-"), file=debug_file)
 
         round_results = []
-
+        profiling_results = []
         for round_id in range(1, cnst.NUMBER_OF_ROUNDS + 1):
             print(create_section_line(f"Round {round_id}"), "\n", file=debug_file)
             # For rounds after the first, update existing jobs.
@@ -66,12 +69,12 @@ def main(distribution, batch_time, sim_output_file):
 
             # Sort new jobs by descending length (LPT heuristic) for consistency.
             new_jobs.sort(key=lambda job: job.length, reverse=True)
-
-            # Use the genetic algorithm solver to assign these new jobs.
-            best_solution = genetic(new_jobs, machines, cnst.NUMBER_OF_MACHINES, pop_size=cnst.NUMBER_OF_CHROMOSOMES,
-                                    num_gen=cnst.NUMBER_OF_GEN, mutation_rate=0.05)
+            best_solution, exec_time, cpu_exec_time, memory_usage = profile_function(genetic, new_jobs, machines,
+                                                                                     cnst.NUMBER_OF_MACHINES,
+                                                                                     pop_size=cnst.NUMBER_OF_CHROMOSOMES,
+                                                                                     num_gen=cnst.NUMBER_OF_GEN,
+                                                                                     mutation_rate=0.05)
             best_chromosome, best_makespan = best_solution[0], best_solution[1]
-
 
             # Update machines with the best assignment:
             # (Since the genetic solver simulated assignment, now we permanently add each new job to its assigned machine.)
@@ -81,6 +84,8 @@ def main(distribution, batch_time, sim_output_file):
             # Calculate a measure (TOD) from the machines after assignment.
             tod = calculate_tod(machines)
             round_results.append(tod)
+            profiling_results.append(
+                {"exec_time": exec_time, "cpu_exec_time": cpu_exec_time, "memory_usage": memory_usage})
 
             print(create_section_line("Machine states after assignment"), "\n", file=debug_file)
             print(create_section_line("Machine States"), "\n", file=debug_file)
@@ -92,7 +97,8 @@ def main(distribution, batch_time, sim_output_file):
             print(f"{f'TOD in Simulation Round {round_id}:':<32}{tod}", file=out_file)
 
         simulation_data.append(round_results)
+        profiling_data.append(profiling_results)
         print(f"Simulation results: {', '.join(map(str, round_results))}", file=out_file)
-        simulation_stat_out(round_results, random_number_of_jobs, simulation_file)
+        simulation_stat_out(round_results, random_number_of_jobs, simulation_file, profiling_results)
 
     print(create_section_line("Simulation Ended"), "\n", file=debug_file)
