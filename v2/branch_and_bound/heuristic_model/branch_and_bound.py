@@ -19,9 +19,9 @@ def branch_and_bound(new_jobs, machines, index, current_best, best_assignment, n
     total_remaining = sum(job.length for job in new_jobs[index:])
     current_max = max(machine.load for machine in machines)
     current_min = min(machine.load for machine in machines)
-    lb = max(current_max, current_min + total_remaining / num_machines)
+    lower_bound = max(current_max, current_min + total_remaining / num_machines)
 
-    if lb >= current_best[0]:
+    if lower_bound >= current_best[0]:
         return  # Prune this branch
 
     # Try assigning new_jobs[index] to each machine
