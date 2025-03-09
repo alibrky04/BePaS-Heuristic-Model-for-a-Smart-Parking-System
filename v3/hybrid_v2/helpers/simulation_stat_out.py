@@ -1,6 +1,6 @@
 import json
 
-from v2.branch_and_bound import Constants as cnst
+from v3.hybrid_v2 import Constants as cnst
 
 
 def simulation_stat_out(ToD, num_of_jobs, simulation_file, profiling_results):
