@@ -1,6 +1,7 @@
 import random
+import time
 
-from v3.hybrid_v2.Constants import NUMBER_OF_CHROMOSOMES, NUMBER_OF_GEN
+from v3.hybrid_v2 import Constants as cnst
 
 
 def genetic_create_chrom(new_jobs, machines, number_of_machines):
@@ -79,15 +80,20 @@ def genetic_mutate(chrom, mutation_rate, number_of_machines):
     return new_chrom
 
 
-def genetic(new_jobs, machines, number_of_machines, pop_size=NUMBER_OF_CHROMOSOMES, num_gen=NUMBER_OF_GEN,
+def genetic(new_jobs, machines, number_of_machines, time_limit, pop_size=cnst.NUMBER_OF_CHROMOSOMES,
             mutation_rate=0.05):
     """
     Solve the assignment of new_jobs to machines using a genetic algorithm.
     Returns the best chromosome (assignment) and its makespan.
     """
+    start_time = time.time()
     pop = genetic_create_pop(new_jobs, machines, number_of_machines, pop_size)
     best = min(pop, key=lambda x: x[1])
-    for _ in range(num_gen):
+    gen = 0
+    while True:
+        if time.time() - start_time >= time_limit:
+            break
+        gen += 1
         new_pop = []
         while len(new_pop) < pop_size:
             parent1, parent2 = genetic_selection(pop)
@@ -102,4 +108,48 @@ def genetic(new_jobs, machines, number_of_machines, pop_size=NUMBER_OF_CHROMOSOM
         current_best = min(pop, key=lambda x: x[1])
         if current_best[1] < best[1]:
             best = current_best
+    print(f'number of generations: {gen}')
+    return best  # returns [chromosome, makespan]
+
+
+def genetic_hybrid(new_jobs, machines, number_of_machines, time_limit, best_chromosome,
+                   pop_size=cnst.NUMBER_OF_CHROMOSOMES,
+                   mutation_rate=0.05):
+    """
+    Solve the assignment of new_jobs to machines using a genetic algorithm.
+    Returns the best chromosome (assignment) and its makespan.
+    """
+    start_time = time.time()
+    pop = genetic_create_pop(new_jobs, machines, number_of_machines, pop_size)
+    worst = max(pop, key=lambda x: x[1])
+    print(f"worst chromosome: {worst}")
+    print("population size:", pop)
+    pop.remove(worst)
+    pop.append([best_chromosome,genetic_evaluate(best_chromosome, new_jobs, machines)])
+
+    print(f"best chromosome: {best_chromosome}")
+    print(f"best chromosome: {[best_chromosome, genetic_evaluate(best_chromosome, new_jobs, machines)]}")
+
+    print(pop)
+    best = min(pop, key=lambda x: x[1])
+    gen = 0
+    while True:
+        if time.time() - start_time >= time_limit:
+            break
+        gen += 1
+        new_pop = []
+        while len(new_pop) < pop_size:
+            parent1, parent2 = genetic_selection(pop)
+            child1, child2 = genetic_crossover(parent1, parent2)
+            child1 = genetic_mutate(child1, mutation_rate, number_of_machines)
+            child2 = genetic_mutate(child2, mutation_rate, number_of_machines)
+            eval1 = genetic_evaluate(child1, new_jobs, machines)
+            eval2 = genetic_evaluate(child2, new_jobs, machines)
+            new_pop.append([child1, eval1])
+            new_pop.append([child2, eval2])
+        pop = new_pop[:pop_size]
+        current_best = min(pop, key=lambda x: x[1])
+        if current_best[1] < best[1]:
+            best = current_best
+    print(f'number of generations: {gen}')
     return best  # returns [chromosome, makespan]

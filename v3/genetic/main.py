@@ -62,8 +62,8 @@ if __name__ == '__main__':
 
             # Generate a random number of new jobs for this round.
             random_number_of_jobs = int(createDistribution(cnst.NUMBER_OF_JOBS_PER_ROUND))
-            new_jobs = create_jobs(random_number_of_jobs, cnst.MINIMUM_JOB_LENGTH, cnst.MAXIMUM_JOB_LENGTH, round_id)
-            print(f"Number of jobs in round {round_id}: {random_number_of_jobs}")
+            new_jobs = create_jobs(20, cnst.MINIMUM_JOB_LENGTH, cnst.MAXIMUM_JOB_LENGTH, round_id)
+            print(f"Number of jobs in round {round_id}: {20}")
             print(create_section_line("Creating Jobs"), "\n", file=debug_file)
             print(create_job_lines(new_jobs), file=debug_file)
 
@@ -78,8 +78,14 @@ if __name__ == '__main__':
 
             # Update machines with the best assignment:
             # (Since the genetic solver simulated assignment, now we permanently add each new job to its assigned machine.)
+            print(best_chromosome)
+            print(new_jobs)
             for i, job in enumerate(new_jobs):
+                print(f"i = {i} : {job} Best assignment: {best_chromosome[i]}")
                 machines[best_chromosome[i]].add_job(job)
+
+            print(machines)
+
 
             # Calculate a measure (TOD) from the machines after assignment.
             tod = calculate_tod(machines)
