@@ -1,4 +1,4 @@
-from v2.local_search import Constants as cnst
+from v3.local_search import Constants as cnst
 
 class Machine(object):
     def __init__(self, num, span = 0):

@@ -73,6 +73,7 @@ if __name__ == "__main__":
             print(f"transformed {transformed_chromosome}")
             print(f"best chromosome {best_chromosome}")
 
+            # Update according to genetic chromosomes since final result is coming from genetic algorithm
             for i, job in enumerate(new_jobs):
                 print(f"i = {i} : {job} Best assignment: {best_chromosome[i]}")
                 machines[best_chromosome[i]].add_job(job)
