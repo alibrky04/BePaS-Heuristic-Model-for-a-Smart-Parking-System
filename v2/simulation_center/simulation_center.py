@@ -19,15 +19,19 @@ models_to_run = {
     "nearest_lot": [nl_main, nl_constants]
 }
 
-distributions = ["NORMAL", "EXPONENTIAL"]
+distributions = ["UNIFORM", "NORMAL", "EXPONENTIAL"]
 batch_times = [60, 30, 10]
 
 data_folder_path = "v2/simulation_center/data"
+
+exceptions = []
 
 if __name__ == "__main__":
     parameters = product(batch_times, distributions, models_to_run.items())
 
     for batch_time, distribution, (key, model) in parameters:
+        if (batch_time, distribution, (key, model)) in exceptions:
+            continue
         path = f"{data_folder_path}/batch_time/{batch_time}/{distribution}/{key}.json"
         print(f"Running {key} with {distribution} distribution and {batch_time} batch time with path {path}")
         model[0].main(distribution, batch_time, path)
