@@ -14,7 +14,7 @@ def main(dist, batch_time, sim_output_file):
     # Initialize parameters
     cnst.SIMULATION_DISTRIBUTION = dist
     cnst.BATCH_TIME = batch_time
-    cnst.MAX_ROUNDS = int((60 / batch_time) * 48)
+    cnst.MAX_ROUNDS = int((60 / batch_time) * 24)
     cnst.TIME_BETWEEN_ROUNDS = batch_time
     cnst.SIM_OUTPUT_FILE = sim_output_file
     
