@@ -30,7 +30,7 @@ def main(distribution, batch_time, sim_output_file):
     # Initialize parameters
     cnst.SIMULATION_DISTRIBUTION = distribution
     cnst.BATCH_TIME = batch_time
-    cnst.NUMBER_OF_ROUNDS = int((60 / batch_time) * 48)
+    cnst.MAX_ROUNDS = int((60 / batch_time) * 48)
     cnst.DECAY_PER_ROUND = batch_time
     cnst.SIM_OUTPUT_FILE = sim_output_file
 
@@ -93,7 +93,7 @@ def main(distribution, batch_time, sim_output_file):
             printMachineStatOut(simulation_machines, out_file, "Final state after waiting period")
 
         simulationStatOut(ToD, cnst.NUM_OF_MACHINES, rand_job_num, cnst.MIN_PROCESSING_TIME, cnst.MAX_PROCESSING_TIME,
-                          simulation_file)
+                          simulation_file, profiling_results)
 
     debug_file.close()
     out_file.close()

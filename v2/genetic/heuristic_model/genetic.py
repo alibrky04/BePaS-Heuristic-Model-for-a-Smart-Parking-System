@@ -61,9 +61,14 @@ def genetic_crossover(parent1, parent2):
     """
     One-point crossover between two parents.
     """
-    point = random.randint(1, len(parent1) - 1)
-    child1 = parent1[:point] + parent2[point:]
-    child2 = parent2[:point] + parent1[point:]
+    if len(parent1) > 1:
+        point = random.randint(1, len(parent1) - 1)
+        child1 = parent1[:point] + parent2[point:]
+        child2 = parent2[:point] + parent1[point:]
+    else:
+        # If the length of parent1 is 1 or less, crossover is not possible
+        child1 = parent1[:]
+        child2 = parent2[:]
     return child1, child2
 
 

@@ -102,10 +102,8 @@ class Simulator:
                 exponentialDist = [int(num) for num in exponentialDist]
 
                 for i in range(len(exponentialDist)):
-                    if exponentialDist[i] > 9:
-                        exponentialDist[i] = 9
-                    elif exponentialDist[i] == 0:
-                        exponentialDist[i] = 2
+                    if exponentialDist[i] == 0:
+                        exponentialDist[i] = 1
             case 3: # Variable
                 exponentialDist = []
 
@@ -117,10 +115,8 @@ class Simulator:
                 exponentialDist = [int(num) for num in exponentialDist]
 
                 for i in range(len(exponentialDist)):
-                    if exponentialDist[i] > 9:
-                        exponentialDist[i] = 9
-                    elif exponentialDist[i] == 0:
-                        exponentialDist[i] = 2
+                    if exponentialDist[i] == 0:
+                        exponentialDist[i] = 1
             case _:
                 exponentialDist = [1] * length
 
