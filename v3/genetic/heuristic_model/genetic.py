@@ -91,8 +91,7 @@ def genetic(new_jobs, machines, number_of_machines, time_limit, pop_size=cnst.NU
     best = min(pop, key=lambda x: x[1])
     gen = 0
     while True:
-        if time.time() - start_time >= time_limit:
-            break
+
         gen += 1
         new_pop = []
         while len(new_pop) < pop_size:
@@ -104,6 +103,9 @@ def genetic(new_jobs, machines, number_of_machines, time_limit, pop_size=cnst.NU
             eval2 = genetic_evaluate(child2, new_jobs, machines)
             new_pop.append([child1, eval1])
             new_pop.append([child2, eval2])
+
+        if time.time() - start_time >= time_limit:
+            break
         pop = new_pop[:pop_size]
         current_best = min(pop, key=lambda x: x[1])
         if current_best[1] < best[1]:

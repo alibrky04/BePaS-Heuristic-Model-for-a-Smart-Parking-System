@@ -1,10 +1,11 @@
-from v3.local_search import Constants as cnst
+from v3.hybrid_v2 import Constants as cnst
 
-class Machine(object):
-    def __init__(self, num, span = 0):
+
+class MachineAlien(object):
+    def __init__(self, num, span=0):
         self.assigned_jobs = {}
         self.number = num  # Machine serial #
-        self.span = span  #Initial makespan
+        self.span = span  # Initial makespan
         self.types = [0] * cnst.NUM_OF_TYPES  # Histogram of size 5 - to count each type assigned to the machine
         self.types_sums = [0] * cnst.NUM_OF_TYPES
 

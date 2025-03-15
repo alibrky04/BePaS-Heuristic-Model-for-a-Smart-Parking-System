@@ -32,16 +32,16 @@ if __name__ == '__main__':
 
     # num_of_machines, num_of_jobs, min_processing_time, max_processing_time = handleInput()
 
-    for _ in range(cnst.NUM_OF_SIMULATIONS):
+    for _ in range(1):
         ToD = []
         profiling_results = []
         simulation_machines = None
 
-        for i in range(cnst.MAX_ROUNDS):
+        for i in range(2):
             # Check cnst.py for the distribution types
             # num_of_jobs is only used for the uniform distribution
-            rand_job_num = createDistribution(cnst.NUM_OF_JOBS)
-            # rand_job_num = 200
+            # rand_job_num = createDistribution(cnst.NUM_OF_JOBS)
+            rand_job_num = 15
 
             raw_jobs = createRandomJobValues(cnst.NUM_OF_MACHINES, rand_job_num, cnst.MIN_PROCESSING_TIME,
                                              cnst.MAX_PROCESSING_TIME, i)
@@ -56,6 +56,11 @@ if __name__ == '__main__':
 
             machine_list = createMachines(cnst.NUM_OF_MACHINES, simulation_machines, i)
             job_list = createJobs(raw_jobs, debug_file)
+
+            for machine in machine_list:
+                print(machine)
+
+
             printMachineStatOut.out_stat_counter = 0
             if cnst.NUM_OF_JOBS > 500:
                 machines_list = legalLpt(job_list, machine_list)
@@ -64,7 +69,7 @@ if __name__ == '__main__':
             printMachineStat(machine_list, debug_file)
             best_solution, exec_time, cpu_exec_time, memory_usage = profile_function(localSearch, machine_list,
                                                                                      cnst.NUM_OF_MACHINES, job_list,
-                                                                                     cnst.NUM_OF_JOBS, out_file,
+                                                                                     rand_job_num, out_file,
                                                                                      debug_file, cnst.MODEL_TIME_LIMIT)
 
             if i == 0:
@@ -76,6 +81,11 @@ if __name__ == '__main__':
                                                             machine_list[j].assigned_jobs.values()}
                     simulation_machines[j].types = machine_list[j].types.copy()
                     simulation_machines[j].types_sums = machine_list[j].types_sums.copy()
+
+            # for machine in simulation_machines:
+            #     print(machine)
+            for job in job_list.values():
+                print(job.to_string())
 
             ToD.append(calculateToD(machine_list))
             profiling_results.append(

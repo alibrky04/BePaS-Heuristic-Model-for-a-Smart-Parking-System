@@ -15,10 +15,10 @@ MIN_NUM_OF_JOBS = 1
 file_times = (time.time()/10000)
 
 # This is the number of machines
-NUM_OF_MACHINES = 50
+NUM_OF_MACHINES = 5
 
 # This is the number of jobs. Only used in uniform distribution
-NUM_OF_JOBS = 50
+NUM_OF_JOBS = 10
 
 # This is the minimum processing time of a job
 MIN_PROCESSING_TIME = 1

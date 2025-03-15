@@ -125,12 +125,11 @@ def genetic_hybrid(new_jobs, machines, number_of_machines, time_limit, best_chro
     print(f"worst chromosome: {worst}")
     print("population size:", pop)
     pop.remove(worst)
-    pop.append([best_chromosome,genetic_evaluate(best_chromosome, new_jobs, machines)])
+    pop.append([best_chromosome, genetic_evaluate(best_chromosome, new_jobs, machines)])
 
     print(f"best chromosome: {best_chromosome}")
     print(f"best chromosome: {[best_chromosome, genetic_evaluate(best_chromosome, new_jobs, machines)]}")
 
-    print(pop)
     best = min(pop, key=lambda x: x[1])
     gen = 0
     while True:
@@ -151,5 +150,4 @@ def genetic_hybrid(new_jobs, machines, number_of_machines, time_limit, best_chro
         current_best = min(pop, key=lambda x: x[1])
         if current_best[1] < best[1]:
             best = current_best
-    print(f'number of generations: {gen}')
-    return best  # returns [chromosome, makespan]
+    return best, genetic_evaluate(best_chromosome, new_jobs, machines)  # returns ([chromosome, makespan for round] general makespan)

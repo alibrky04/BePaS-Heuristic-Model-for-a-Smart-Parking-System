@@ -87,7 +87,7 @@ if __name__ == "__main__":
                     machine.jobs = best_assignment[i]
                     machine.load = sum(job.length for job in machine.jobs)
             if round_algorithm == Algorithm.LOCAL_SEARCH:
-                #TODO update locl search algorithm
+                #This wont be used
                 pass
 
             # Calculate a measure (TOD) from the machines after assignment.

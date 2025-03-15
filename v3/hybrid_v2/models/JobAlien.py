@@ -1,4 +1,4 @@
-class Job(object):
+class JobAlien(object):
     def __init__(self, ind, length, kind, duration):
         self.number = ind
         self.length = length
