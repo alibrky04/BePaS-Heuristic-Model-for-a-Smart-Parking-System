@@ -14,7 +14,7 @@ from v2.branch_and_bound.heuristic_model.branch_and_bound import branch_and_boun
 
 # ----- Branch and Bound Assignment -----
 
-def main(distribution, batch_time, sim_output_file):
+def main(distribution="UNIFORM", batch_time=60, sim_output_file="output/json", timeLimit=10):
     import random
     import numpy as np
 
@@ -27,6 +27,7 @@ def main(distribution, batch_time, sim_output_file):
     cnst.NUMBER_OF_ROUNDS = int((60 / batch_time) * 48)
     cnst.DECAY_PER_ROUND = batch_time
     cnst.SIM_OUTPUT_FILE = sim_output_file
+    cnst.MODEL_TIME_LIMIT = timeLimit
 
     # open file for debug output
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")

@@ -15,10 +15,10 @@ MIN_NUM_OF_JOBS = 1
 file_times = (time.time()/10000)
 
 # This is the number of machines
-NUM_OF_MACHINES = 50
+NUM_OF_MACHINES = 250
 
 # This is the number of jobs. Only used in uniform distribution
-NUM_OF_JOBS = 50
+NUM_OF_JOBS = 250
 
 # This is the minimum processing time of a job
 MIN_PROCESSING_TIME = 1
@@ -47,4 +47,6 @@ DEVIATION = 25
 
 SCALE = 75
 
-SIM_OUTPUT_FILE = "output/simulation.json"
+MODEL_TIME_LIMIT = 30
+
+SIM_OUTPUT_FILE = "v2/local_search/output/simulation.json"

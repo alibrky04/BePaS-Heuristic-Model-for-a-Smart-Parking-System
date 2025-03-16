@@ -31,7 +31,7 @@ def main(distribution, batch_time, sim_output_file):
     # open file for debug output
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
-    simulation_file = open(os.path.join(os.path.dirname(__file__), cnst.SIM_OUTPUT_FILE), "r+")
+    simulation_file = open(cnst.SIM_OUTPUT_FILE, "r+")
 
     print(create_section_line("INITIALIZING SIMULATION"), file=debug_file)
     print(create_section_line("PARAMETERS"), "\n", file=debug_file)
@@ -156,5 +156,3 @@ def main(distribution, batch_time, sim_output_file):
         simulation_stat_out(round_results, cnst.NUMBER_OF_JOBS_PER_ROUND, simulation_file, profiling_results)
 
         print(create_section_line("Simulation Ended"), "\n", file=debug_file)
-
-main("UNIFORM", 360, "output/simulation.json")

@@ -20,7 +20,7 @@ import os
 import copy
 
 
-def main(distribution, batch_time, sim_output_file):
+def main(distribution="UNIFORM", batch_time=60, sim_output_file="output/json", timeLimit=10):
     import random
     import numpy as np
 
@@ -33,6 +33,7 @@ def main(distribution, batch_time, sim_output_file):
     cnst.MAX_ROUNDS = int((60 / batch_time) * 48)
     cnst.DECAY_PER_ROUND = batch_time
     cnst.SIM_OUTPUT_FILE = sim_output_file
+    cnst.MODEL_TIME_LIMIT = timeLimit
 
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
@@ -71,8 +72,7 @@ def main(distribution, batch_time, sim_output_file):
             printMachineStat(machine_list, debug_file)
             best_solution, exec_time, cpu_exec_time, memory_usage = profile_function(localSearch, machine_list,
                                                                                      cnst.NUM_OF_MACHINES, job_list,
-                                                                                     cnst.NUM_OF_JOBS, out_file,
-                                                                                     debug_file)
+                                                                                     cnst.NUM_OF_JOBS)
 
             if i == 0:
                 simulation_machines = copy.deepcopy(machine_list)
