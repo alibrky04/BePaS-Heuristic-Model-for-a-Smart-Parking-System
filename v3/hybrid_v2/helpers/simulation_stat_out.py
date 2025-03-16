@@ -14,9 +14,9 @@ def simulation_stat_out(ToD, num_of_jobs, simulation_file, profiling_results):
         branch_and_bound_cpu_time_stamp_string = ', '.join(f"{y['cpu_exec_time']:.3f}" for y in profiling_results["branch_and_bound"])
         genetic_cpu_time_stamp_string = ', '.join(f"{y['cpu_exec_time']:.3f}" for y in profiling_results["genetic"])
 
-        memory_profiling_string = ', '.join(str(y["memory_usage"]) for y in profiling_results["local_search"])
-        branch_and_bound_memory_profiling_string = ', '.join(str(y["memory_usage"]) for y in profiling_results["branch_and_bound"])
-        genetic_memory_profiling_string = ', '.join(str(y["memory_usage"]) for y in profiling_results["genetic"])
+        memory_profiling_string = ', '.join(str(y['memory_usage']) for y in profiling_results["local_search"])
+        branch_and_bound_memory_profiling_string = ', '.join(str(y['memory_usage']) for y in profiling_results["branch_and_bound"])
+        genetic_memory_profiling_string = ', '.join(str(y['memory_usage']) for y in profiling_results["genetic"])
 
         try:
             simulation_file.seek(0)

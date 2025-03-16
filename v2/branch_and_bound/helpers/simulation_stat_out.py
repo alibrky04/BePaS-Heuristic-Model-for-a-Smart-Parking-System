@@ -6,9 +6,9 @@ from v2.branch_and_bound import Constants as cnst
 def simulation_stat_out(ToD, num_of_jobs, simulation_file, profiling_results):
     try:
         ToD_str = ', '.join(map(str, ToD))
-        profiling_time_stamp_string = ', '.join(map(lambda y: f"{y["exec_time"]:.3f}", profiling_results))
-        cpu_profiling_time_stamp_string = ', '.join(map(lambda y: f"{y["cpu_exec_time"]:.3f}", profiling_results))
-        memory_profiling_string = ', '.join(map(lambda y: str(y["memory_usage"]), profiling_results))
+        profiling_time_stamp_string = ', '.join(map(lambda y: f"{y['exec_time']:.3f}", profiling_results))
+        cpu_profiling_time_stamp_string = ', '.join(map(lambda y: f"{y['cpu_exec_time']:.3f}", profiling_results))
+        memory_profiling_string = ', '.join(map(lambda y: str(y['memory_usage']), profiling_results))
 
         try:
             simulation_file.seek(0)

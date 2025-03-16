@@ -21,7 +21,13 @@ from v3.hybrid_v2.heuristic_models.genetic import genetic_hybrid
 from v3.hybrid_v2.heuristic_models.local_search.local_search_algorithm import localSearch
 from v3.local_search.io_utils.printMachineStatOut import printMachineStatOut
 
-if __name__ == "__main__":
+def main(distribution, batch_time, sim_output_file):
+    cnst.SIMULATION_DISTRIBUTION = distribution
+    cnst.BATCH_TIME = batch_time
+    cnst.NUMBER_OF_ROUNDS = int((60 / batch_time) * 48)
+    cnst.DECAY_PER_ROUND = batch_time
+    cnst.SIM_OUTPUT_FILE = sim_output_file
+
     # open file for debug output
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
@@ -145,8 +151,10 @@ if __name__ == "__main__":
             print(f"TOD in round {round_id}: {tod}", "\n", file=debug_file)
         print(f"{f'TOD in Simulation {simulation + 1} Round {round_id}:':<32}{tod}", file=out_file)
 
-    profiling_data.append(profiling_results)
-    print(f"Simulation results: {', '.join(map(str, round_results))}", file=out_file)
-    simulation_stat_out(round_results, cnst.NUMBER_OF_JOBS_PER_ROUND, simulation_file, profiling_results)
+        profiling_data.append(profiling_results)
+        print(f"Simulation results: {', '.join(map(str, round_results))}", file=out_file)
+        simulation_stat_out(round_results, cnst.NUMBER_OF_JOBS_PER_ROUND, simulation_file, profiling_results)
 
-print(create_section_line("Simulation Ended"), "\n", file=debug_file)
+        print(create_section_line("Simulation Ended"), "\n", file=debug_file)
+
+main("UNIFORM", 360, "output/simulation.json")
