@@ -30,5 +30,43 @@
         "mean": 16,
         "deviation": 2,
         "scale": 16
+    },
+    {
+        "simulation_id": 3,
+        "simulation_distribution": "static",
+        "ToD": "1, 0, 4, 2, 2",
+        "time_profile": "",
+        "cpu_profile": "",
+        "memory_profile": "",
+        "car_batch_size": 2.5,
+        "num_of_machines": 3,
+        "num_of_jobs": 20,
+        "min_processing_time": 1,
+        "max_processing_time": 6,
+        "mean": 16,
+        "deviation": 2,
+        "scale": 16
+    },
+    {
+        "simulation_id": 4,
+        "simulation_distribution": "static",
+        "ToD": "2, 2, 2, 1, 0",
+        "time_profile_local_search": "0.023, 0.023, 0.025, 0.023, 0.024",
+        "time_profile_branch_and_bound": "5.000, 5.000, 5.000, 5.000, 5.000",
+        "time_profile_genetic": "5.000, 5.000, 5.000, 5.000, 5.000",
+        "cpu_profile_local_search": "0.023, 0.023, 0.025, 0.023, 0.024",
+        "cpu_profile_branch_and_bound": "4.996, 4.998, 4.998, 5.000, 4.999",
+        "cpu_profile_genetic": "4.822, 5.000, 5.000, 4.977, 4.999",
+        "memory_profile_local_search": "16384, 0, 0, 0, 0",
+        "memory_profile_branch_and_bound": "0, 0, 0, 0, 0",
+        "memory_profile_genetic": "0, 0, 0, 0, 0",
+        "car_batch_size": 2.5,
+        "num_of_machines": 3,
+        "num_of_jobs": 20,
+        "min_processing_time": 1,
+        "max_processing_time": 6,
+        "mean": 16,
+        "deviation": 2,
+        "scale": 16
     }
 ]

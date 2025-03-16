@@ -12,6 +12,7 @@ from v3.hybrid_v2.helpers.local_search.helper import calculateMakeSpan
 from v3.hybrid_v2.helpers.local_search.initialAssing import initialAssign
 from v3.hybrid_v2.helpers.local_search.lpt_algorithm import legalLpt
 from v3.hybrid_v2.helpers.machine_helpers import calculate_tod, create_machines_alien, removeJobs
+from v3.hybrid_v2.helpers.profiling import profile_function
 from v3.hybrid_v2.helpers.simulation_stat_out import simulation_stat_out
 from v3.hybrid_v2.helpers.transformers import turn_assignment_into_chromosome, turn_locals_solution_into_assigment, \
     turn_chromosome_into_machines
@@ -33,7 +34,6 @@ if __name__ == "__main__":
     print(create_section_line("WELCOME To SIMULATION"), file=out_file)
     print(create_section_line("PARAMETERS"), "\n", file=out_file)
     print(format_parameters(), file=out_file)
-    simulation_data = []
     profiling_data = []
 
     for simulation in range(cnst.NUMBER_OF_SIMULATIONS):
@@ -49,7 +49,7 @@ if __name__ == "__main__":
         print(create_section_line("-"), file=debug_file)
 
         round_results = []
-        profiling_results = []
+        profiling_results = {'local_search': [], 'branch_and_bound': [], 'genetic': []}
 
         for round_id in range(1, cnst.NUMBER_OF_ROUNDS + 1):
             print(create_section_line(f"Round {round_id}"), "\n", file=debug_file)
@@ -65,8 +65,12 @@ if __name__ == "__main__":
                 simulation_machines_alien = legalLpt(new_jobs_native, simulation_machines_alien)
             else:
                 initialAssign(new_jobs_alien, simulation_machines_alien)
-            localSearch(simulation_machines_alien, cnst.NUMBER_OF_MACHINES, new_jobs_alien, random_number_of_jobs,
-                        cnst.LOCAL_SEARCH_TIME_LIMIT)
+            _, local_search_exec_time, local_search_cpu_exec_time, local_search_memory_usage = profile_function(
+                localSearch, simulation_machines_alien, cnst.NUMBER_OF_MACHINES, new_jobs_alien, random_number_of_jobs,
+                cnst.LOCAL_SEARCH_TIME_LIMIT)
+            profiling_results["local_search"].append(
+                {"exec_time": local_search_exec_time, "cpu_exec_time": local_search_cpu_exec_time,
+                 "memory_usage": local_search_memory_usage})
             local_search_makespan = calculateMakeSpan(simulation_machines_alien)
 
             assignment = turn_locals_solution_into_assigment(machines_native, simulation_machines_alien,
@@ -77,21 +81,34 @@ if __name__ == "__main__":
             best_assignment = [*assignment]
             start_time = time.time()
 
-            branch_and_bound(new_jobs_native, machines_native, 0, current_best, best_assignment,
-                             cnst.NUMBER_OF_MACHINES,
-                             start_time, cnst.BRANCH_BOUND_MODEL_TIME_LIMIT)
+            _, branch_and_bound_exec_time, branch_and_bound_cpu_exec_time, branch_and_bound_memory_usage = profile_function(
+                branch_and_bound, new_jobs_native,
+                machines_native, 0, current_best,
+                best_assignment,
+                cnst.NUMBER_OF_MACHINES,
+                start_time,
+                cnst.BRANCH_BOUND_MODEL_TIME_LIMIT)
             transformed_chromosome = turn_assignment_into_chromosome(random_number_of_jobs, new_jobs_native,
                                                                      best_assignment)
-
+            profiling_results["branch_and_bound"].append(
+                {"exec_time": branch_and_bound_exec_time, "cpu_exec_time": branch_and_bound_cpu_exec_time,
+                 "memory_usage": branch_and_bound_memory_usage})
             # makespan for branch bound
             var = current_best[0]
 
-            best_solution, genetic_makespan = genetic_hybrid(new_jobs_native, machines_native,
-                                                             cnst.NUMBER_OF_MACHINES,
-                                                             cnst.GENETIC_MODEL_TIME_LIMIT,
-                                                             transformed_chromosome,
-                                                             pop_size=cnst.NUMBER_OF_CHROMOSOMES,
-                                                             mutation_rate=0.05)
+            genetic_solution, genetic_exec_time, genetic_cpu_time, genetic_memory_usage = (profile_function
+                                                                                       (genetic_hybrid,
+                                                                                        new_jobs_native,
+                                                                                        machines_native,
+                                                                                        cnst.NUMBER_OF_MACHINES,
+                                                                                        cnst.GENETIC_MODEL_TIME_LIMIT,
+                                                                                        transformed_chromosome,
+                                                                                        pop_size=cnst.NUMBER_OF_CHROMOSOMES,
+                                                                                        mutation_rate=0.05))
+            best_solution, genetic_makespan = genetic_solution
+            profiling_results["genetic"].append(
+                {"exec_time": genetic_exec_time, "cpu_exec_time": genetic_cpu_time, "memory_usage": genetic_memory_usage})
+
             best_chromosome, best_makespan = best_solution[0], best_solution[1]
             # Update according to genetic chromosomes since final result is coming from genetic algorithm
             for i, job in enumerate(new_jobs_native):
@@ -128,7 +145,6 @@ if __name__ == "__main__":
             print(f"TOD in round {round_id}: {tod}", "\n", file=debug_file)
         print(f"{f'TOD in Simulation {simulation + 1} Round {round_id}:':<32}{tod}", file=out_file)
 
-    simulation_data.append(round_results)
     profiling_data.append(profiling_results)
     print(f"Simulation results: {', '.join(map(str, round_results))}", file=out_file)
     simulation_stat_out(round_results, cnst.NUMBER_OF_JOBS_PER_ROUND, simulation_file, profiling_results)
