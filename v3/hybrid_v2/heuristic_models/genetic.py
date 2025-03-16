@@ -17,8 +17,7 @@ def genetic_create_chrom(new_jobs, machines, number_of_machines):
             chrom[i] = machine_index
             machines[machine_index].add_job(job)
             # If the machine state is legal, accept this assignment.
-            if machines[
-                machine_index].__repr__():  # using __repr__ as a dummy check (replace with isLegal() if available)
+            if machines[machine_index].__repr__():
                 legal = True
             else:
                 machines[machine_index].remove_job(job)
@@ -122,14 +121,8 @@ def genetic_hybrid(new_jobs, machines, number_of_machines, time_limit, best_chro
     start_time = time.time()
     pop = genetic_create_pop(new_jobs, machines, number_of_machines, pop_size)
     worst = max(pop, key=lambda x: x[1])
-    print(f"worst chromosome: {worst}")
-    print("population size:", pop)
     pop.remove(worst)
     pop.append([best_chromosome, genetic_evaluate(best_chromosome, new_jobs, machines)])
-
-    print(f"best chromosome: {best_chromosome}")
-    print(f"best chromosome: {[best_chromosome, genetic_evaluate(best_chromosome, new_jobs, machines)]}")
-
     best = min(pop, key=lambda x: x[1])
     gen = 0
     while True:
@@ -150,4 +143,4 @@ def genetic_hybrid(new_jobs, machines, number_of_machines, time_limit, best_chro
         current_best = min(pop, key=lambda x: x[1])
         if current_best[1] < best[1]:
             best = current_best
-    return best, genetic_evaluate(best_chromosome, new_jobs, machines)  # returns ([chromosome, makespan for round] general makespan)
+    return best, genetic_evaluate(best_chromosome, new_jobs, machines)

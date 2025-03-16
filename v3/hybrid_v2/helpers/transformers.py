@@ -20,25 +20,21 @@ def turn_locals_solution_into_assigment(native_machines, alien_machines, native_
     assigment = []
     for native_machine, alien_machine in zip(native_machines, alien_machines):
         assigned_jobs = copy.deepcopy(native_machine.jobs)
-        print(f"native_machine: {native_machine}")
         for alien_job_number in alien_machine.assigned_jobs:
             for native_job in native_jobs:
                 if native_job.job_id == alien_job_number:
                     assigned_jobs.append(native_job)
-        print(f"assigned_jobs: {assigned_jobs}")
         assigment.append(assigned_jobs)
 
     if len(assigment) != len(native_machines):
         raise ValueError("Invalid Conversation check algorithms.")
     return assigment
 
-def turn_chromosome_into_machines(machines_alien,round_id, native_jobs, alien_jobs, chromosome):
+
+def turn_chromosome_into_machines(machines_alien, round_id, native_jobs, alien_jobs, chromosome):
     simulation_machines_alien = create_machines_alien(cnst.NUMBER_OF_MACHINES, machines_alien, round_id)
     for i, job in enumerate(native_jobs):
         alien_job = alien_jobs[job.job_id]
-        print(f"i = {i} : native job:{job}  alien job: {alien_jobs[job.job_id]}Best assignment: {chromosome[i]}")
         simulation_machines_alien[chromosome[i]].addJob(alien_job)
     return simulation_machines_alien
     # for each i job in
-
-

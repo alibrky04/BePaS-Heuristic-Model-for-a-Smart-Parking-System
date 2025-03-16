@@ -26,9 +26,6 @@ if __name__ == "__main__":
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
     simulation_file = open(os.path.join(os.path.dirname(__file__), cnst.SIM_OUTPUT_FILE), "r+")
 
-    # TODO REMOVE THESE UNNECESSARY files
-    out_aline_file = open(os.path.join(os.path.dirname(__file__), "output/output_alien.txt"), "w")
-    out_debug_file_alien = open(os.path.join(os.path.dirname(__file__), "output/debug_out_alien.txt"), "w")
     print(create_section_line("INITIALIZING SIMULATION"), file=debug_file)
     print(create_section_line("PARAMETERS"), "\n", file=debug_file)
     print(format_parameters(), file=debug_file)
@@ -47,7 +44,6 @@ if __name__ == "__main__":
         machine_adapter = MachineAdapter(cnst.NUMBER_OF_MACHINES)
         machines_native = machine_adapter.get_machines_native()
         machines_alien = machine_adapter.get_machines_alien()
-
 
         print(create_machine_lines(machines_native), file=debug_file)
         print(create_section_line("-"), file=debug_file)
@@ -70,9 +66,8 @@ if __name__ == "__main__":
             else:
                 initialAssign(new_jobs_alien, simulation_machines_alien)
             localSearch(simulation_machines_alien, cnst.NUMBER_OF_MACHINES, new_jobs_alien, random_number_of_jobs,
-                        out_aline_file, out_debug_file_alien, cnst.LOCAL_SEARCH_TIME_LIMIT)
+                        cnst.LOCAL_SEARCH_TIME_LIMIT)
             local_search_makespan = calculateMakeSpan(simulation_machines_alien)
-
 
             assignment = turn_locals_solution_into_assigment(machines_native, simulation_machines_alien,
                                                              new_jobs_native)
@@ -80,7 +75,6 @@ if __name__ == "__main__":
             current_best = [float(local_search_makespan)]
             # This is the output of B&B
             best_assignment = [*assignment]
-            print(f"BEST ASSIGNMENT {best_assignment}")
             start_time = time.time()
 
             branch_and_bound(new_jobs_native, machines_native, 0, current_best, best_assignment,
@@ -89,26 +83,18 @@ if __name__ == "__main__":
             transformed_chromosome = turn_assignment_into_chromosome(random_number_of_jobs, new_jobs_native,
                                                                      best_assignment)
 
-            print("_______BRANCH AND BOUND_________")
-            print(f"best assignment {best_assignment}")
-            print(f"machines native after branch and bound {machines_native}")
-            print(f"machines native max makespan after tod {current_best[0]}")
-            print("_______BRANCH AND BOUND_________")
+            # makespan for branch bound
+            var = current_best[0]
 
             best_solution, genetic_makespan = genetic_hybrid(new_jobs_native, machines_native,
-                                           cnst.NUMBER_OF_MACHINES,
-                                           cnst.GENETIC_MODEL_TIME_LIMIT,
-                                           transformed_chromosome,
-                                           pop_size=cnst.NUMBER_OF_CHROMOSOMES,
-                                           mutation_rate=0.05)
+                                                             cnst.NUMBER_OF_MACHINES,
+                                                             cnst.GENETIC_MODEL_TIME_LIMIT,
+                                                             transformed_chromosome,
+                                                             pop_size=cnst.NUMBER_OF_CHROMOSOMES,
+                                                             mutation_rate=0.05)
             best_chromosome, best_makespan = best_solution[0], best_solution[1]
-
-            print(f"transformed {transformed_chromosome}")
-            print(f"best chromosome {best_chromosome}")
-
             # Update according to genetic chromosomes since final result is coming from genetic algorithm
             for i, job in enumerate(new_jobs_native):
-                # print(f"i = {i} : {job} Best assignment: {best_chromosome[i]}")
                 machines_native[best_chromosome[i]].add_job(job)
 
             data_machine = turn_chromosome_into_machines(machines_alien, round_id, new_jobs_native, new_jobs_alien,
@@ -118,24 +104,14 @@ if __name__ == "__main__":
             else:
                 for j in range(cnst.NUMBER_OF_MACHINES):
                     machine_adapter.machines_alien[j].span = data_machine[j].span
-                    #
-                    # machine_adapter.machines_alien[j].assigned_jobs = {job.number: job for job in
-                    #                                                    data_machine[j].assigned_jobs.values()}
                     recent_round_assignments = {**data_machine[j].assigned_jobs}
-                    print(f'recent round assignments {recent_round_assignments}')
                     previous_assignments = machine_adapter.machines_alien[j].assigned_jobs
                     machine_adapter.machines_alien[j].assigned_jobs = {**previous_assignments,
                                                                        **recent_round_assignments}
                     machine_adapter.machines_alien[j].types = data_machine[j].types.copy()
                     machine_adapter.machines_alien[j].types_sums = data_machine[j].types_sums.copy()
 
-            print("machine alien after SYNCH :============\n")
-            for machine_alien in machines_alien:
-                print(f"{machine_alien} \n")
-
-            print(f"Machines after update: {machines_native}")
             tod = calculate_tod(machines_native)
-            print(f"tod:{tod}")
             round_results.append(tod)
 
             print(create_section_line("Machine states after assignment"), "\n", file=debug_file)
@@ -149,11 +125,7 @@ if __name__ == "__main__":
                     machine.update_jobs(cnst.DECAY_PER_ROUND)
             removeJobs(machine_adapter.machines_alien)
 
-            print("machine alien after REMOVING DECAYS :============\n")
-            for machine_alien in machines_alien:
-                print(f"{machine_alien} \n")
-
-        print(f"TOD in round {round_id}: {tod}", "\n", file=debug_file)
+            print(f"TOD in round {round_id}: {tod}", "\n", file=debug_file)
         print(f"{f'TOD in Simulation {simulation + 1} Round {round_id}:':<32}{tod}", file=out_file)
 
     simulation_data.append(round_results)

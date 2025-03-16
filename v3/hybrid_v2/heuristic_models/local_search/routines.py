@@ -9,7 +9,7 @@ def isDone(d_list):
     return all(item is False for item in d_list)
 
 
-def oneJobRoutine(machine_list, number_of_machines, job_list, number_of_jobs, output_file, debug_file):
+def oneJobRoutine(machine_list, number_of_machines, job_list, number_of_jobs):
     done = False
     while not done:
         prev_makespan = calculateMakeSpan(machine_list)
@@ -31,9 +31,8 @@ def oneJobRoutine(machine_list, number_of_machines, job_list, number_of_jobs, ou
                             break
 
             if number_of_jobs <= 500:
-                printMachineStatOut(machine_list, output_file, "Moving one job")
+                pass
             if prev_makespan > calculateMakeSpan(machine_list):
-                print("makespan: ", calculateMakeSpan(machine_list), file=debug_file)
                 prev_makespan = calculateMakeSpan(machine_list)
 
             if isDone(done_list):
@@ -41,7 +40,7 @@ def oneJobRoutine(machine_list, number_of_machines, job_list, number_of_jobs, ou
                 break
 
 
-def colorChangeRoutine(machine_list, number_of_machines, number_of_jobs, output_file, debug_file):
+def colorChangeRoutine(machine_list, number_of_machines, number_of_jobs):
     done = False
 
     check_count = 0
@@ -71,9 +70,7 @@ def colorChangeRoutine(machine_list, number_of_machines, number_of_jobs, output_
 
             if number_of_jobs <= 500:
                 pass
-                # printMachineStatOut(machine_list, output_file, "Color Change")
             if prev_makespan > calculateMakeSpan(machine_list):
-                print("makespan: ", calculateMakeSpan(machine_list), file=debug_file)
                 prev_makespan = calculateMakeSpan(machine_list)
 
             if isDone(done_list) or check_count == 100:
@@ -82,7 +79,7 @@ def colorChangeRoutine(machine_list, number_of_machines, number_of_jobs, output_
         check_count += 1
 
 
-def oneByOneSwapRoutine(machine_list, number_of_machines, job_list, number_of_jobs, output_file, debug_file):
+def oneByOneSwapRoutine(machine_list, number_of_machines, job_list, number_of_jobs):
     done = False
     while not done:
         prev_makespan = calculateMakeSpan(machine_list)
@@ -117,10 +114,7 @@ def oneByOneSwapRoutine(machine_list, number_of_machines, job_list, number_of_jo
 
             if number_of_jobs <= 500:
                 pass
-                # printMachineStatOut(machine_list, output_file, "Swapping jobs 1 by 1 with 2 machine")
-
             if prev_makespan > calculateMakeSpan(machine_list):
-                print("makespan: ", calculateMakeSpan(machine_list), file=debug_file)
                 prev_makespan = calculateMakeSpan(machine_list)
 
         if no_swap_count == 0:
@@ -137,7 +131,7 @@ def uniquePairs(source):
     return result
 
 
-def twoRoutineHelper(machine_list, number_of_machines, debug_file, machine: MachineAlien):
+def twoRoutineHelper(machine_list, number_of_machines, machine: MachineAlien):
     origin_pairs = uniquePairs(list((machine.assigned_jobs.copy().keys())))
 
     for pair1 in origin_pairs:
@@ -154,9 +148,6 @@ def twoRoutineHelper(machine_list, number_of_machines, debug_file, machine: Mach
                     move_or_not_to_move = checkTwoSwapSpan(machine_list, machine, target_machine, pair1, pair2)
 
                     if move_or_not_to_move is True:
-                        print("swapping jobs numbers ", pair1[0], pair1[1], "from machine number ", machine.number,
-                              "with jobs numbers ", pair2[0], pair2[1], "from machine number ", target_machine.number,
-                              file=debug_file)
                         moved = swapTwoJobs(machine, target_machine, pair1, pair2)
                         if moved is True:
                             return True
@@ -164,7 +155,7 @@ def twoRoutineHelper(machine_list, number_of_machines, debug_file, machine: Mach
     return False
 
 
-def twoByTwoSwapRoutine(machine_list, number_of_machines, number_of_jobs, output_file, debug_file):
+def twoByTwoSwapRoutine(machine_list, number_of_machines, number_of_jobs):
     done = False
     machine_one_counter = 0
 
@@ -182,13 +173,11 @@ def twoByTwoSwapRoutine(machine_list, number_of_machines, number_of_jobs, output
             # print("im in machine", machine.number, "final makespan= ", calculateMakeSpan(machine_list))
 
             while swapped is True:
-                swapped = twoRoutineHelper(machine_list, number_of_machines, debug_file, machine)
+                swapped = twoRoutineHelper(machine_list, number_of_machines, machine)
 
             if number_of_jobs <= 500:
                 pass
-                # printMachineStatOut(machine_list,output_file,"Swapping jobs 2 by 2 with 2 machine")
             if prev_makespan > calculateMakeSpan(machine_list):
-                print("makespan: ", calculateMakeSpan(machine_list), file=debug_file)
                 prev_makespan = calculateMakeSpan(machine_list)
         if machine_one_counter == 2:
             return
@@ -217,7 +206,7 @@ def circularSwapHelper(machine_list, number_of_machines):
     return False
 
 
-def circularSwapRoutine(machine_list, number_of_machines, number_of_jobs, output_file, debug_file):
+def circularSwapRoutine(machine_list, number_of_machines, number_of_jobs):
     done = False
     no_swap_count = 0
 
@@ -233,9 +222,7 @@ def circularSwapRoutine(machine_list, number_of_machines, number_of_jobs, output
 
         if number_of_jobs <= 500:
             pass
-            # printMachineStatOut(machine_list,output_file,"Circular swap between 3 machines")
         if prev_makespan > calculateMakeSpan(machine_list):
-            print("makespan: ", calculateMakeSpan(machine_list), file=debug_file)
             calculateMakeSpan(machine_list)
         if no_swap_count == 2:
             return
