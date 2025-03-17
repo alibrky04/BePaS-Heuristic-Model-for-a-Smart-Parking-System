@@ -11,7 +11,7 @@ from v3.hybrid_v2.helpers.job_helpers import createDistribution
 from v3.hybrid_v2.helpers.local_search.helper import calculateMakeSpan
 from v3.hybrid_v2.helpers.local_search.initialAssing import initialAssign
 from v3.hybrid_v2.helpers.local_search.lpt_algorithm import legalLpt
-from v3.hybrid_v2.helpers.machine_helpers import calculate_tod, create_machines_alien, removeJobs
+from v3.hybrid_v2.helpers.machine_helpers import calculate_tod, calculate_tod_alien,calculate_tod_branch_and_bound, create_machines_alien, removeJobs
 from v3.hybrid_v2.helpers.profiling import profile_function
 from v3.hybrid_v2.helpers.simulation_stat_out import simulation_stat_out
 from v3.hybrid_v2.helpers.transformers import turn_assignment_into_chromosome, turn_locals_solution_into_assigment, \
@@ -21,17 +21,11 @@ from v3.hybrid_v2.heuristic_models.genetic import genetic_hybrid
 from v3.hybrid_v2.heuristic_models.local_search.local_search_algorithm import localSearch
 from v3.local_search.io_utils.printMachineStatOut import printMachineStatOut
 
-def main(distribution, batch_time, sim_output_file):
-    cnst.SIMULATION_DISTRIBUTION = distribution
-    cnst.BATCH_TIME = batch_time
-    cnst.NUMBER_OF_ROUNDS = int((60 / batch_time) * 48)
-    cnst.DECAY_PER_ROUND = batch_time
-    cnst.SIM_OUTPUT_FILE = sim_output_file
-
+if __name__ == "__main__":
     # open file for debug output
     debug_file = open(os.path.join(os.path.dirname(__file__), "output/debug_out.txt"), "w")
     out_file = open(os.path.join(os.path.dirname(__file__), "output/output.txt"), "w")
-    simulation_file = open(cnst.SIM_OUTPUT_FILE, "r+")
+    simulation_file = open(os.path.join(os.path.dirname(__file__), cnst.SIM_OUTPUT_FILE), "r+")
 
     print(create_section_line("INITIALIZING SIMULATION"), file=debug_file)
     print(create_section_line("PARAMETERS"), "\n", file=debug_file)
@@ -56,6 +50,8 @@ def main(distribution, batch_time, sim_output_file):
 
         round_results = []
         profiling_results = {'local_search': [], 'branch_and_bound': [], 'genetic': []}
+        make_span_results = {'local_search': [], 'branch_and_bound': [], 'genetic': [], 'final': []}
+        tod_span_results = {'local_search': [], 'branch_and_bound': [], 'genetic': [], 'final': []}
 
         for round_id in range(1, cnst.NUMBER_OF_ROUNDS + 1):
             print(create_section_line(f"Round {round_id}"), "\n", file=debug_file)
@@ -78,10 +74,10 @@ def main(distribution, batch_time, sim_output_file):
                 {"exec_time": local_search_exec_time, "cpu_exec_time": local_search_cpu_exec_time,
                  "memory_usage": local_search_memory_usage})
             local_search_makespan = calculateMakeSpan(simulation_machines_alien)
+            local_search_tod = calculate_tod_alien(simulation_machines_alien)
 
             assignment = turn_locals_solution_into_assigment(machines_native, simulation_machines_alien,
                                                              new_jobs_native)
-
             current_best = [float(local_search_makespan)]
             # This is the output of B&B
             best_assignment = [*assignment]
@@ -94,28 +90,35 @@ def main(distribution, batch_time, sim_output_file):
                 cnst.NUMBER_OF_MACHINES,
                 start_time,
                 cnst.BRANCH_BOUND_MODEL_TIME_LIMIT)
+
             transformed_chromosome = turn_assignment_into_chromosome(random_number_of_jobs, new_jobs_native,
                                                                      best_assignment)
             profiling_results["branch_and_bound"].append(
                 {"exec_time": branch_and_bound_exec_time, "cpu_exec_time": branch_and_bound_cpu_exec_time,
                  "memory_usage": branch_and_bound_memory_usage})
             # makespan for branch bound
-            var = current_best[0]
+
+            branch_bound_makespan = int(current_best[0])
+            branch_and_bound_tod = calculate_tod_branch_and_bound(machines_native, best_assignment)
 
             genetic_solution, genetic_exec_time, genetic_cpu_time, genetic_memory_usage = (profile_function
-                                                                                       (genetic_hybrid,
-                                                                                        new_jobs_native,
-                                                                                        machines_native,
-                                                                                        cnst.NUMBER_OF_MACHINES,
-                                                                                        cnst.GENETIC_MODEL_TIME_LIMIT,
-                                                                                        transformed_chromosome,
-                                                                                        pop_size=cnst.NUMBER_OF_CHROMOSOMES,
-                                                                                        mutation_rate=0.05))
+                                                                                           (genetic_hybrid,
+                                                                                            new_jobs_native,
+                                                                                            machines_native,
+                                                                                            cnst.NUMBER_OF_MACHINES,
+                                                                                            cnst.GENETIC_MODEL_TIME_LIMIT,
+                                                                                            transformed_chromosome,
+                                                                                            pop_size=cnst.NUMBER_OF_CHROMOSOMES,
+                                                                                            mutation_rate=0.05))
             best_solution, genetic_makespan = genetic_solution
             profiling_results["genetic"].append(
-                {"exec_time": genetic_exec_time, "cpu_exec_time": genetic_cpu_time, "memory_usage": genetic_memory_usage})
+                {"exec_time": genetic_exec_time, "cpu_exec_time": genetic_cpu_time,
+                 "memory_usage": genetic_memory_usage})
 
             best_chromosome, best_makespan = best_solution[0], best_solution[1]
+
+
+
             # Update according to genetic chromosomes since final result is coming from genetic algorithm
             for i, job in enumerate(new_jobs_native):
                 machines_native[best_chromosome[i]].add_job(job)
@@ -135,6 +138,17 @@ def main(distribution, batch_time, sim_output_file):
                     machine_adapter.machines_alien[j].types_sums = data_machine[j].types_sums.copy()
 
             tod = calculate_tod(machines_native)
+
+            make_span_results["local_search"].append(local_search_makespan)
+            make_span_results["branch_and_bound"].append(branch_bound_makespan)
+            make_span_results["genetic"].append(genetic_makespan)
+            make_span_results["final"].append(genetic_makespan)
+
+            tod_span_results["local_search"].append(local_search_tod)
+            tod_span_results["branch_and_bound"].append(branch_and_bound_tod)
+            tod_span_results["genetic"].append(tod)
+            tod_span_results["final"].append(tod)
+
             round_results.append(tod)
 
             print(create_section_line("Machine states after assignment"), "\n", file=debug_file)
@@ -153,6 +167,6 @@ def main(distribution, batch_time, sim_output_file):
 
         profiling_data.append(profiling_results)
         print(f"Simulation results: {', '.join(map(str, round_results))}", file=out_file)
-        simulation_stat_out(round_results, cnst.NUMBER_OF_JOBS_PER_ROUND, simulation_file, profiling_results)
+        simulation_stat_out(round_results, cnst.NUMBER_OF_JOBS_PER_ROUND, simulation_file, profiling_results, make_span_results,tod_span_results)
 
-        print(create_section_line("Simulation Ended"), "\n", file=debug_file)
+print(create_section_line("Simulation Ended"), "\n", file=debug_file)

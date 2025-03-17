@@ -1,0 +1,32 @@
+[
+    {
+        "simulation_id": 1,
+        "simulation_distribution": "static",
+        "local_search_tod": "16, 12, 4, 12, 6",
+        "branch_and_bound_tod": "16, 12, 4, 12, 6",
+        "genetic_tod": "16, 12, 4, 12, 6",
+        "final_tod": "16, 12, 4, 12, 6",
+        "ToD": "16, 12, 4, 12, 6",
+        "local_search_makespan": "9, 14, 12, 10, 12",
+        "branch_and_bound_makespan": "9, 14, 12, 10, 12",
+        "genetic_makespan": "9, 14, 12, 10, 12",
+        "final_makespan": "9, 14, 12, 10, 12",
+        "time_profile_local_search": "0.018, 0.012, 0.011, 0.010, 0.014",
+        "time_profile_branch_and_bound": "5.000, 5.000, 5.000, 5.000, 5.000",
+        "time_profile_genetic": "5.000, 5.000, 5.000, 5.000, 5.000",
+        "cpu_profile_local_search": "0.018, 0.012, 0.011, 0.010, 0.014",
+        "cpu_profile_branch_and_bound": "4.990, 4.954, 5.000, 4.994, 4.999",
+        "cpu_profile_genetic": "4.973, 5.000, 4.993, 5.000, 5.000",
+        "memory_profile_local_search": "16384, 0, 16384, 0, 0",
+        "memory_profile_branch_and_bound": "0, 0, 0, 0, 0",
+        "memory_profile_genetic": "0, 0, 0, 0, 0",
+        "car_batch_size": 2.5,
+        "num_of_machines": 10,
+        "num_of_jobs": 20,
+        "min_processing_time": 1,
+        "max_processing_time": 6,
+        "mean": 16,
+        "deviation": 2,
+        "scale": 16
+    }
+]

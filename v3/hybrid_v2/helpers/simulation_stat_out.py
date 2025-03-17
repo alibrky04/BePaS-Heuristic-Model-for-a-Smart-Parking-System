@@ -3,20 +3,34 @@ import json
 from v3.hybrid_v2 import Constants as cnst
 
 
-def simulation_stat_out(ToD, num_of_jobs, simulation_file, profiling_results):
+def simulation_stat_out(ToD, num_of_jobs, simulation_file, profiling_results, makespan_results, tod_span_results):
     try:
         ToD_str = ', '.join(map(str, ToD))
         profiling_time_stamp_string = ', '.join(f"{y['exec_time']:.3f}" for y in profiling_results["local_search"])
-        branch_and_bound_time_stamp_string = ', '.join(f"{y['exec_time']:.3f}" for y in profiling_results["branch_and_bound"])
+        branch_and_bound_time_stamp_string = ', '.join(
+            f"{y['exec_time']:.3f}" for y in profiling_results["branch_and_bound"])
         genetic_time_stamp_string = ', '.join(f"{y['exec_time']:.3f}" for y in profiling_results["genetic"])
 
-        cpu_profiling_time_stamp_string = ', '.join(f"{y['cpu_exec_time']:.3f}" for y in profiling_results["local_search"])
-        branch_and_bound_cpu_time_stamp_string = ', '.join(f"{y['cpu_exec_time']:.3f}" for y in profiling_results["branch_and_bound"])
+        cpu_profiling_time_stamp_string = ', '.join(
+            f"{y['cpu_exec_time']:.3f}" for y in profiling_results["local_search"])
+        branch_and_bound_cpu_time_stamp_string = ', '.join(
+            f"{y['cpu_exec_time']:.3f}" for y in profiling_results["branch_and_bound"])
         genetic_cpu_time_stamp_string = ', '.join(f"{y['cpu_exec_time']:.3f}" for y in profiling_results["genetic"])
 
-        memory_profiling_string = ', '.join(str(y['memory_usage']) for y in profiling_results["local_search"])
-        branch_and_bound_memory_profiling_string = ', '.join(str(y['memory_usage']) for y in profiling_results["branch_and_bound"])
-        genetic_memory_profiling_string = ', '.join(str(y['memory_usage']) for y in profiling_results["genetic"])
+        memory_profiling_string = ', '.join(str(y["memory_usage"]) for y in profiling_results["local_search"])
+        branch_and_bound_memory_profiling_string = ', '.join(
+            str(y["memory_usage"]) for y in profiling_results["branch_and_bound"])
+        genetic_memory_profiling_string = ', '.join(str(y["memory_usage"]) for y in profiling_results["genetic"])
+
+        local_search_makespan_results = ', '.join(map(str, makespan_results['local_search']))
+        branch_and_bound_makespan_results = ', '.join(map(str, makespan_results['branch_and_bound']))
+        genetic_makespan_results = ', '.join(map(str, makespan_results['genetic']))
+        final_makespan_results = ', '.join(map(str, makespan_results['final']))
+
+        local_search_tod_results = ', '.join(map(str, tod_span_results['local_search']))
+        branch_and_bound_tod_results = ', '.join(map(str, tod_span_results['branch_and_bound']))
+        genetic_tod_results = ', '.join(map(str, tod_span_results['genetic']))
+        final_tod_results = ', '.join(map(str, tod_span_results['final']))
 
         try:
             simulation_file.seek(0)
@@ -38,7 +52,15 @@ def simulation_stat_out(ToD, num_of_jobs, simulation_file, profiling_results):
         existing_data.append({
             "simulation_id": simulation_id,
             "simulation_distribution": simulation_distribution,
+            "local_search_tod": local_search_tod_results,
+            "branch_and_bound_tod": branch_and_bound_tod_results,
+            "genetic_tod": genetic_tod_results,
+            "final_tod": final_tod_results,
             "ToD": ToD_str,
+            "local_search_makespan": local_search_makespan_results,
+            "branch_and_bound_makespan": branch_and_bound_makespan_results,
+            "genetic_makespan": genetic_makespan_results,
+            "final_makespan": final_makespan_results,
             "time_profile_local_search": profiling_time_stamp_string,
             "time_profile_branch_and_bound": branch_and_bound_time_stamp_string,
             "time_profile_genetic": genetic_time_stamp_string,

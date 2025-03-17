@@ -13,6 +13,11 @@ genetic/output/debug_out.txt
 genetic/output/output.txt
 genetic/output/simulation.json.txt
 
+v3/hybrid_v2/Constants.py
+v3/hybrid_v2/output/simulation.json
+v3/hybrid_v2/output/debug_out.txt
+v3/hybrid_v2/output/simulation
+
 nohup.out
 
 __pycache__/
