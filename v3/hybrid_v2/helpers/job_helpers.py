@@ -23,6 +23,6 @@ def createDistribution(number_of_jobs):
     if cnst.SIMULATION_DISTRIBUTION == "UNIFORM":
         return random.randint(number_of_jobs - int(number_of_jobs / 2) if number_of_jobs > 1 else 1, number_of_jobs * 2)
     elif cnst.SIMULATION_DISTRIBUTION == "NORMAL":
-        return np.round(np.abs(normal(cnst.MEAN, cnst.DEVIATION)))
+        return np.round(np.abs(normal(cnst.MEAN, cnst.DEVIATION))) + 1
     elif cnst.SIMULATION_DISTRIBUTION == "EXPONENTIAL":
-        return np.round(np.abs(exponential(cnst.SCALE)))
+        return np.round(np.abs(exponential(cnst.SCALE))) + 1

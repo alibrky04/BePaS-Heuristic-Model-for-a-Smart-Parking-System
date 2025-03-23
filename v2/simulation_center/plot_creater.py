@@ -12,7 +12,7 @@ class plot_creater():
 
 		batch_times = ["60", "30", "10"]
 		distributions = ["UNIFORM", "NORMAL", "EXPONENTIAL"]
-		models = ["branch_and_bound", "genetic", "local_search", "nearest_lot"]
+		models = ["hybrid", "branch_and_bound", "genetic", "local_search", "nearest_lot"]
 
 		data = {dist: {bt: {model: [] for model in models} for bt in batch_times} for dist in distributions}
 
@@ -50,6 +50,7 @@ class plot_creater():
 						ax.plot(data[distribution][batch_time][model], label=model)
 
 				ax.legend()
+				ax.grid()
 
 			plt.tight_layout()
 			plt.subplots_adjust(top=0.85)
