@@ -3,7 +3,7 @@ import os
 from v2.genetic.formatters import *
 from v2.genetic import Constants as cnst
 from v2.genetic.helpers.job_helpers import createDistribution, create_jobs
-from v2.genetic.helpers.machine_helpers import create_machines, calculate_tod
+from v2.genetic.helpers.machine_helpers import create_machines, calculate_tod, calculate_makespan
 from v2.genetic.helpers.profiling import profile_function
 from v2.genetic.helpers.simulation_stat_out import simulation_stat_out
 from v2.genetic.heuristic_model.genetic import genetic
@@ -41,6 +41,7 @@ def main(distribution, batch_time, sim_output_file):
     print(format_parameters(), file=out_file)
     simulation_data = []
     profiling_data = []
+    makespan_data = []
     for simulation in range(cnst.NUMBER_OF_SIMULATIONS):
         print(create_section_line(f"Simulation {simulation + 1}"), "\n", file=debug_file)
         print(create_section_line(f"Simulation {simulation + 1}"), "\n", file=out_file)
@@ -84,6 +85,7 @@ def main(distribution, batch_time, sim_output_file):
             # Calculate a measure (TOD) from the machines after assignment.
             tod = calculate_tod(machines)
             round_results.append(tod)
+            makespan_data.append(best_makespan)
             profiling_results.append(
                 {"exec_time": exec_time, "cpu_exec_time": cpu_exec_time, "memory_usage": memory_usage})
 
@@ -99,6 +101,6 @@ def main(distribution, batch_time, sim_output_file):
         simulation_data.append(round_results)
         profiling_data.append(profiling_results)
         print(f"Simulation results: {', '.join(map(str, round_results))}", file=out_file)
-        simulation_stat_out(round_results, random_number_of_jobs, simulation_file, profiling_results)
+        simulation_stat_out(round_results, random_number_of_jobs, simulation_file, profiling_results,makespan_data)
 
     print(create_section_line("Simulation Ended"), "\n", file=debug_file)
