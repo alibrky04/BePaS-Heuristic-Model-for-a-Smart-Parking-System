@@ -5,7 +5,7 @@ from v2.branch_and_bound.formatters import *
 from v2.branch_and_bound import Constants as cnst
 
 from v2.branch_and_bound.helpers.job_helpers import create_jobs, createDistribution
-from v2.branch_and_bound.helpers.machine_helpers import calculate_tod, create_machines
+from v2.branch_and_bound.helpers.machine_helpers import calculate_tod, create_machines, calculate_makespan
 from v2.branch_and_bound.helpers.profiling import profile_function
 from v2.branch_and_bound.helpers.simulation_stat_out import simulation_stat_out
 
@@ -48,6 +48,7 @@ def main(distribution="UNIFORM", batch_time=60, sim_output_file="output/json", t
 
     simulation_data = []
     profiling_data = []
+    makespan_data = []
 
     for simulation in range(cnst.NUMBER_OF_SIMULATIONS):
         print(create_section_line(f"Simulation {simulation + 1}"), "\n", file=debug_file)
@@ -99,6 +100,7 @@ def main(distribution="UNIFORM", batch_time=60, sim_output_file="output/json", t
 
             tod = calculate_tod(machines)
             round_results.append(tod)
+            makespan_data.append(calculate_makespan(machines))
             profiling_results.append(
                 {"exec_time": exec_time, "cpu_exec_time": cpu_exec_time, "memory_usage": memory_usage})
 
@@ -114,6 +116,6 @@ def main(distribution="UNIFORM", batch_time=60, sim_output_file="output/json", t
         simulation_data.append(round_results)
         profiling_data.append(profiling_results)
         print(f"Simulation {simulation + 1} results: {', '.join(map(str, round_results))}", file=out_file)
-        simulation_stat_out(round_results, random_number_of_jobs, simulation_file, profiling_results)
+        simulation_stat_out(round_results, random_number_of_jobs, simulation_file, profiling_results,makespan_data)
 
     print(create_section_line("Simulation Ended"), "\n", file=debug_file)
