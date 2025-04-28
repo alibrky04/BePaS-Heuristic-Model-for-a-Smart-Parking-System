@@ -1,0 +1,18 @@
+{
+    "UNIFORM": {
+        "range": [50, 100],
+        "parking_lot": 50,
+        "number_of_simulations": 20
+    },
+    "NORMAL": {
+        "mean": 75,
+        "dev": 25,
+        "parking_lot": 50,
+        "number_of_simulations": 20
+    },
+    "EXPONENTIAL": {
+        "lambda": 75,
+        "parking_lot": 50,
+        "number_of_simulations": 20
+    }
+}

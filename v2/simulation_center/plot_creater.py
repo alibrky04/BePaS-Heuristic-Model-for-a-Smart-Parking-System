@@ -38,22 +38,23 @@ class plot_creater():
 							data[distribution][batch_time][model_name] = avg_tod
 
 		for distribution in distributions:
-			fig, axes = plt.subplots(1, 3, figsize=(15, 5), sharey=True)
-
-			for i, batch_time in enumerate(batch_times):
-				ax = axes[i]
-				ax.set_xlabel("Batch")
-				ax.set_ylabel("ToD")
+			for batch_time in batch_times:
+				plt.figure(figsize=(8, 5))
+				plt.xlabel("Batch", fontsize=30)
+				plt.ylabel("ToD", fontsize=30)
 
 				for model in models:
 					if len(data[distribution][batch_time][model]) > 0:
-						ax.plot(data[distribution][batch_time][model], label=model)
+						plt.plot(data[distribution][batch_time][model], label=model)
 
-				ax.legend()
-				ax.grid()
-
-			plt.tight_layout()
-			plt.subplots_adjust(top=0.85)
-			plt.show()
+				plt.xticks(fontsize=28)
+				plt.yticks(fontsize=28)
+				plt.legend(fontsize=18, loc="lower right", bbox_to_anchor=(1, 0.15))
+				plt.grid(linewidth=1.5)
+				plt.tight_layout()
+				plt.show()
+		
+	def time_limit_plot(self):
+		pass
 			
 plot_creater().batch_time_plot()
