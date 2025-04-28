@@ -53,6 +53,7 @@ if __name__ == '__main__':
 
         round_results = []
         profiling_results = []
+        makespan_data = []
         for round_id in range(1, cnst.NUMBER_OF_ROUNDS + 1):
             print(create_section_line(f"Round {round_id}"), "\n", file=debug_file)
             # For rounds after the first, update existing jobs.
@@ -90,6 +91,7 @@ if __name__ == '__main__':
             # Calculate a measure (TOD) from the machines after assignment.
             tod = calculate_tod(machines)
             round_results.append(tod)
+            makespan_data.append(best_makespan)
             profiling_results.append(
                 {"exec_time": exec_time, "cpu_exec_time": cpu_exec_time, "memory_usage": memory_usage})
 
@@ -105,6 +107,6 @@ if __name__ == '__main__':
         simulation_data.append(round_results)
         profiling_data.append(profiling_results)
         print(f"Simulation results: {', '.join(map(str, round_results))}", file=out_file)
-        simulation_stat_out(round_results, random_number_of_jobs, simulation_file, profiling_results)
+        simulation_stat_out(round_results, random_number_of_jobs, simulation_file, profiling_results,makespan_data)
 
     print(create_section_line("Simulation Ended"), "\n", file=debug_file)

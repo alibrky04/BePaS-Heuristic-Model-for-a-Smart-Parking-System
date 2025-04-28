@@ -3,11 +3,13 @@ from v2.local_search.helpers.createJobs import createJobs
 from v2.local_search.helpers.createRandomJobValues import createRandomJobValues
 from v2.local_search.helpers.removeJobs import removeJobs
 from v2.local_search.helpers.calculateToD import calculateToD
+
 from v2.local_search.helpers.createDistribution import createDistribution
 
 from v2.local_search.heuristic_model.initialAssing import initialAssign
 from v2.local_search.heuristic_model.local_search_algorithm import localSearch
 from v2.local_search.heuristic_model.lpt_algorithm import legalLpt
+from v2.local_search.heuristic_model.calculateMakeSpan import calculateMakeSpan
 
 from v2.local_search.io_utils.printMachineStat import printMachineStat
 from v2.local_search.io_utils.printMachineStatOut import printMachineStatOut
@@ -43,6 +45,7 @@ def main(distribution="UNIFORM", batch_time=60, sim_output_file="output/json", t
 
     for _ in range(cnst.NUM_OF_SIMULATIONS):
         ToD = []
+        makespan_data = []
         profiling_results = []
         simulation_machines = None
 
@@ -85,6 +88,7 @@ def main(distribution="UNIFORM", batch_time=60, sim_output_file="output/json", t
                     simulation_machines[j].types_sums = machine_list[j].types_sums.copy()
 
             ToD.append(calculateToD(machine_list))
+            makespan_data.append(calculateMakeSpan(machine_list))
             profiling_results.append(
                 {"exec_time": exec_time, "cpu_exec_time": cpu_exec_time, "memory_usage": memory_usage})
 
@@ -93,7 +97,7 @@ def main(distribution="UNIFORM", batch_time=60, sim_output_file="output/json", t
             printMachineStatOut(simulation_machines, out_file, "Final state after waiting period")
 
         simulationStatOut(ToD, cnst.NUM_OF_MACHINES, rand_job_num, cnst.MIN_PROCESSING_TIME, cnst.MAX_PROCESSING_TIME,
-                          simulation_file, profiling_results)
+                          simulation_file, profiling_results, makespan_data)
 
     debug_file.close()
     out_file.close()
