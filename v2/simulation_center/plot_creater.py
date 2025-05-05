@@ -40,16 +40,16 @@ class plot_creater():
 		for distribution in distributions:
 			for batch_time in batch_times:
 				plt.figure(figsize=(8, 5))
-				plt.xlabel("Batch", fontsize=30)
-				plt.ylabel("ToD", fontsize=30)
+				plt.xlabel("Batch", fontsize=15)
+				plt.ylabel("ToD", fontsize=15)
 
 				for model in models:
 					if len(data[distribution][batch_time][model]) > 0:
 						plt.plot(data[distribution][batch_time][model], label=model)
 
-				plt.xticks(fontsize=28)
-				plt.yticks(fontsize=28)
-				plt.legend(fontsize=18, loc="lower right", bbox_to_anchor=(1, 0.15))
+				plt.xticks(fontsize=15)
+				plt.yticks(fontsize=15)
+				plt.legend(fontsize=15, loc="center left")
 				plt.grid(linewidth=1.5)
 				plt.tight_layout()
 				plt.show()
