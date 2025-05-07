@@ -49,10 +49,11 @@ class plot_creater():
 						time_axis = np.linspace(0, 24, len(values))
 						plt.plot(time_axis, values, marker='o', label=model)
 
-				# TODO: Make the y ticks go to 2500
+				# TODO:	
 				plt.xticks(np.arange(0, 25, 2), fontsize=18)
 				plt.yticks(fontsize=18)
-				plt.legend(fontsize=16, loc="upper left", bbox_to_anchor=(0, 0.85))
+				plt.ylim(0, 2700)
+				# plt.legend(fontsize=16, loc="upper left", bbox_to_anchor=(0, 0.85))
 				plt.grid(linewidth=0.75)
 				plt.tight_layout()
 				plt.show()
