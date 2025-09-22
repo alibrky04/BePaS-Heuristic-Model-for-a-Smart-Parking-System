@@ -26,7 +26,11 @@ distributions = ["UNIFORM", "NORMAL", "EXPONENTIAL"]
 data_folder_path = "v2/simulation_center/data"
 
 def batch_time_simulation(folder_name):
-    batch_time_models = {"hybrid": [hybrid_main, hybrid_constants]}
+    batch_time_models = {"branch_and_bound": [bnb_main, bnb_constants],
+                         "genetic": [genetic_main, genetic_constants],
+                         "local_search": [ls_main, ls_constants],
+                         "nearest_lot": [nl_main, nl_constants],
+                         "hybrid": [hybrid_main, hybrid_constants]}
 
     exceptions = []
 

@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import os
 import json
+import seaborn as sns
+import pandas as pd
 
 class plot_creater():
 	def __init__(self):
@@ -60,5 +62,72 @@ class plot_creater():
 		
 	def time_limit_plot(self):
 		pass
-			
-plot_creater().batch_time_plot()
+
+	def heatmap_plot(self, anova_csv_path="v2/simulation_center/results/anova_results.csv"):
+		"""
+		Plots a heatmap of ANOVA F-statistics for batch_time vs distribution.
+		"""
+		# Load CSV
+		anova_df = pd.read_csv(anova_csv_path)
+
+		# Pivot for heatmap
+		heatmap_data = anova_df.pivot(index='batch_time', columns='distribution', values='F_stat')
+
+		# Plot
+		plt.figure(figsize=(8, 6))
+		sns.heatmap(heatmap_data, annot=True, fmt=".1f", cmap="YlGnBu", annot_kws={"weight": "bold", "fontsize":12})
+		plt.xlabel("Distribution", fontsize=14, fontweight="bold")
+		plt.ylabel("Batch Time (min)", fontsize=14, fontweight="bold")
+		plt.xticks(fontsize=14, fontweight="bold")
+		plt.yticks(fontsize=14, fontweight="bold")
+		plt.tight_layout()
+		plt.show()
+	
+	def tukey_heatmap_plot(self, tukey_csv_path="v2/simulation_center/results/tukey_results.csv"):
+		"""
+		Plots a heatmap of Tukey HSD mean differences between heuristic models.
+		Cells are colored by mean difference, and significant differences are highlighted.
+		"""
+		# Load CSV
+		tukey_df = pd.read_csv(tukey_csv_path)
+
+		batch_times = tukey_df['batch_time'].unique()
+		distributions = tukey_df['distribution'].unique()
+		models = sorted(list(set(tukey_df['group1']).union(set(tukey_df['group2']))))
+
+		for batch_time in batch_times:
+			for distribution in distributions:
+				# Filter for specific batch time and distribution
+				subset = tukey_df[(tukey_df['batch_time'] == batch_time) & 
+								(tukey_df['distribution'] == distribution)]
+
+				# Create an empty matrix
+				heatmap_data = pd.DataFrame(0, index=models, columns=models, dtype=float)
+
+				for _, row in subset.iterrows():
+					heatmap_data.loc[row['group1'], row['group2']] = row['meandiff']
+					heatmap_data.loc[row['group2'], row['group1']] = row['meandiff']  # symmetric
+
+				# Mask the diagonal
+				mask = np.eye(len(models), dtype=bool)
+
+				plt.figure(figsize=(8, 6))
+				sns.heatmap(
+					heatmap_data,
+					annot=True,
+					fmt=".1f",
+					cmap="RdBu_r",
+					center=0,
+					mask=mask,
+					annot_kws={"weight": "bold", "fontsize": 12}  # Bold annotations
+				)
+
+				plt.xlabel("Model", fontsize=14, fontweight="bold")
+				plt.ylabel("Model", fontsize=14, fontweight="bold")
+				plt.xticks(fontsize=12, fontweight="bold")
+				plt.yticks(fontsize=12, fontweight="bold")
+				plt.tight_layout()
+				plt.show()
+
+pt = plot_creater()
+pt.tukey_heatmap_plot()
